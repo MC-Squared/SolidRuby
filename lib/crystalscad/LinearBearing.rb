@@ -39,7 +39,7 @@ module CrystalScad::LinearBearing
         
       }
       @shell_thickness = 1.1
-      @@bom.add(description) unless args[:no_bom] == true
+      BillOfMaterial.bom.add(description) unless args[:no_bom] == true
     end
    
     def description
@@ -82,7 +82,7 @@ module CrystalScad::LinearBearing
         
       }
       @shell_thickness = 1.1
-      @@bom.add(description) unless args[:no_bom] == true
+      BillOfMaterial.bom.add(description) unless args[:no_bom] == true
     end
    
     def description

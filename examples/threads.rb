@@ -181,6 +181,6 @@ b +=BlackBoxMountTop.new.show
 #b =BlackBoxMountTop.new.output
 
 # Uncomment this for checking the BOM output
-# puts @@bom.output
+# puts BillOfMaterial.bom.output
 
 b.save("threads.scad")

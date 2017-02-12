@@ -42,8 +42,8 @@ module CrystalScad
 	  end
 
 		def add_to_bom
-			if !@bom_added				
-				@@bom.add(description) unless @args[:no_bom] == true
+			if !@bom_added
+				BillOfMaterial.bom.add(description) unless @args[:no_bom] == true
 				@bom_added = true
 			end
 		end		

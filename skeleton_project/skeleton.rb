@@ -9,7 +9,7 @@ include CrystalScad
 assembly = Example.new.show
 subassembly = nil
 
-@@bom.save
+BillOfMaterial.bom.save
 
 assembly.save(File.expand_path(__FILE__).gsub(".rb","")+".scad","$fn=64;") if assembly
 subassembly.save("part.scad","$fn=64;") if subassembly

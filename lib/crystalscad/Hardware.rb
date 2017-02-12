@@ -441,7 +441,7 @@ module CrystalScad::Hardware
     end
 
     def profile
-			@@bom.add(description) unless args[:no_bom] == true
+			BillOfMaterial.bom.add(description) unless args[:no_bom] == true
 			return single_profile.color("Silver")	 if @args[:configuration] == 1 		
 			return multi_profile.color("Silver")      
     end

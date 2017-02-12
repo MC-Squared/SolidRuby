@@ -28,15 +28,17 @@ module CrystalScad::BillOfMaterial
 
 		def output
 			@parts.map{|key, qty| "#{qty} x #{key}"}.join("\n")
-		end	
-		
-		def save(filename="bom.txt")
+		end
+
+		def save(filename="output/bom.txt")
 		  file = File.open(filename,"w")
       file.puts output
       file.close
 		end
 	end
 
-	@@bom = BillOfMaterial.new
-
+	@bom = BillOfMaterial.new
+	def self.bom
+		@bom
+	end
 end

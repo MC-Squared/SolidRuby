@@ -33,7 +33,7 @@ require_all \"lib/**/*.rb\"
 # Scans every file in lib/**/*.rb for classes and saves them in the output/ directory
 save!
 
-@@bom.save(\"bom.txt\")
+BillOfMaterial.bom.save(\"output/bom.txt\")
 
 "
 		end  
