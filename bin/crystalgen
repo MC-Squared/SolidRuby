@@ -139,18 +139,14 @@ end
 end	
 "
 		end
-		
-		create_file("#{name}/#{name}.observr") do 
-"
-system(\"./#{name}.rb\")
-watch( \'#{name}.rb' )  {|md|
-   system(\"./#{name}.rb\")
-}
 
-watch( 'lib/*/(.*)\.rb' )  {|md|
-   system(\"./#{name}.rb\")
-}
-"			
+		create_file("#{name}/Guardfile") do
+"
+guard :shell do
+  watch(/#{name}.rb/) { system('ruby #{name}.rb') }
+  watch(%r{^lib/.+\.rb}) { system('ruby #{name}.rb') }
+end
+"
 		end
 
   end
