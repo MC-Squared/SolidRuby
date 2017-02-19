@@ -14,4 +14,3 @@ require 'crystalscad/Ruler'
 require 'crystalscad/Extras'
 
 require 'crystalscad/CrystalScad'
-

@@ -14,168 +14,161 @@
 #    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>.
 
 module CrystalScad
-	class Assembly < CrystalScad::Primitive
-		attr_accessor 	:x,:y,:z,:skip,:color,:hardware,:transformations
+  class Assembly < CrystalScad::Primitive
+    attr_accessor	:x, :y, :z, :skip, :color, :hardware, :transformations
 
-		def method_missing(method, *args, &block)	
-			eval( "def #{method}() @#{method}; end" )
-			return self.send(method, *args, &block)
-		end
+    def method_missing(method, *args, &block)
+      eval("def #{method}() @#{method}; end")
+      send(method, *args, &block)
+    end
 
-		def transform(obj)	
-			return obj if @transformations == nil
-			@transformations.each do |t|
-				obj.transformations << t
-			end
-			
-			return obj
-		end
+    def transform(obj)
+      return obj if @transformations.nil?
+      @transformations.each do |t|
+        obj.transformations << t
+      end
 
-	  def initialize(args={})
-	    @args = args if @args == nil
-			
-			@x = args[:x]
-			@y = args[:y]
-			@z = args[:z]
+      obj
+    end
+
+    def initialize(args = {})
+      @args = args if @args.nil?
+
+      @x = args[:x]
+      @y = args[:y]
+      @z = args[:z]
 
       add_to_bom
-	  end
+    end
 
-		def add_to_bom
-			if !@bom_added
-				BillOfMaterial.bom.add(description) unless @args[:no_bom] == true
-				@bom_added = true
-			end
-		end		
-	  
-	  def description
-	    "No description set for Class #{self.class.to_s}"
-	  end
-	  
-	  def show
-	    transform(part(true))
-	  end
-	  
-	  def output
-	    transform(part(false))
-	  end
+    def add_to_bom
+      unless @bom_added
+        BillOfMaterial.bom.add(description) unless @args[:no_bom] == true
+        @bom_added = true
+      end
+    end
 
-		def part(show=false)
-			CrystalScadObject.new
-		end
-	  
-	  def walk_tree
-	    return output.walk_tree
-	  end
-	  
-	  def +(args)
-	    return self.output+args
-	  end
+    def description
+      "No description set for Class #{self.class}"
+    end
 
-	  def -(args)
-	    return self.output-args
-	  end
+    def show
+      transform(part(true))
+    end
 
-	  def *(args)
-	    return self.output*args
-	  end
+    def output
+      transform(part(false))
+    end
 
-	  def scad_output()
-	    return self.output.scad_output
-	  end 
-		
-		def threads
-			a = []
-			[:threads_top,:threads_bottom,:threads_left,:threads_right,:threads_front,:threads_back].each do |m|
-				if self.respond_to? m
-					ret = self.send m
-					unless ret == nil
-						if ret.kind_of? Array
-							a+= ret
-						else
-							a << ret
-						end
-					end				
-				end
-			end
+    def part(_show = false)
+      CrystalScadObject.new
+    end
 
-			return a
-		end
+    def walk_tree
+      output.walk_tree
+    end
 
-		# Makes the save_all method in CrystalScad skip the specified method(s)
-		def self.skip(args)
-		@skip = [] if @skip == nil
-			if args.kind_of? Array
-				args.each do |arg|
-					skip(arg)
-				end
-				return
-			end			
-				
-			@skip << args.to_s
-			return
-		end
+    def +(args)
+      output + args
+    end
 
-		def self.get_skip
-			@skip		
-		end
+    def -(args)
+      output - args
+    end
 
+    def *(args)
+      output * args
+    end
 
-		def self.view(args)
-			@added_views = [] if @added_views == nil
-			if args.kind_of? Array
-				args.each do |arg|
-					view(arg)
-				end
-				return
-			end			
-				
-			@added_views << args.to_s
-			return
-		end
+    def scad_output
+      output.scad_output
+    end
 
-		def self.get_views
-			@added_views || []
-		end
+    def threads
+      a = []
+      [:threads_top, :threads_bottom, :threads_left, :threads_right, :threads_front, :threads_back].each do |m|
+        next unless respond_to? m
+        ret = send m
+        unless ret.nil?
+          if ret.is_a? Array
+            a += ret
+          else
+            a << ret
+          end
+        end
+      end
 
+      a
+    end
 
-		def color(args={})
-			@color = args
-			return self
-		end
+    # Makes the save_all method in CrystalScad skip the specified method(s)
+    def self.skip(args)
+      @skip = [] if @skip.nil?
+      if args.is_a? Array
+        args.each do |arg|
+          skip(arg)
+        end
+        return
+      end
 
-		def colorize(res)
-			return res if @color == nil
-			return res.color(@color)
-		end
+      @skip << args.to_s
+      nil
+    end
 
-		def show_hardware
-			return nil if @hardware == nil or @hardware == []
-			res = nil			
-			@hardware.each do |part|
-				res += part.show
-			end
-			transform(res)
-		end
+    def self.get_skip
+      @skip
+    end
 
-	end
+    def self.view(args)
+      @added_views = [] if @added_views.nil?
+      if args.is_a? Array
+        args.each do |arg|
+          view(arg)
+        end
+        return
+      end
 
-	class Printed < Assembly
-	  def description
-	    "Printed part #{self.class.to_s}"
-	  end		
-	end
-	
-	class LasercutSheet < Assembly
-	
-	  def description
-	    "Laser cut sheet #{self.class.to_s}"
-	  end				
-		
-		def part(show)
-			square([@x,@y])
-		end
-	end	
+      @added_views << args.to_s
+      nil
+    end
 
+    def self.get_views
+      @added_views || []
+    end
+
+    def color(args = {})
+      @color = args
+      self
+    end
+
+    def colorize(res)
+      return res if @color.nil?
+      res.color(@color)
+    end
+
+    def show_hardware
+      return nil if @hardware.nil? || (@hardware == [])
+      res = nil
+      @hardware.each do |part|
+        res += part.show
+      end
+      transform(res)
+    end
+  end
+
+  class Printed < Assembly
+    def description
+      "Printed part #{self.class}"
+    end
+  end
+
+  class LasercutSheet < Assembly
+    def description
+      "Laser cut sheet #{self.class}"
+    end
+
+    def part(_show)
+      square([@x, @y])
+    end
+  end
 end
-
