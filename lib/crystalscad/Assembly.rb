@@ -23,6 +23,7 @@ module CrystalScad
     end
 
     def transform(obj)
+      @transformations ||= nil
       return obj if @transformations.nil?
       @transformations.each do |t|
         obj.transformations << t
@@ -32,7 +33,7 @@ module CrystalScad
     end
 
     def initialize(args = {})
-      @args = args if @args.nil?
+      @args ||= args
 
       @x = args[:x]
       @y = args[:y]
@@ -42,6 +43,8 @@ module CrystalScad
     end
 
     def add_to_bom
+      @bom_added ||= false
+
       unless @bom_added
         BillOfMaterial.bom.add(description) unless @args[:no_bom] == true
         @bom_added = true

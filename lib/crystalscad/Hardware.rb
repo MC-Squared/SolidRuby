@@ -77,6 +77,7 @@ module CrystalScad::Hardware
         raise "unkown type #{args[:type]} for Bolt!"
       end
 
+      @washer ||= nil
       if @washer
         res += @washer.show
         res = res.translate(z: -@washer.height)

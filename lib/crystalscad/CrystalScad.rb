@@ -395,6 +395,7 @@ module CrystalScad
     end
 
     def to_rubyscad
+      @layer ||= nil
       layer = ''
       layer = ",layer=\"#{@layer}\"" if @layer
       res = children.map(&:walk_tree)
@@ -416,6 +417,7 @@ module CrystalScad
     end
 
     def to_rubyscad
+      @layer ||= nil
       layer = ''
       layer = ",layer=\"#{@layer}\"" if @layer
       res = ''
@@ -528,7 +530,7 @@ module CrystalScad
   def stack(args = {}, *parts)
     args[:method] ||= 'show'
     args[:spacing] ||= 0
-    puts 'CrystalScad Warning: Please note that the stack method is deprecated and will be removed or replaced in the future'
+    warn 'CrystalScad Warning: Please note that the stack method is deprecated and will be removed or replaced in the future'
     @assembly = nil
     z = 0
     parts.each do |part|
