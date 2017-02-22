@@ -27,7 +27,7 @@ class BlackBox < CrystalScad::Assembly
   end
 
   def threads_bottom
-    holes = *ScrewThread.new(x: 50, y: 50, size: 8, depth: 10)
+    [ScrewThread.new(x: 50, y: 50, size: 8, depth: 10)]
   end
 
   # note that the coordinates for the threads are needed in 2 directions from 0,0,0
@@ -168,11 +168,11 @@ b = CrystalScadObject.new
 # uncomment as many mounts as you like here
 
 b += BlackBoxMountTop.new.show
-# b +=BlackBoxMountBottom.new.show
-# b +=BlackBoxMountLeft.new.show
-# b +=BlackBoxMountRight.new.show
-# b +=BlackBoxMountFront.new.show
-# b +=BlackBoxMountBack.new.show
+b +=BlackBoxMountBottom.new.show
+b +=BlackBoxMountLeft.new.show
+b +=BlackBoxMountRight.new.show
+b +=BlackBoxMountFront.new.show
+b +=BlackBoxMountBack.new.show
 
 # you can also try output instead of show
 # b =BlackBoxMountTop.new.output
