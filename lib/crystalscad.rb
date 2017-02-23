@@ -4,6 +4,7 @@ require 'crystalscad/CrystalScadObject'
 require 'crystalscad/Primitive'
 require 'crystalscad/Assembly'
 require 'crystalscad/Hardware'
+require 'crystalscad/RubyScadBridge'
 
 require 'crystalscad/LinearBearing'
 require 'crystalscad/Gears'

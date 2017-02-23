@@ -13,7 +13,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>fre.
 
-require 'rubyscad'
 $fn = 64
 
 module CrystalScad
@@ -227,22 +226,6 @@ module CrystalScad
 
   def polygon(args)
     Polygon.new(args)
-  end
-
-  class RubyScadBridge
-    include RubyScad
-
-    def raw_output(str)
-      str
-    end
-
-    def format_output(str)
-      str
-    end
-
-    def format_block(output_str)
-      output_str
-    end
   end
 
   class AdvancedPrimitive < Primitive
@@ -503,7 +486,10 @@ module CrystalScad
       args[:height] = args[:h]
       args.delete(:h)
     end
-    args = args.collect { |k, v| "#{k} = #{v}" }.join(', ')
+    args = args.collect do |k, v|
+      sv = RubyScadBridge.new.format_value(v)
+      "#{k} = #{sv}"
+    end.join(', ')
     LinearExtrude.new(self, args)
   end
 
@@ -512,12 +498,18 @@ module CrystalScad
       args[:height] = args[:h]
       args.delete(:h)
     end
-    args = args.collect { |k, v| "#{k} = #{v}" }.join(', ')
+    args = args.collect do |k, v|
+      sv = RubyScadBridge.new.format_value(v)
+      "#{k} = #{sv}"
+    end.join(', ')
     RotateExtrude.new(self, args)
   end
 
   def projection(args = {})
-    args = args.collect { |k, v| "#{k} = #{v}" }.join(', ')
+    args = args.collect do |k, v|
+      sv = RubyScadBridge.new.format_value(v)
+      "#{k} = #{sv}"
+    end.join(', ')
     Projection.new(self, args)
   end
 

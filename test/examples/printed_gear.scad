@@ -127,7 +127,7 @@ cylinder(h = 4.200, r = 2.500);
 }
 }
 translate(v = [60.0, 0])
-rotate(a = [0, 0, -$t*360*2.000])
+rotate(a = [0, 0, -$t*360*2.0])
 rotate(a = [0, 0, 9.0])
 difference(){union(){
 rotate(a = [0, 0, 0.0])
