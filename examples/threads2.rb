@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
-# This example shows the use of ScrewThreads in CrystalScad.
+# This example shows the use of ScrewThreads in SolidRuby.
 
-class CustomPartWithFemaleThread < CrystalScad::Assembly
+class CustomPartWithFemaleThread < SolidRuby::Assembly
   # this could be something like a tslot-nut
 
   def initialize
@@ -24,7 +24,7 @@ class CustomPartWithFemaleThread < CrystalScad::Assembly
   end
 end
 
-class CustomPartWithMaleThread < CrystalScad::Assembly
+class CustomPartWithMaleThread < SolidRuby::Assembly
   def initialize
     @x = 50
     @y = 50

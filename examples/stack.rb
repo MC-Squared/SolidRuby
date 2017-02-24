@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 # Note that this example does not work as intended and the function is deprecated
 

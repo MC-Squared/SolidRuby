@@ -1,20 +1,20 @@
-#    This file is part of CrystalScad.
+#    This file is part of SolidRuby.
 #
-#    CrystalScad is free software: you can redistribute it and/or modify
+#    SolidRuby is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    CrystalScad is distributed in the hope that it will be useful,
+#    SolidRuby is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>.
+#    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module CrystalScad::Hardware
-   class Hardware < CrystalScad::Assembly
+module SolidRuby::Hardware
+   class Hardware < SolidRuby::Assembly
    end
 
   class Bolt < Hardware
@@ -334,10 +334,10 @@ module CrystalScad::Hardware
     end
   end
 
-  class TSlot < CrystalScad::Assembly
+  class TSlot < SolidRuby::Assembly
     # the code in this class is based on code by Nathan Zadoks
     # taken from https://github.com/nathan7/scadlib
-    # Ported to CrystalScad by Joachim Glauche
+    # Ported to SolidRuby by Joachim Glauche
     # License: GPLv3
     attr_accessor :args
     def initialize(args = {})
@@ -349,7 +349,7 @@ module CrystalScad::Hardware
       @args[:gap] ||= 8.13
       @args[:thickness] ||= 2.55
       @args[:simple] ||= false
-      @machining = CrystalScadObject.new
+      @machining = SolidRubyObject.new
       @machining_string = ''
     end
 
@@ -478,7 +478,7 @@ module CrystalScad::Hardware
     end
 
     def bolts
-       bolt = CrystalScadObject.new
+       bolt = SolidRubyObject.new
       return bolt if @args[:holes].nil?
 
       if @args[:holes].include?('front')

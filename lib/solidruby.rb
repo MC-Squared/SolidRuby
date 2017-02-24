@@ -1,0 +1,17 @@
+require 'solidruby/version'
+require 'solidruby/BillOfMaterial'
+require 'solidruby/SolidRubyObject'
+require 'solidruby/Primitive'
+require 'solidruby/Assembly'
+require 'solidruby/Hardware'
+require 'solidruby/RubyScadBridge'
+
+require 'solidruby/LinearBearing'
+require 'solidruby/Gears'
+require 'solidruby/ScrewThreads'
+require 'solidruby/PrintedThreads'
+require 'solidruby/Pipe'
+require 'solidruby/Ruler'
+require 'solidruby/Extras'
+
+require 'solidruby/SolidRuby'

@@ -1,20 +1,20 @@
-#    This file is part of CrystalScad.
+#    This file is part of SolidRuby.
 #
-#    CrystalScad is free software: you can redistribute it and/or modify
+#    SolidRuby is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    CrystalScad is distributed in the hope that it will be useful,
+#    SolidRuby is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>.
+#    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module CrystalScad::Gears
-  class Gear < CrystalScad::Assembly
+module SolidRuby::Gears
+  class Gear < SolidRuby::Assembly
     # this library is to be used to easily work with gears and their distances to each other
 
     attr_reader :module, :teeth, :height, :hub_dia, :hub_height
@@ -102,7 +102,7 @@ module CrystalScad::Gears
       ]
       paths = [(0..16).to_a]
 
-      res = CrystalScadObject.new
+      res = SolidRubyObject.new
       (0..@teeth - @teeth_to_hide - 1).each do |i|
         res += polygon(points: points, paths: paths).linear_extrude(h: @height, convexity: 10, center: false, twist: @twist).rotate(z: i * 360 / @teeth.to_f)
       end

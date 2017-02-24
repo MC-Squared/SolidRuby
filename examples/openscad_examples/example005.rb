@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 # note that openscad works with radians automatically and ruby doesn't.
 def radians(a)

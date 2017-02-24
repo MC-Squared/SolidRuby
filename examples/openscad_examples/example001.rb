@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 size = 50
 hole = 25

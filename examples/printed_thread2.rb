@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 t1 = PrintedThread.new(diameter: 20, pitch: 2.5, length: 22.5, internal: true)
 t2 = PrintedThread.new(diameter: 20, pitch: 2.5, length: 20, internal: false)

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 g1 = Gear.new(module: 0.5, teeth: 80, bore: 5, height: 4)
 #g2 = Gear.new(module: 0.5, teeth: 14, bore: 5, height: 8)

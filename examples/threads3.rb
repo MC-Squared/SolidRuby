@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
-class NutPart < CrystalScad::Assembly
+class NutPart < SolidRuby::Assembly
   def initialize
     @hardware = []
     @height = 10
@@ -24,7 +24,7 @@ class NutPart < CrystalScad::Assembly
   end
 end
 
-class ScrewOnPart < CrystalScad::Assembly
+class ScrewOnPart < SolidRuby::Assembly
   def initialize
     @nutpart = NutPart.new
   end

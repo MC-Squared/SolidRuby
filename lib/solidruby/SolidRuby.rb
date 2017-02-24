@@ -1,31 +1,31 @@
-#    This file is part of CrystalScad.
+#    This file is part of SolidRuby.
 #
-#    CrystalScad is free software: you can redistribute it and/or modify
+#    SolidRuby is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    CrystalScad is distributed in the hope that it will be useful,
+#    SolidRuby is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>fre.
+#    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>fre.
 
 $fn = 64
 
-module CrystalScad
-  include CrystalScad::BillOfMaterial
-  include CrystalScad::Hardware
-  include CrystalScad::LinearBearing
-  include CrystalScad::Gears
-  include CrystalScad::ScrewThreads
-  include CrystalScad::PrintedThreads
-  include CrystalScad::Extras
+module SolidRuby
+  include SolidRuby::BillOfMaterial
+  include SolidRuby::Hardware
+  include SolidRuby::LinearBearing
+  include SolidRuby::Gears
+  include SolidRuby::ScrewThreads
+  include SolidRuby::PrintedThreads
+  include SolidRuby::Extras
   include Math
 
-  class Transformation < CrystalScadObject
+  class Transformation < SolidRubyObject
   end
 
   class Rotate < Transformation
@@ -373,7 +373,7 @@ module CrystalScad
       end
 
       # we need to convert relative to absolute paths if the openscad output is not in the same directory
-      # as the crystalscad program.
+      # as the solidruby program.
       @filename = File.expand_path(filename)
     end
 
@@ -522,7 +522,7 @@ module CrystalScad
   def stack(args = {}, *parts)
     args[:method] ||= 'show'
     args[:spacing] ||= 0
-    warn 'CrystalScad Warning: Please note that the stack method is deprecated and will be removed or replaced in the future'
+    warn 'SolidRuby Warning: Please note that the stack method is deprecated and will be removed or replaced in the future'
     @assembly = nil
     z = 0
     parts.each do |part|
@@ -581,7 +581,7 @@ module CrystalScad
     Dir.glob('lib/**/*.rb').map { |l| get_classes_from_file(l) }.flatten.map { |l| save_all(l) }
   end
 
-  # Saves all files generated of a CrystalScad file
+  # Saves all files generated of a SolidRuby file
   # Saves outputs of
   # - show
   # - output
@@ -603,9 +603,9 @@ module CrystalScad
       res.send :initialize # ensure default values are loaded at each interation
       output = res.send i
 
-      # if previous call resulted in a CrystalScadObject, don't call the show method again,
+      # if previous call resulted in a SolidRubyObject, don't call the show method again,
       # otherwise call it.
-      unless	output.is_a? CrystalScadObject
+      unless	output.is_a? SolidRubyObject
         output = if i.to_s.include? 'output'
                    res.output
                  else

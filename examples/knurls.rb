@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 res = knurled_cube([41, 10, 4])
 # Total rendering time: 0 hours, 5 minutes, 53 seconds

@@ -1,20 +1,20 @@
-#    This file is part of CrystalScad.
+#    This file is part of SolidRuby.
 #
-#    CrystalScad is free software: you can redistribute it and/or modify
+#    SolidRuby is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    CrystalScad is distributed in the hope that it will be useful,
+#    SolidRuby is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>.
+#    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module CrystalScad
-  class Assembly < CrystalScad::Primitive
+module SolidRuby
+  class Assembly < SolidRuby::Primitive
     attr_accessor	:x, :y, :z, :skip, :color, :hardware, :transformations
 
     def method_missing(method, *args, &block)
@@ -64,7 +64,7 @@ module CrystalScad
     end
 
     def part(_show = false)
-      CrystalScadObject.new
+      SolidRubyObject.new
     end
 
     def walk_tree
@@ -104,7 +104,7 @@ module CrystalScad
       a
     end
 
-    # Makes the save_all method in CrystalScad skip the specified method(s)
+    # Makes the save_all method in SolidRuby skip the specified method(s)
     def self.skip(args)
       @skip = [] if @skip.nil?
       if args.is_a? Array

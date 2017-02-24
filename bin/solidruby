@@ -4,7 +4,7 @@ require 'thor'
 require 'thor/group'
 require 'thor/actions'
 
-class CrystalGen < Thor
+class SolidRubyGenerator < Thor
   include Thor::Actions
 
   desc 'new APP_NAME', 'creates a new project stub'
@@ -12,9 +12,9 @@ class CrystalGen < Thor
   def new(name)
     create_file("#{name}/#{name}.rb") do
 "#!/usr/bin/env ruby
-require \"crystalscad\"
+require \"solidruby\"
 require \"require_all\"
-include CrystalScad
+include SolidRuby
 
 require_all \"lib/**/*.rb\"
 
@@ -42,7 +42,7 @@ BillOfMaterial.bom.save(\"output/bom.txt\")"
   empty_directory("#{name}/output")
 
   create_file("#{name}/lib/assemblies/#{name}_assembly.rb") do
-    "class #{name.capitalize}Assembly < CrystalScad::Assembly
+    "class #{name.capitalize}Assembly < SolidRuby::Assembly
 
   # Assemblies are used to show how different parts interact on your design.
 
@@ -74,7 +74,7 @@ end
   end
 
   create_file("#{name}/lib/printed/testcube.rb") do
-    "class TestCube < CrystalScad::Printed
+    "class TestCube < SolidRuby::Printed
   def initialize()
     # Here is a good place to define instance variables that make your part parametric.
     # These variables are acessable from outside:
@@ -145,4 +145,4 @@ end
   end
 end
 
-CrystalGen.start(ARGV)
+SolidRubyGenerator.start(ARGV)

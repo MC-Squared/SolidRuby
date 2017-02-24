@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 res = cube([160, 20, 20]).center_y.translate(x: -5)
 [2.5, 3, 4, 5, 6, 8, 10, 12].each do |size|

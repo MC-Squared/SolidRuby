@@ -1,17 +1,17 @@
-#    This file is part of CrystalScad.
+#    This file is part of SolidRuby.
 #
-#    CrystalScad is free software: you can redistribute it and/or modify
+#    SolidRuby is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    CrystalScad is distributed in the hope that it will be useful,
+#    SolidRuby is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with CrystalScad.  If not, see <http://www.gnu.org/licenses/>.
+#    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
 # This code is based on RubyScad (https://github.com/cjbissonnette/RubyScad)
@@ -19,7 +19,7 @@
 #
 require 'matrix'
 
-module CrystalScad
+module SolidRuby
   class RubyScadBridge
     START_BLOCK = '{'.freeze
     END_BLOCK   = '}'.freeze

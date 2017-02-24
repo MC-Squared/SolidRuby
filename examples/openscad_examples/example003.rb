@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
 def example003
   res1 = cube([30, 30, 30]).center
-  res2 = nil # either initialize it with a CrystalScadObject or nil as we do a += on it later on
+  res2 = nil # either initialize it with a SolidRubyObject or nil as we do a += on it later on
   [[1, 0, 0], [0, 1, 0], [0, 0, 1]].each do |x, y, z|
     res1 += cube([15 + x * 25, 15 + y * 25, 15 + z * 25]).center
     res2 += cube([10 + x * 40, 10 + y * 40,+10 + z * 40]).center

@@ -1,4 +1,4 @@
-class Example < CrystalScad::Assembly
+class Example < SolidRuby::Assembly
   def initialize(args = {})
     super
   end

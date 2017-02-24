@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
-class MyPipe < CrystalScad::Pipe
+class MyPipe < SolidRuby::Pipe
   def shape
     @line_rotation = 30
     circle(d: @diameter, fn: 6)

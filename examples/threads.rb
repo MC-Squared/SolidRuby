@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
-include CrystalScad
+require 'solidruby'
+include SolidRuby
 
-# This example shows the use of ScrewThreads in CrystalScad.
+# This example shows the use of ScrewThreads in SolidRuby.
 
-class BlackBox < CrystalScad::Assembly
+class BlackBox < SolidRuby::Assembly
   # This is a box (the part that you want to make a mount for)
 
   def initialize
@@ -60,7 +60,7 @@ class BlackBox < CrystalScad::Assembly
 end
 
 # this is what a basic mount looks like.
-class BlackBoxMountTop < CrystalScad::Printed
+class BlackBoxMountTop < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: 200, y: 100, z: 7)
@@ -88,7 +88,7 @@ class BlackBoxMountTop < CrystalScad::Printed
   end
 end
 
-class BlackBoxMountBottom < CrystalScad::Printed
+class BlackBoxMountBottom < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: 200, y: 100, z: z = 2)
@@ -103,7 +103,7 @@ class BlackBoxMountBottom < CrystalScad::Printed
   end
 end
 
-class BlackBoxMountLeft < CrystalScad::Printed
+class BlackBoxMountLeft < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: x = 5, y: 100, z: 50)
@@ -118,7 +118,7 @@ class BlackBoxMountLeft < CrystalScad::Printed
   end
 end
 
-class BlackBoxMountRight < CrystalScad::Printed
+class BlackBoxMountRight < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: 5, y: 100, z: 50)
@@ -133,7 +133,7 @@ class BlackBoxMountRight < CrystalScad::Printed
   end
 end
 
-class BlackBoxMountFront < CrystalScad::Printed
+class BlackBoxMountFront < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: box.x, y: y = 15, z: box.z)
@@ -148,7 +148,7 @@ class BlackBoxMountFront < CrystalScad::Printed
   end
 end
 
-class BlackBoxMountBack < CrystalScad::Printed
+class BlackBoxMountBack < SolidRuby::Printed
   def part(show)
     box = BlackBox.new
     mount = cube(x: box.x, y: 35, z: box.z)
@@ -163,7 +163,7 @@ class BlackBoxMountBack < CrystalScad::Printed
   end
 end
 
-b = CrystalScadObject.new
+b = SolidRubyObject.new
 
 # uncomment as many mounts as you like here
 

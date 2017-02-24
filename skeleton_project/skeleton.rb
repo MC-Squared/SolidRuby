@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'crystalscad'
+require 'solidruby'
 require 'require_all'
 require_all 'assemblies'
-include CrystalScad
+include SolidRuby
 
 assembly = Example.new.show
 subassembly = nil

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-include CrystalScad
+include SolidRuby
 
 class TransformationTest < Minitest::Test
   def test_rotation_scad
@@ -587,7 +587,7 @@ class ColorTest < Minitest::Test
 
     assert_equal exp, c.to_rubyscad
 
-    #Currently broken - CrystalScad.to_rubyscad expects attributes to be a string
+    #Currently broken - SolidRuby.to_rubyscad expects attributes to be a string
     #c = Color.new(cube, r: 1, g: 2, b: 3)
 
     #exp = 'color([0.00392156862745098, 0.00784313725490196, ' \
@@ -643,7 +643,7 @@ class ProjectionTest < Minitest::Test
   end
 end
 
-class CrystalScadTest < Minitest::Test
+class SolidRubyTest < Minitest::Test
   def test_radians
     vals = {
       90 => 1.571,
