@@ -31,18 +31,18 @@ require_all \"lib/**/*.rb\"
 save!
 
 BillOfMaterial.bom.save(\"output/bom.txt\")"
-  end
+    end
 
-  chmod("#{name}/#{name}.rb", 0755)
-  empty_directory("#{name}/lib/assemblies/")
-  empty_directory("#{name}/lib/electronics/")
-  empty_directory("#{name}/lib/hardware/")
-  empty_directory("#{name}/lib/printed/")
-  empty_directory("#{name}/lib/lasercut/")
-  empty_directory("#{name}/output")
+    chmod("#{name}/#{name}.rb", 0755)
+    empty_directory("#{name}/lib/assemblies/")
+    empty_directory("#{name}/lib/electronics/")
+    empty_directory("#{name}/lib/hardware/")
+    empty_directory("#{name}/lib/printed/")
+    empty_directory("#{name}/lib/lasercut/")
+    empty_directory("#{name}/output")
 
-  create_file("#{name}/lib/assemblies/#{name}_assembly.rb") do
-    "class #{name.capitalize}Assembly < SolidRuby::Assembly
+    create_file("#{name}/lib/assemblies/#{name}_assembly.rb") do
+      "class #{name.capitalize}Assembly < SolidRuby::Assembly
 
   # Assemblies are used to show how different parts interact on your design.
 
@@ -71,10 +71,10 @@ BillOfMaterial.bom.save(\"output/bom.txt\")"
 
 end
 "
-  end
+    end
 
-  create_file("#{name}/lib/printed/testcube.rb") do
-    "class TestCube < SolidRuby::Printed
+    create_file("#{name}/lib/printed/testcube.rb") do
+      "class TestCube < SolidRuby::Printed
   def initialize()
     # Here is a good place to define instance variables that make your part parametric.
     # These variables are acessable from outside:
@@ -133,15 +133,14 @@ end
 
 end
 "
-  end
-
-  create_file("#{name}/Guardfile") do
-    "
-    guard :shell do
-     watch(/#{name}.rb/) { system('ruby #{name}.rb') }
-     watch(%r{^lib/.+\.rb}) { system('ruby #{name}.rb') }
     end
-    "
+
+    create_file("#{name}/Guardfile") do
+      "guard :shell do
+  watch(/#{name}.rb/) { system('ruby #{name}.rb') }
+  watch(%r{^lib/.+\.rb}) { system('ruby #{name}.rb') }
+end"
+    end
   end
 end
 
