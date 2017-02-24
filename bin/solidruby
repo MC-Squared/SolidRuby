@@ -3,37 +3,29 @@
 require 'thor'
 require 'thor/group'
 require 'thor/actions'
+require 'solidruby'
 
 class SolidRubyGenerator < Thor
   include Thor::Actions
 
+
+
+  def self.source_root
+    File.dirname(__FILE__) + '/../lib/templates'
+  end
+
+  desc 'version', 'shows the current version of SolidRuby'
+  def version
+    puts SolidRuby::VERSION
+  end
+
   desc 'new APP_NAME', 'creates a new project stub'
-
   def new(name)
-    create_file("#{name}/#{name}.rb") do
-"#!/usr/bin/env ruby
-require \"solidruby\"
-require \"require_all\"
-include SolidRuby
 
-require_all \"lib/**/*.rb\"
+    @clean_name = name.split(/[-|_]/).map { |s| s.capitalize }.join
 
-# To run this project and refresh any changes to the code, run the following command
-# in a terminal (make sure you are in the same directory as this file):
-#  observr #{name}.observr
-#
-# This will generate #{name}.scad which you can open in OpenSCAD.
-# In OpenSCAD make sure that you have the menu item
-# Design -> Automatic Reload and Compile
-# activated.
+    puts @clean_name
 
-# Scans every file in lib/**/*.rb for classes and saves them in the output/ directory
-save!
-
-BillOfMaterial.bom.save(\"output/bom.txt\")"
-    end
-
-    chmod("#{name}/#{name}.rb", 0755)
     empty_directory("#{name}/lib/assemblies/")
     empty_directory("#{name}/lib/electronics/")
     empty_directory("#{name}/lib/hardware/")
@@ -41,107 +33,12 @@ BillOfMaterial.bom.save(\"output/bom.txt\")"
     empty_directory("#{name}/lib/lasercut/")
     empty_directory("#{name}/output")
 
-    create_file("#{name}/lib/assemblies/#{name}_assembly.rb") do
-      "class #{name.capitalize}Assembly < SolidRuby::Assembly
+    template('main.tt', "#{name}/#{name}.rb")
+    chmod("#{name}/#{name}.rb", 0755)
 
-  # Assemblies are used to show how different parts interact on your design.
-
-  # Skip generation of the 'output' method for this assembly.
-  # (will still generate 'show')
-  skip :output
-
-  def part(show)
-    # Create a test cube
-    cube = TestCube.new
-
-    # And another one, but translate this one next to the cube and change the color
-    # You can use any transformation on the class itself.
-    another_cube = TestCube.new.translate(z:cube.z).color(\"MediumTurquoise\")
-
-    # We're calling the show method on both cubes
-    res = cube.show
-    res += another_cube.show
-
-    # There's a bolt going through the cubes and a nut on the bottom. Let's show it
-    res += cube.show_hardware
-
-    # always make sure the lowest statement always returns the object that you're working on
-    res
-  end
-
-end
-"
-    end
-
-    create_file("#{name}/lib/printed/testcube.rb") do
-      "class TestCube < SolidRuby::Printed
-  def initialize()
-    # Here is a good place to define instance variables that make your part parametric.
-    # These variables are acessable from outside:
-    @x = 25
-    @y = 25
-    @z = 20
-    @hardware = []
-    @color = \"BurlyWood\"
-
-    # The variable below is not accessable from the outside unless you specify so with attr_accessable
-    @diameter = 10
-  end
-
-  def part(show)
-    # We start with a cube and center it in x and y direction. The cube starts at z = 0 with this.
-    res = cube(@x,@y,@z).center_xy
-
-    # We want a bolt to go through it. It will be facing upwards however, so we will need to mirror it.
-    # Also translating it to twice the height, as we want to stack two of these cubes together in the assembly.
-    bolt = Bolt.new(4,40).mirror(z:1).translate(z:@z*2)
-    @hardware << bolt
-
-    # We also want a nut. And since the printing direction is from the bottom, we decide to add support to it.
-    nut = Nut.new(4,support:true,support_layer_height:0.3)
-    @hardware << nut
-
-    # substracting the @hardware array will call the .output method on each hardware item automatically
-    res -= @hardware
-
-    # colorize is a convenience thing to colorize your part differently in assemblies.
-    # You can specify @color in initalize (as default color), or set a different color in the assembly this way.
-    res = colorize(res)
-
-    # Note: Make sure you do this before adding parts (i.e. hardware) that have their own color and that
-    #				you do not want to colorize.
-
-    # You can go ahead and show the hardware when the part produces its 'show' output file by uncommenting this:
-    #		res += @hardware if show
-    # However, in this example, the Assembly file calls show_hardware in order to not show it twice.
-
-    # always make sure the lowest statement always returns the object that you're working on
-    res
-  end
-
-  # with view you can define more outputs of a file.
-  # This is useful when you are designing subassemblies of an object.
-  view :my_subassembly
-
-  def my_subassembly
-    res = hull(
-      cylinder(d:@diameter,h:@z),
-      cube(@x,@y,@z)
-      )
-    res
-  end
-
-end
-"
-    end
-
-    create_file("#{name}/Guardfile") do
-      "guard :shell do
-  watch(/#{name}.rb/) { system('ruby #{name}.rb') }
-  watch(%r{^lib/.+\.rb}) { system('ruby #{name}.rb') }
-end"
-    end
+    template('guardfile.tt', "#{name}/Guardfile")
+    template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
+    template('testcube.tt', "#{name}/lib/printed/testcube.rb")
   end
 end
-
 SolidRubyGenerator.start(ARGV)
