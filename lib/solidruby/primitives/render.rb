@@ -13,6 +13,26 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::Primitives
+  class Render < Primitive
+    def initialize(object, attributes)
+      @operation = 'render'
+      @children = [object]
+      super(object, attributes)
+    end
+
+    def to_rubyscad
+      @layer ||= nil
+      layer = ''
+      layer = ",layer=\"#{@layer}\"" if @layer
+      res = ''
+      children.map { |l| res += l.walk_tree }
+      res += RubyScadBridge.new.render
+      res
+    end
+  end
+
+  def render(args = {})
+    Render.new(self, args)
+  end
 end

@@ -13,6 +13,17 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::Transformations
+  class Transformation
+    attr_accessor :args
+    def initialize(*args)
+      @args = args.flatten
+      @args = @args[0] if @args[0].is_a? Hash
+    end
+
+    def walk_tree
+      to_rubyscad.to_s + "\n"
+    end
+
+  end
 end

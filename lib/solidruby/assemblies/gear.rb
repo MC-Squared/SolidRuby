@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module SolidRuby::Gears
-  class Gear < SolidRuby::Assembly
+module SolidRuby::Assemblies
+  class Gear < Assembly
     # this library is to be used to easily work with gears and their distances to each other
 
     attr_reader :module, :teeth, :height, :hub_dia, :hub_height

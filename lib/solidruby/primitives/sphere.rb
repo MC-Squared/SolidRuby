@@ -13,6 +13,14 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::Primitives
+  class Sphere < Primitive
+    def to_rubyscad
+      RubyScadBridge.new.sphere(@args)
+    end
+  end
+
+  def sphere(args)
+    Sphere.new(args)
+  end
 end

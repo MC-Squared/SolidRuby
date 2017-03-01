@@ -13,6 +13,23 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::CSGModifiers
+  class LinearExtrude < CSGModifier
+    def initialize(object, attributes)
+      @operation = 'linear_extrude'
+      super(object, attributes)
+    end
+  end
+
+  def linear_extrude(args)
+    if args[:h]	# rename to height
+      args[:height] = args[:h]
+      args.delete(:h)
+    end
+    args = args.collect do |k, v|
+      sv = RubyScadBridge.new.format_value(v)
+      "#{k} = #{sv}"
+    end.join(', ')
+    LinearExtrude.new(self, args)
+  end
 end

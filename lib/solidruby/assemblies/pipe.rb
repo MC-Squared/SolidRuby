@@ -13,7 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module SolidRuby
+module SolidRuby::Assemblies
   class Pipe < Assembly
     attr_accessor :x, :y, :sum_x, :sum_y, :pipe, :bent_segments
     # Warning: sum_x and sum_y are both a quick hack at the moment

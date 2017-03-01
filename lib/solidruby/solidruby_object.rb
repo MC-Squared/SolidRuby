@@ -17,10 +17,53 @@ module SolidRuby
   class SolidRubyObject
     attr_accessor :args
     attr_accessor :transformations
+    attr_accessor :children
+
     def initialize(*args)
       @transformations = []
       @args = args.flatten
       @args = @args[0] if @args[0].is_a? Hash
+    end
+
+    def rotate(args)
+      # always make sure we have a z parameter; otherwise RubyScad will produce a 2-dimensional output
+      # which can result in openscad weirdness
+      args[:z] = 0 if args[:z].nil?
+      @transformations ||= []
+      @transformations << Rotate.new(args)
+      self
+    end
+
+    def rotate_around(point, args)
+      x = point.x
+      y = point.y
+      z = point.z
+      translate(x: -x, y: -y, z: -z).rotate(args).translate(x: x, y: y, z: z)
+    end
+
+    def translate(args)
+      @transformations ||= []
+      @transformations << Translate.new(args)
+      self
+    end
+
+    def union(args)
+      @transformations ||= []
+      @transformations << Union.new(args)
+      self
+    end
+
+    def mirror(args)
+      @transformations ||= []
+      @transformations << Mirror.new(args)
+      self
+    end
+
+    def scale(args)
+      args = { v: args } if args.is_a?(Numeric) || args.is_a?(Array)
+      @transformations ||= []
+      @transformations << Scale.new(args)
+      self
     end
 
     def walk_tree

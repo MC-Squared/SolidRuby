@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module SolidRuby::LinearBearing
-  class Lm_uu < SolidRuby::Assembly
+module SolidRuby::Assemblies
+  class Lm_uu < Assembly
     def initialize(args = { inner_diameter: 10 })
       @args = args
       @lm_uu = {

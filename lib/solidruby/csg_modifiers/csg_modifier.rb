@@ -13,6 +13,27 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::CSGModifiers
+  class CSGModifier < SolidRuby::SolidRubyObject
+    def initialize(object, attributes)
+      @transformations = []
+      @children = [object]
+      @attributes = attributes
+    end
+
+    def to_rubyscad
+      #	Apparently this doesn't work for CSGModifiers, like it does for other things in RubyScad?
+      # also this is a dirty, dirty hack.
+      @attributes = @attributes.gsub('fn', '$fn').gsub('$$', '$')
+      ret = "#{@operation}(#{@attributes}){"
+      @children ||= []
+      @children.each do |child|
+        begin
+          ret += child.walk_tree
+        rescue NoMethodError
+        end
+      end
+      ret += '}'
+    end
+  end
 end

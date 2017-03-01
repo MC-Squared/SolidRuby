@@ -13,6 +13,19 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::CSGModifiers
+  class Projection < CSGModifier
+    def initialize(object, attributes)
+      @operation = 'projection'
+      super(object, attributes)
+    end
+  end
+
+  def projection(args = {})
+    args = args.collect do |k, v|
+      sv = RubyScadBridge.new.format_value(v)
+      "#{k} = #{sv}"
+    end.join(', ')
+    Projection.new(self, args)
+  end
 end

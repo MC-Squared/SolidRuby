@@ -13,6 +13,33 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::CSGModelling
+  class Difference < CSGModelling
+  end
+
+  def -(args)
+    return args if nil?
+    if args.is_a? Array
+      r = self
+      args.each do |a|
+        # if a.respond_to? :output
+        #	r = Difference.new(r,a.output)
+        # else
+        r = Difference.new(r, a)
+        # end
+      end
+      r
+    else
+      optimize_difference(self, args)
+    end
+  end
+
+  def optimize_difference(top, child)
+    if top.is_a?(Difference) && (!child.is_a? Difference)
+      top.children << child
+      top
+    else
+      Difference.new(top, child)
+    end
+  end
 end

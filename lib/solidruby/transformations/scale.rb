@@ -13,6 +13,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::Transformations
+  class Scale < Transformation
+    def to_rubyscad
+      RubyScadBridge.new.scale(@args)
+    end
+  end
 end

@@ -13,6 +13,19 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::Primitives
+  class Text < Primitive
+    def initialize(attributes)
+      @attr = attributes.collect { |k, v| "#{k} = \"#{v}\"" }.join(', ')
+      super(attributes)
+    end
+
+    def to_rubyscad
+      "text(#{@attr});"
+    end
+  end
+
+  def text(args = {})
+    Text.new(args)
+  end
 end

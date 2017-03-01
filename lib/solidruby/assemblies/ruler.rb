@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module SolidRuby
-  class Ruler < SolidRuby::Assembly
+module SolidRuby::Assemblies
+  class Ruler < Assembly
     def initialize(args = {})
       @x = args[:x] || 50
       @y = args[:y] || 5

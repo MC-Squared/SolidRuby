@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
-module SolidRuby
-  class Assembly < SolidRuby::Primitive
+module SolidRuby::Assemblies
+  class Assembly < SolidRuby::SolidRubyObject
     attr_accessor	:x, :y, :z, :skip, :color, :hardware, :transformations
 
     def method_missing(method, *args, &block)
@@ -64,7 +64,7 @@ module SolidRuby
     end
 
     def part(_show = false)
-      SolidRubyObject.new
+      #SolidRubyObject.new
     end
 
     def walk_tree

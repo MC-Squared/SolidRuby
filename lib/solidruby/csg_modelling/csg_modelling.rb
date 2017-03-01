@@ -13,6 +13,26 @@
 #    You should have received a copy of the GNU General Public License
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
-module SolidRuby
-  VERSION = '0.0.1'.freeze
+module SolidRuby::CSGModelling
+  class CSGModelling < SolidRuby::SolidRubyObject
+    def initialize(*list)
+      @transformations = []
+      @children = list
+      @operation = self.class.name.split('::').last.downcase
+    end
+
+    def to_rubyscad
+      @children ||= []
+      ret = "#{@operation}(){"
+      @children.each do |child|
+        begin
+          ret += child.walk_tree
+        rescue NoMethodError
+        end
+      end
+      # puts @children.map{|l| l.walk_tree_classes}.inspect
+
+      ret += '}'
+    end
+  end
 end
