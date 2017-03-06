@@ -23,8 +23,7 @@ class SolidRubyGenerator < Thor
   def new(name)
 
     @clean_name = name.split(/[-|_]/).map { |s| s.capitalize }.join
-
-    puts @clean_name
+    @name = name
 
     empty_directory("#{name}/lib/assemblies/")
     empty_directory("#{name}/lib/electronics/")
