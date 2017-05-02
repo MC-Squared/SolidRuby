@@ -93,19 +93,19 @@ class PrimitiveTest < Minitest::Test
 
       cylinder(id: 10, h: 10) =>
         "difference(){cylinder(h = 10);\n" \
-        "translate(v = [0, 0, -0.01])\n" \
+        "translate(v = [0, 0, -0.010])\n" \
         "cylinder(h = 10.020, r = 5.000);\n"\
         '}',
 
       cylinder(id: 10, h: 12, ih: 10) =>
           "difference(){cylinder(h = 12);\n" \
-          "translate(v = [0, 0, -0.01])\n" \
+          "translate(v = [0, 0, -0.010])\n" \
           "cylinder(h = 10.010, ih = 10, r = 5.000);\n"\
           '}',
 
       cylinder(id: 10, h: 12, ih: 10, ifn: 20) =>
             "difference(){cylinder(h = 12);\n" \
-            "translate(v = [0, 0, -0.01])\n" \
+            "translate(v = [0, 0, -0.010])\n" \
             "cylinder(h = 10.010, ih = 10, ifn = 20, $fn = 20, r = 5.000);\n"\
             '}'
     }
@@ -689,7 +689,7 @@ class SolidRubyTest < Minitest::Test
             "union(){translate(v = [0, 0, 0])\n" \
             "color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
             "}\n" \
-            "translate(v = [0, 0, 8.2])\n" \
+            "translate(v = [0, 0, 8.200])\n" \
             "color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
             "}\n" \
             "}\n" \

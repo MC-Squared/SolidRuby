@@ -251,8 +251,14 @@ module SolidRuby
     end
 
     def format_value(var)
-      if var.is_a?(Vector) || var.is_a?(Matrix)
-        var.to_a.to_s
+      if var.nil?
+        "nil"
+      elsif var.is_a?(Vector) || var.is_a?(Matrix) || var.is_a?(Array)
+        res = []
+        var.to_a.each do |v|
+          res << format_value(v)
+        end
+        res.to_s.gsub('"', "").gsub('\\', '')
       elsif var.is_a? String
         '"' + var + '"'
       elsif var.is_a? Float

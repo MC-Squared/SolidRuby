@@ -8,9 +8,9 @@ union(){difference(){translate(v = [-20, 0])
 union(){difference(){translate(v = [-20, 0])
 union(){difference(){translate(v = [-20, 0])
 union(){difference(){translate(v = [-5, 0])
-translate(v = [0, -10.0])
+translate(v = [0, -10.000])
 cube(size = [160, 20, 20]);
-union(){color("Gainsboro"){translate(v = [0, 0, -2.5])
+union(){color("Gainsboro"){translate(v = [0, 0, -2.500])
 cylinder(h = 2.500, r = 2.250);
 }
 color("Gainsboro"){cylinder(h = 23, r = 1.400);

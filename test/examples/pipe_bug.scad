@@ -6,11 +6,11 @@ circle($fn = 64, r = 5.000);
 }
 translate(v = [0, 0, -50])
 linear_extrude(height = 100){scale(v = 2)
-polygon(points = [[0, 0], [0, 25.0], [3.479327524001636, 24.756701718539258]]);
+polygon(points = [[0, 0], [0, 25.000], [3.479, 24.757]]);
 }
 }
 }
-translate(v = [2.7834620192013086, -0.19463862516859365])
+translate(v = [2.783, -0.195])
 rotate(a = [0, 0, -8])
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 0])

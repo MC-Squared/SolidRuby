@@ -8,7 +8,7 @@ color("DarkGray"){cylinder(h = 16, r = 2.000);
 union(){translate(v = [0, 0, 0])
 color("Gainsboro"){cylinder(h = 3.200, $fn = 6, r = 4.215);
 }
-translate(v = [0, 0, 3.3000000000000003])
+translate(v = [0, 0, 3.300])
 color("Gainsboro"){cylinder(h = 3.200, $fn = 6, r = 4.215);
 }
 }

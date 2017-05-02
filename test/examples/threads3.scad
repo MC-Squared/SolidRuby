@@ -1,4 +1,4 @@
-union(){difference(){difference(){difference(){difference(){difference(){difference(){translate(v = [-25.0, -25.0])
+union(){difference(){difference(){difference(){difference(){difference(){difference(){translate(v = [-25.000, -25.000])
 cube(size = [50, 50, 10]);
 color("Gainsboro"){cylinder(h = 3.200, $fn = 6, r = 4.215);
 }
@@ -43,7 +43,7 @@ color("Gainsboro"){cylinder(h = 3.700, $fn = 6, r = 4.388);
 }
 }
 }
-translate(v = [0, 0, -16.8])
+translate(v = [0, 0, -16.800])
 union(){color("Gainsboro"){translate(v = [0, 0, -4])
 cylinder(h = 4, r = 3.500);
 }
@@ -61,7 +61,7 @@ color("DarkGray"){cylinder(h = 20, r = 2.150);
 }
 translate(v = [-20, 5, 5])
 rotate(a = [0, 90, 0])
-translate(v = [0, 0, -16.8])
+translate(v = [0, 0, -16.800])
 union(){color("Gainsboro"){translate(v = [0, 0, -4])
 cylinder(h = 4, r = 3.500);
 }
@@ -70,7 +70,7 @@ color("DarkGray"){cylinder(h = 20, r = 2.150);
 }
 translate(v = [20, -8, 5])
 rotate(a = [0, -90, 0])
-translate(v = [0, 0, -16.8])
+translate(v = [0, 0, -16.800])
 union(){color("Gainsboro"){translate(v = [0, 0, -4])
 cylinder(h = 4, r = 3.500);
 }
@@ -79,7 +79,7 @@ color("DarkGray"){cylinder(h = 20, r = 2.150);
 }
 translate(v = [2, -20, 5])
 rotate(a = [-90, 0, 0])
-translate(v = [0, 0, -16.8])
+translate(v = [0, 0, -16.800])
 union(){color("Gainsboro"){translate(v = [0, 0, -4])
 cylinder(h = 4, r = 3.500);
 }
@@ -88,7 +88,7 @@ color("DarkGray"){cylinder(h = 20, r = 2.150);
 }
 translate(v = [-10, 20, 5])
 rotate(a = [90, 0, 0])
-translate(v = [0, 0, -16.8])
+translate(v = [0, 0, -16.800])
 union(){color("Gainsboro"){translate(v = [0, 0, -4])
 cylinder(h = 4, r = 3.500);
 }
