@@ -122,5 +122,52 @@ class CubeTest < Minitest::Test
       val = Cube.new(cube_args).center.get_point_on(val)
       assert_equal exp, val
     end
+
+    vals = {
+      #check with face offset
+      {face: :left, face_offset: 5 }    => { x: 5, y: 10, z: 15 },
+      {face: :left, face_offset: -5 }   => { x: -5, y: 10, z: 15 },
+      {face: :right, face_offset: 3}    => { x: 10 + 3, y: 10, z: 15 },
+      {face: :right, face_offset: -3}   => { x: 10 - 3, y: 10, z: 15 },
+      {face: :top, face_offset: 2}      => { x: 5, y: 10, z: 30 + 2},
+      {face: :top, face_offset: -2}     => { x: 5, y: 10, z: 30 - 2},
+      {face: :bottom, face_offset: 7}  => { x: 5, y: 10, z: -7 },
+      {face: :bottom, face_offset: -7}  => { x: 5, y: 10, z: 7 },
+      {face: :front, face_offset: 6}  => { x: 5, y: -6, z: 15 },
+      {face: :front, face_offset: -6}  => { x: 5, y: 6, z: 15 },
+      {face: :back, face_offset: 4}  => { x: 5, y: 20+4, z: 15 },
+      {face: :back, face_offset: -4}  => { x: 5, y: 20-4, z: 15 },
+
+      #edge offset
+      {face: :top, edge: :top, edge_offset: 5 } \
+        => { x: 5, y: 20+5, z: 30 },
+      {face: :top, edge: :left, edge_offset: -5 } \
+        => { x: 0+5, y: 10, z: 30 },
+      {face: :top, edge: :right, edge_offset: 5 } \
+        => { x: 10+5, y: 10, z: 30 },
+      {face: :left, edge: :top, edge_offset: -5 } \
+        => { x: 0, y: 10, z: 30-5 },
+      {face: :left, edge: :top, edge_offset: 5 } \
+        => { x: 0, y: 10, z: 30+5 },
+      {face: :back, edge: :right, edge_offset: -5 } \
+        => { x: 0+5, y: 20, z: 15 },
+      {face: :back, edge: :right, edge_offset: 5 } \
+        => { x: 0-5, y: 20, z: 15 },
+
+      #corner offset
+      {face: :top, edge: :top, corner: :left, corner_offset: 5 } \
+        => { x: -5, y: 20, z: 30 },
+      {face: :top, edge: :top, corner: :left, corner_offset: -5 } \
+        => { x: 5, y: 20, z: 30 },
+      {face: :top, edge: :top, corner: :right, corner_offset: 5 } \
+        => { x: 15, y: 20, z: 30 },
+      {face: :top, edge: :top, corner: :right, corner_offset: -5 } \
+        => { x: 5, y: 20, z: 30 },
+    }
+
+    vals.each do |val, exp|
+      val = Cube.new(cube_args).get_point_on(val)
+      assert_equal exp, val
+    end
   end
 end
