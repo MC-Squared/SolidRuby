@@ -55,6 +55,102 @@ module SolidRuby::Primitives
       @center
     end
 
+    def get_point_on(args = {})
+      face = args[:face] || :top
+      edge = args[:edge] || :center
+      corner = args[:corner] || :center
+
+      vert_axis = :z
+      horiz_axis = :x
+      vert_dir = 1
+      horiz_dir = 1
+
+      pos = case face
+      when :top
+        vert_axis = :y
+        horiz_dir = -1
+        {x: @x / 2.0, y: @y / 2.0, z: @z }
+      when :bottom
+        vert_axis = :y
+        horiz_dir = -1
+        vert_dir = -1
+        { x: @x / 2.0, y: @y / 2.0, z: 0 }
+      when :left
+        horiz_axis = :y
+        { x: 0, y: @y / 2.0, z: @z / 2.0 }
+      when :right
+        horiz_axis = :y
+        horiz_dir = -1
+        { x: @x, y: @y / 2.0, z: @z / 2.0 }
+      when :front
+        horiz_dir = -1
+        { x: @x / 2.0, y: 0, z: @z / 2.0 }
+      when :back
+        { x: @x / 2.0, y: @y, z: @z / 2.0 }
+      when :center
+        horiz_dir = -1
+        { x: @x / 2.0, y: @y / 2.0, z: @z / 2.0 }
+      else
+        nil
+      end
+
+      return pos if pos.nil?
+      is_centered = {x: @center, y: @center, z: @center}
+
+      unless @center || @transformations.first.nil?
+        is_centered[:x] = @transformations.first.x == (-@x / 2.0)
+        is_centered[:y] = @transformations.first.y == (-@y / 2.0)
+        is_centered[:z] = @transformations.first.z == (-@z / 2.0)
+      end
+
+      pos[:x] -= @x / 2.0 if is_centered[:x]
+      pos[:y] -= @y / 2.0 if is_centered[:y]
+      pos[:z] -= @z / 2.0 if is_centered[:z]
+
+      #pos is now center of the given face, move to the given side
+      h_change = case horiz_axis
+      when :x
+        @x / 2.0
+      when :y
+        @y / 2.0
+      else
+        @z / 2.0
+      end
+
+      v_change = case vert_axis
+      when :x
+        @x / 2.0
+      when :y
+        @y / 2.0
+      else
+        @z / 2.0
+      end
+
+      case edge
+      when :top
+        pos[vert_axis] += (v_change * vert_dir)
+      when :bottom
+        pos[vert_axis] -= (v_change * vert_dir)
+      when :left
+        pos[horiz_axis] += (h_change * horiz_dir)
+      when :right
+        pos[horiz_axis] -= (h_change * horiz_dir)
+      end
+
+      case corner
+      when :top
+        pos[vert_axis] += (v_change * vert_dir)
+      when :bottom
+        pos[vert_axis] -= (v_change * vert_dir)
+      when :left
+        pos[horiz_axis] += (h_change * horiz_dir)
+      when :right
+        pos[horiz_axis] -= (h_change * horiz_dir)
+      end
+
+      pos
+    end
+
     def to_rubyscad
       args = { size: [@x, @y, @z] }
       args[:center] = @center if @center
