@@ -21,13 +21,17 @@ class CubeTest < Minitest::Test
       Cube.new(args).center_x => { x: -0.5 },
       Cube.new(args).center_y => { y: -1.0 },
       Cube.new(args).center_z => { z: -1.5 },
-      Cube.new(args).center => { x: -0.5, y: -1.0, z: -1.5 }
+
     }
 
     vals.each do |val, exp|
       assert_equal 1, val.transformations.count
       assert_equal exp, val.transformations.first.args
     end
+
+    c = Cube.new(args).center
+    assert_equal 0, c.transformations.count
+    assert_equal true, c.centered?
   end
 
   def test_cube_helper

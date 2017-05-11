@@ -47,8 +47,12 @@ module SolidRuby::Primitives
     end
 
     def center
-      @transformations << Translate.new(x: -@x / 2.0, y: -@y / 2.0, z: -@z / 2.0)
+      @center = true
       self
+    end
+
+    def centered?
+      @center
     end
 
     def to_rubyscad
