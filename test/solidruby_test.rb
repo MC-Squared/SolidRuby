@@ -20,12 +20,13 @@ class TransformationTest < Minitest::Test
 
   def test_translate_scad
     vals = {
+      Translate.new(x: 0, y: 0, z: 0) => '',
       Translate.new(x: 1) => 'translate(v = [1, 0])',
       Translate.new(y: 2) => 'translate(v = [0, 2])',
       Translate.new(z: 3) => 'translate(v = [0, 0, 3])',
       Translate.new(x: 2, z: 3) => 'translate(v = [2, 0, 3])',
       Translate.new(x: 1, y: 2, z: 3) => 'translate(v = [1, 2, 3])',
-      Translate.new(q: 3) => 'translate(q = 3, v = [0, 0])'
+      Translate.new(q: 3) => ''
     }
 
     vals.each do |val, exp|
@@ -686,8 +687,7 @@ class SolidRubyTest < Minitest::Test
             "color(\"DarkGray\"){cylinder(h = 16, r = 2.000);\n" \
             "}\n" \
             "}\n" \
-            "union(){translate(v = [0, 0, 0])\n" \
-            "color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
+            "union(){color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
             "}\n" \
             "translate(v = [0, 0, 8.200])\n" \
             "color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
@@ -715,7 +715,6 @@ class SolidRubyTest < Minitest::Test
   def test_long_slot
     ls = long_slot(d: 10, h: 20)
     exp = "hull(){cylinder(r = 5.000, h = 20);\n" \
-          "translate(v = [nil, 0])\n" \
           "cylinder(r = 5.000, h = 20);\n" \
           "}"
 

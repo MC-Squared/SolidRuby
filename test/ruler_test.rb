@@ -6,11 +6,9 @@ class RulerTest < Minitest::Test
 
     exp = "union(){color(\"Gainsboro\"){cube(size = [20, 2, 2]);
 }
-color(\"black\"){translate(v = [0, 0])
-cube(size = [0.100, 5, 2.100]);
+color(\"black\"){cube(size = [0.100, 5, 2.100]);
 }
-color(\"black\"){translate(v = [0, 0])
-cube(size = [0.100, 5, 2.100]);
+color(\"black\"){cube(size = [0.100, 5, 2.100]);
 }
 color(\"black\"){translate(v = [1, 0])
 cube(size = [0.100, 5, 2.100]);

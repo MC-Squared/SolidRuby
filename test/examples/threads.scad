@@ -41,7 +41,7 @@ color("DarkGray"){cylinder(h = 16, r = 4.150);
 }
 union(){translate(v = [0, 0, -2])
 union(){difference(){cube(size = [200, 100, 2]);
-translate(v = [50, 50, 0])
+translate(v = [50, 50])
 union(){color("Gainsboro"){translate(v = [0, 0, -8])
 cylinder(h = 8, r = 6.500);
 }
@@ -49,7 +49,7 @@ color("DarkGray"){cylinder(h = 12, r = 4.150);
 }
 }
 }
-translate(v = [50, 50, 0])
+translate(v = [50, 50])
 union(){color("Gainsboro"){translate(v = [0, 0, -8])
 cylinder(h = 8, r = 6.500);
 }

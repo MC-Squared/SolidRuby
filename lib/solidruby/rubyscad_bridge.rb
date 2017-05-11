@@ -207,6 +207,7 @@ module SolidRuby
     end
 
     def translate(args = {}, &block)
+      delete_from(args, :z) if args[:z] == 0
       vector_input(args, :v)
       format_command TRANSLATE_STR, args, &block
     end

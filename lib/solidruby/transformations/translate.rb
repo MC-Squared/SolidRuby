@@ -14,9 +14,19 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::Transformations
+  attr_accessor :x, :y, :z
   class Translate < Transformation
+    def initialize(args={})
+      super(args)
+      @x = args[:x] || 0
+      @y = args[:y] || 0
+      @z = args[:z] || 0
+    end
+
     def to_rubyscad
-      RubyScadBridge.new.translate(@args).delete('"')
+      #ignore empty transformations
+      return '' if @x == 0 && @y == 0 && @z == 0
+      RubyScadBridge.new.translate({x: @x, y: @y, z: @z}).delete('"')
     end
   end
 end

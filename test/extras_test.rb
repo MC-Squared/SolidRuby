@@ -5,148 +5,148 @@ class ExtrasTest < Minitest::Test
     c = knurled_cylinder(d: 5, h: 2)
 
     exp = "difference(){cylinder(h = 2, r = 2.500);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, 45, 0])
 cylinder(h = 4, r = 0.450);
-translate(v = [0, -2.500, 0])
+translate(v = [0, -2.500])
 rotate(a = [0, -45, 0])
 cylinder(h = 4, r = 0.450);
 }"
