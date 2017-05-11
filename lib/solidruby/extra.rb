@@ -15,57 +15,57 @@
 
 module SolidRuby::Extras
   # This currently can solve triangels knowing 1 side and 2 angels
-  class Triangle
-    attr_accessor :alpha, :beta, :gamma, :a, :b, :c
-    def initialize(args = {})
-      @alpha = args[:alpha]
-      @beta = args[:beta]
-      @gamma = args[:gamma]
-      @a = args[:a]
-      @b = args[:b]
-      @c = args[:c]
-      solve
-    end
-
-    def solve
-      # see if we have two angles, so we know the third one
-      if @alpha.nil? && !@beta.nil? && !@gamma.nil?
-        @alpha = 180 - @beta - @gamma
-      elsif !@alpha.nil? && @beta.nil? && !@gamma.nil?
-        @beta = 180 - @alpha - @gamma
-      elsif !@alpha.nil? && !@beta.nil? && @gamma.nil?
-        @gamma = 180 - @alpha - @beta
-      end
-
-      if !@alpha.nil? && !@beta.nil? && !@gamma.nil?
-
-        if @a.nil?
-          if !@b.nil?
-            @a = (@b / Math.sin(radians(@beta))) * Math.sin(radians(@alpha))
-          elsif !@c.nil?
-            @a = (@c / Math.sin(radians(@gamma))) * Math.sin(radians(@alpha))
-          end
-        end
-
-        if @b.nil?
-          if !@a.nil?
-            @b = (@a / Math.sin(radians(@alpha))) * Math.sin(radians(@beta))
-          elsif !@c.nil?
-            @b = (@c / Math.sin(radians(@gamma))) * Math.sin(radians(@beta))
-          end
-        end
-
-        if @c.nil?
-          if !@a.nil?
-            @c = (@a / Math.sin(radians(@alpha))) * Math.sin(radians(@gamma))
-          elsif !@b.nil?
-            @c = (@b / Math.sin(radians(@beta))) * Math.sin(radians(@gamma))
-          end
-        end
-
-      end
-    end
-  end
+  # class Triangle
+  #   attr_accessor :alpha, :beta, :gamma, :a, :b, :c
+  #   def initialize(args = {})
+  #     @alpha = args[:alpha]
+  #     @beta = args[:beta]
+  #     @gamma = args[:gamma]
+  #     @a = args[:a]
+  #     @b = args[:b]
+  #     @c = args[:c]
+  #     solve
+  #   end
+  #
+  #   def solve
+  #     # see if we have two angles, so we know the third one
+  #     if @alpha.nil? && !@beta.nil? && !@gamma.nil?
+  #       @alpha = 180 - @beta - @gamma
+  #     elsif !@alpha.nil? && @beta.nil? && !@gamma.nil?
+  #       @beta = 180 - @alpha - @gamma
+  #     elsif !@alpha.nil? && !@beta.nil? && @gamma.nil?
+  #       @gamma = 180 - @alpha - @beta
+  #     end
+  #
+  #     if !@alpha.nil? && !@beta.nil? && !@gamma.nil?
+  #
+  #       if @a.nil?
+  #         if !@b.nil?
+  #           @a = (@b / Math.sin(radians(@beta))) * Math.sin(radians(@alpha))
+  #         elsif !@c.nil?
+  #           @a = (@c / Math.sin(radians(@gamma))) * Math.sin(radians(@alpha))
+  #         end
+  #       end
+  #
+  #       if @b.nil?
+  #         if !@a.nil?
+  #           @b = (@a / Math.sin(radians(@alpha))) * Math.sin(radians(@beta))
+  #         elsif !@c.nil?
+  #           @b = (@c / Math.sin(radians(@gamma))) * Math.sin(radians(@beta))
+  #         end
+  #       end
+  #
+  #       if @c.nil?
+  #         if !@a.nil?
+  #           @c = (@a / Math.sin(radians(@alpha))) * Math.sin(radians(@gamma))
+  #         elsif !@b.nil?
+  #           @c = (@b / Math.sin(radians(@beta))) * Math.sin(radians(@gamma))
+  #         end
+  #       end
+  #
+  #     end
+  #   end
+  # end
 
   def knurl(y)
     x = 1.5

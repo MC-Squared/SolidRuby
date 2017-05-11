@@ -15,6 +15,8 @@ require 'solidruby/primitives/render'
 require 'solidruby/primitives/import'
 require 'solidruby/primitives/text'
 
+require 'solidruby/helpers/triangle'
+
 require 'solidruby/primitives/polyhedron' # not tested
 
 require 'solidruby/csg_modifiers/csg_modifier'

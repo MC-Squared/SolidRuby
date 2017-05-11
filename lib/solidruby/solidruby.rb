@@ -20,6 +20,7 @@ module SolidRuby
   include SolidRuby::ScrewThreads
   include SolidRuby::PrintedThreads
   include SolidRuby::Extras
+  include SolidRuby::Helpers
   include SolidRuby::Primitives
   include SolidRuby::CSGModelling
   include SolidRuby::CSGModifiers
