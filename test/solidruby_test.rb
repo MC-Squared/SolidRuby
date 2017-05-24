@@ -523,20 +523,6 @@ class ImportTest < Minitest::Test
   end
 end
 
-class RenderTest < Minitest::Test
-  def test_render_scad
-    #TODO: I don't think render() works correctly,
-    cube = cube(10, 10, 10)
-    r = Render.new(cube, {layer: 1})
-    exp = "cube(size = [10, 10, 10]);\nrender()"
-
-    assert_equal exp, r.to_rubyscad
-
-    r = cube.render(layer: 1)
-    assert_equal exp, r.to_rubyscad
-  end
-end
-
 class ColorTest < Minitest::Test
   def test_color_scad
     cube = cube(10, 10, 10)

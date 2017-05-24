@@ -22,13 +22,16 @@ module SolidRuby::Primitives
     end
 
     def to_rubyscad
-      @layer ||= nil
-      layer = ''
-      layer = ",layer=\"#{@layer}\"" if @layer
-      res = ''
-      children.map { |l| res += l.walk_tree }
-      res += RubyScadBridge.new.render
-      res
+      @children ||= []
+      ret = "#{@operation}(){"
+      @children.each do |child|
+        begin
+          ret += child.walk_tree
+        rescue NoMethodError
+        end
+      end
+
+      ret += '}'
     end
   end
 
