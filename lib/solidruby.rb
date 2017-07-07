@@ -16,6 +16,7 @@ require 'solidruby/primitives/import'
 require 'solidruby/primitives/text'
 
 require 'solidruby/helpers/triangle'
+require 'solidruby/helpers/fillet'
 
 require 'solidruby/primitives/polyhedron' # not tested
 
