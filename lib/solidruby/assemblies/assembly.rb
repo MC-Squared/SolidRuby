@@ -23,6 +23,7 @@ module SolidRuby::Assemblies
     end
 
     def transform(obj)
+      obj = obj.debug if debug?
       @transformations ||= nil
       return obj if @transformations.nil?
       @transformations.each do |t|
@@ -68,7 +69,8 @@ module SolidRuby::Assemblies
     end
 
     def walk_tree
-      output.walk_tree
+      res = debug? ? '#' : ''
+      res + output.walk_tree
     end
 
     def +(args)
@@ -84,7 +86,8 @@ module SolidRuby::Assemblies
     end
 
     def scad_output
-      output.scad_output
+      res = debug? ? '#' : ''
+      res + output.scad_output
     end
 
     def threads

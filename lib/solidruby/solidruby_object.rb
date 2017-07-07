@@ -18,11 +18,13 @@ module SolidRuby
     attr_accessor :args
     attr_accessor :transformations
     attr_accessor :children
+    attr_accessor :debug
 
     def initialize(*args)
       @transformations = []
       @args = args.flatten
       @args = @args[0] if @args[0].is_a? Hash
+      @debug = false
     end
 
     def rotate(args)
@@ -67,6 +69,15 @@ module SolidRuby
       self
     end
 
+    def debug
+      @debug = true
+      self
+    end
+
+    def debug?
+      @debug
+    end
+
     def place_onto(args = {})
       return nil if args.nil? || args[:object].nil?
 
@@ -107,6 +118,7 @@ module SolidRuby
       @transformations.reverse.each do |trans|
         res += trans.walk_tree
       end
+      res += '#' if self.debug?
       res += to_rubyscad.to_s + "\n"
       res
     end
