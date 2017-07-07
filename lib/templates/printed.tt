@@ -1,0 +1,7 @@
+class <%= @clean_name %> < SolidRuby::Printed
+  def initialize
+  end
+
+  def part(_show)
+  end
+end

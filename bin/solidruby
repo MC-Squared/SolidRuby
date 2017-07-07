@@ -8,7 +8,19 @@ require 'solidruby'
 class SolidRubyGenerator < Thor
   include Thor::Actions
 
+  def self.source_root
+    File.dirname(__FILE__) + '/../lib/templates'
+  end
 
+  desc 'printed NAME', 'generate printed part'
+  def printed(name)
+    @clean_name = name.split(/[-|_]/).map { |s| s.capitalize }.join
+    template('printed.tt', "lib/printed/#{name}.rb")
+  end
+end
+
+class SolidRubyCli < Thor
+  include Thor::Actions
 
   def self.source_root
     File.dirname(__FILE__) + '/../lib/templates'
@@ -39,5 +51,9 @@ class SolidRubyGenerator < Thor
     template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
     template('testcube.tt', "#{name}/lib/printed/testcube.rb")
   end
+
+  desc 'g COMMANDS', 'generator module'
+  subcommand 'g', SolidRubyGenerator
 end
-SolidRubyGenerator.start(ARGV)
+
+SolidRubyCli.start(ARGV)
