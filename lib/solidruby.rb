@@ -15,8 +15,10 @@ require 'solidruby/primitives/render'
 require 'solidruby/primitives/import'
 require 'solidruby/primitives/text'
 
-require 'solidruby/helpers/triangle'
 require 'solidruby/helpers/fillet'
+require 'solidruby/helpers/position'
+require 'solidruby/helpers/triangle'
+
 
 require 'solidruby/primitives/polyhedron' # not tested
 

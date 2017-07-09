@@ -55,15 +55,6 @@ module SolidRuby::Primitives
       @center
     end
 
-    def corners(face = :top)
-      [
-        {face: face, edge: :top, corner: :left},
-        {face: face, edge: :top, corner: :right},
-        {face: face, edge: :bottom, corner: :left},
-        {face: face, edge: :bottom, corner: :right},
-      ]
-    end
-
     def get_point_on(args = {})
       face = args[:face] || :top
       edge = args[:edge] || :center
