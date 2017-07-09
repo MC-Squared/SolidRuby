@@ -93,8 +93,6 @@ module SolidRuby::Primitives
       when :center
         horiz_dir = -1
         { x: @x / 2.0, y: @y / 2.0, z: @z / 2.0 }
-      else
-        nil
       end
 
       return pos if pos.nil?
@@ -115,13 +113,9 @@ module SolidRuby::Primitives
         @x / 2.0
       when :y
         @y / 2.0
-      else
-        @z / 2.0
       end
 
       v_change = case vert_axis
-      when :x
-        @x / 2.0
       when :y
         @y / 2.0
       else
