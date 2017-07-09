@@ -59,6 +59,10 @@ module SolidRuby::Helpers
       super(args)
     end
 
+    def triangle(args)
+      Triangle.new(args)
+    end
+
 private
     def update(params)
       @alpha = params[:alpha]
@@ -143,9 +147,5 @@ private
 
       (Math.sin(radians(opp_angle)) * adj_side)/Math.sin(radians(adj_opp_angle))
     end
-  end
-
-  def triangle(args)
-    Triangle.new(args)
   end
 end
