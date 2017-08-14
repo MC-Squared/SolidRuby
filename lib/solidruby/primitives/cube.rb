@@ -171,97 +171,15 @@ module SolidRuby::Primitives
     end
 
     def fillet(args = {})
-      faces = {}
-
-      args.each do |key, val|
-        if [:front, :back, :left, :right, :top, :bottom].include? key
-          val = [val] unless val.is_a? Array
-          faces[key] = val
-          next
-        elsif key == :edges
-          if val == :vertical
-            faces[:front] = [:left, :right]
-            faces[:back] = [:left, :right]
-          elsif val == :horizontal
-            faces[:front] = [:top, :bottom]
-            faces[:right] = [:top, :bottom]
-            faces[:left] = [:top, :bottom]
-            faces[:back] = [:top, :bottom]
-          end
-        end
-      end
-
-      radius = args[:r] || args[:radius]
-
-      fillets = nil;
-      faces.each do |face, edges|
-        edges.each do |edge|
-          point = get_point_on(face: face, edge: edge)
-          z_rot = 0
-          y_rot = 0
-          x_rot = 0
-          x_trans = 0
-          y_trans = 0
-          length = @z
-          z_trans = -length/2.0
-
-          #position fillet on edge
-          if Helpers::is_horizontal?(face, edge)
-            y_rot = 90
-            z_trans = 0
-          end
-
-          if is_x_dir?(face, edge)
-            length = @x
-            x_trans = -length / 2.0
-          elsif is_y_dir?(face, edge)
-            length = @y
-            y_trans = length / 2.0
-            x_rot = 90
-          end
-
-          #rotate fillet to match edge
-          rot_matrix = {
-            [:top, :top] => 90,
-            [:top, :left] => 180,
-            [:top, :right] => 90,
-            [:top, :bottom] => 180,
-
-            [:bottom, :top] => 270,
-            [:bottom, :left] => 270,
-            [:bottom, :right] => 0,
-            [:bottom, :bottom] => 0,
-
-            [:left, :top] => 180,
-            [:left, :left] => 90,
-            [:left, :right] => 180,
-            [:left, :bottom] => 270,
-
-            [:right, :top] => 90,
-            [:right, :left] => 270,
-            [:right, :right] => 0,
-            [:right, :bottom] => 0,
-
-            [:front, :top] => 180,
-            [:front, :left] => 180,
-            [:front, :right] => 270,
-            [:front, :bottom] => 270,
-
-            [:back, :top] => 90,
-            [:back, :left] => 0,
-            [:back, :right] => 90,
-            [:back, :bottom] => 0,
-          }
-
-          z_rot = rot_matrix[[face, edge]]
-
-          fillets += Helpers::fillet(h: length, r: radius)
-          .translate(x: -radius, y: -radius)
-          .rotate(z: z_rot)
-          .rotate(x: x_rot, y: y_rot)
-          .translate(x: x_trans, y: y_trans, z: z_trans)
-          .translate(x: point[:x], y: point[:y], z: point[:z])
-        end
+      faces = normalise_edges(args)
+      radius = args[:r] || args[:radiusg]
+      trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z, tolerance: 0)
+      fillets = nil
+      trans.each do |t|
+        fillets += Helpers::fillet(h: t[:length], r: radius)
+          .rotate(z: t[:z_rot])
+          .rotate(x: t[:x_rot], y: t[:y_rot])
+          .translate(x: t[:x_trans], y: t[:y_trans], z: t[:z_trans])
       end
 
       self - fillets

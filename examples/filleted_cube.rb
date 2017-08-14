@@ -30,6 +30,10 @@ def filleted_cube
   res += cube(x: 5, y: 5, z: 10)
     .fillet(edges: :horizontal, r: 1)
     .translate(x: -10, y: 10)
+
+  res += cube(x: 5, y: 5, z: 10)
+    .fillet(edges: :all, r: 1)
+    .translate(x: -10, y: 20)
 end
 
 filleted_cube.save('filleted_cube.scad')

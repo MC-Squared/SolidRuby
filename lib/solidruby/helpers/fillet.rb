@@ -19,8 +19,10 @@ module SolidRuby::Helpers
     @height = args[:h] || args[:height]
     @fn = args[:fn] || 64
 
-    cube(@radius*2, @radius*2, @height+0.02).translate(z: -0.01) -
+    res = cube(@radius*2, @radius*2, @height+0.02).translate(z: -0.01) -
     cylinder(r: @radius, h: @height + 0.04, fn: @fn)
       .translate(z: -0.02)
+
+    res.translate(x: -@radius, y: -@radius)
   end
 end
