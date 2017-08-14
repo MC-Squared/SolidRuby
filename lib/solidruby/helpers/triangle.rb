@@ -14,14 +14,14 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::Helpers
-   #Helper class for creating triangles, given three inputs
-   # (at least 1 side + angles)
-   #The triangle can then either be used as a Polygon,
-   #or it can be thrown away and used just for calcuation of the triangle
-   #order is assumed as follows:
-   # @a is opposite @alpha, @b is opposite @beta, @c is opposite @gamma
-   #sides a,b,c go clockwise from 0,0 (x,y)
-   class Triangle < SolidRuby::Primitives::Polygon
+  #Helper class for creating triangles, given three inputs
+  # (at least 1 side + angles)
+  #The triangle can then either be used as a Polygon,
+  #or it can be thrown away and used just for calcuation of the triangle
+  #order is assumed as follows:
+  # @a is opposite @alpha, @b is opposite @beta, @c is opposite @gamma
+  #sides a,b,c go clockwise from 0,0 (x,y)
+  class Triangle < SolidRuby::Primitives::Polygon
     attr_accessor :alpha, :beta, :gamma, :a, :b, :c, :has_alt_solution
     def initialize(args = {})
       use_alt_solution = args[:alt_solution] || false
@@ -57,10 +57,6 @@ module SolidRuby::Helpers
         [0, @c],
         [0, 0]]}
       super(args)
-    end
-
-    def triangle(args)
-      Triangle.new(args)
     end
 
 private
@@ -147,5 +143,9 @@ private
 
       (Math.sin(radians(opp_angle)) * adj_side)/Math.sin(radians(adj_opp_angle))
     end
+  end
+
+  def triangle(args)
+    Triangle.new(args)
   end
 end
