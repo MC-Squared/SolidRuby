@@ -51,6 +51,21 @@ class TriangleTest < Minitest::Test
     end
   end
 
+  def test_triangle_raises
+    assert_raises "Triangle requires at least 1 side length" do
+      Triangle.new(alpha: 90, beta: 45, gamma: 45)
+    end
+
+    assert_raises "Triangle requires exactly 3 inputs" do
+      Triangle.new(a: 10, b: 15)
+    end
+
+    assert_raises "Triangle requires exactly 3 inputs" do
+      Triangle.new(a: 10, b: 20, c: 40, alpha: 90)
+    end
+
+  end
+
   def check_triangle(exp, tri)
     assert_in_delta exp.a, tri.a, 0.5
     assert_in_delta exp.b, tri.b, 0.5
