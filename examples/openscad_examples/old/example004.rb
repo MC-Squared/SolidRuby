@@ -9,16 +9,14 @@ end
 
 example004.save('example004.scad')
 
-#
-#
 # module example004()
 # {
-# 	difference() {
-# 		cube(30, center = true);
-# 		sphere(20);
-# 	}
+#   difference() {
+#     cube(30, center = true);
+#     sphere(20);
+#   }
 # }
 #
+# echo(version=version());
+#
 # example004();
-#
-#
