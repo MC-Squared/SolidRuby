@@ -22,11 +22,7 @@ module SolidRuby::CSGModelling
     if args.is_a? Array
       r = self
       args.each do |a|
-        #	if a.respond_to? :show
-        #		r = Union.new(r,a.show)
-        #	else
         r = Union.new(r, a)
-        #	end
       end
       r
     else
@@ -35,7 +31,7 @@ module SolidRuby::CSGModelling
   end
 
   def optimize_union(top, child)
-    if top.is_a?(Union) && (!child.is_a? Union) && top.transformations.to_a.empty?
+    if top.is_a?(Union) && (!child.is_a? Union) && top.transformations.empty?
       top.children << child
       top
     else

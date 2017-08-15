@@ -217,29 +217,7 @@ class AdvancedPrimitiveTest < Minitest::Test
 end
 
 class CSGModellingTest < Minitest::Test
-  def test_union_scad
-    c1 = cube(10,10,10)
-    c2 = cube(20,20,20)
 
-    u = Union.new(c1, c2)
-    exp = "union(){cube(size = [10, 10, 10]);\n" \
-          "cube(size = [20, 20, 20]);\n" \
-          '}'
-
-    assert_equal exp, u.to_rubyscad
-  end
-
-  def test_difference_scad
-    c1 = cube(10,10,10)
-    c2 = cube(20,20,20)
-
-    u = Difference.new(c1, c2)
-    exp = "difference(){cube(size = [10, 10, 10]);\n" \
-          "cube(size = [20, 20, 20]);\n" \
-          '}'
-
-    assert_equal exp, u.to_rubyscad
-  end
 
   def test_intersection_scad
     c1 = cube(10,10,10)

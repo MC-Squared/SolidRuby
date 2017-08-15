@@ -22,11 +22,7 @@ module SolidRuby::CSGModelling
     if args.is_a? Array
       r = self
       args.each do |a|
-        # if a.respond_to? :output
-        #	r = Difference.new(r,a.output)
-        # else
         r = Difference.new(r, a)
-        # end
       end
       r
     else
@@ -35,7 +31,7 @@ module SolidRuby::CSGModelling
   end
 
   def optimize_difference(top, child)
-    if top.is_a?(Difference) && (!child.is_a? Difference)
+    if top.is_a?(Difference) && (!child.is_a? Difference) && top.transformations.empty?
       top.children << child
       top
     else
