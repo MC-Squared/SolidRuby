@@ -27,6 +27,7 @@ def clip
   cl
 end
 
+# :nocov:
 def cutview
   clip.translate(z: -10) - cube(30).center
     .translate(x: 18)
@@ -40,6 +41,7 @@ def cutview
       .debug
 
 end
+# :nocov:
 
 clip.translate(z: -10).save("example007.scad")
 
