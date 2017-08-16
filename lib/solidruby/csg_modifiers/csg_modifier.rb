@@ -23,10 +23,20 @@ module SolidRuby::CSGModifiers
     end
 
     def to_rubyscad
+      att = @attributes
+      if att.is_a? Hash
+        att = @attributes.select {|k, v| !v.nil? }.collect do |k, v|
+          sv = RubyScadBridge.new.format_value(v)
+          "#{k} = #{sv}"
+        end.sort_by{ |x| x[0] == 'f' ? ('z' + x) : x }
+      end
+
+      att = att.join(', ') if att.is_a? Array
+
       #	Apparently this doesn't work for CSGModifiers, like it does for other things in RubyScad?
       # also this is a dirty, dirty hack.
-      @attributes = @attributes.gsub('fn', '$fn').gsub('$$', '$')
-      ret = "#{@operation}(#{@attributes}){"
+      att = att.gsub('fn', '$fn').gsub('$$', '$')
+      ret = "#{@operation}(#{att}){"
       @children ||= []
       @children.each do |child|
         begin

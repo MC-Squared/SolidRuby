@@ -15,17 +15,15 @@
 #
 module SolidRuby::CSGModifiers
   class Projection < CSGModifier
-    def initialize(object, attributes)
+    alias_attr :cut
+
+    def initialize(object, args)
       @operation = 'projection'
-      super(object, attributes)
+      super(object, args)
     end
   end
 
   def projection(args = {})
-    args = args.collect do |k, v|
-      sv = RubyScadBridge.new.format_value(v)
-      "#{k} = #{sv}"
-    end.join(', ')
     Projection.new(self, args)
   end
 end

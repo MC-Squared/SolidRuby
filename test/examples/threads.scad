@@ -37,6 +37,8 @@ color("DarkGray"){cylinder(h = 16, r = 4.150);
 }
 }
 }
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
+}
 }
 }
 union(){translate(v = [0, 0, -2])
@@ -56,6 +58,8 @@ cylinder(h = 8, r = 6.500);
 color("DarkGray"){cylinder(h = 12, r = 4.150);
 }
 }
+}
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
 }
 }
 }
@@ -97,6 +101,8 @@ color("DarkGray"){cylinder(h = 10, r = 1.650);
 }
 }
 }
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
+}
 }
 }
 union(){translate(v = [200, 0])
@@ -136,6 +142,8 @@ cylinder(h = 3, r = 2.750);
 color("DarkGray"){cylinder(h = 10, r = 1.650);
 }
 }
+}
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
 }
 }
 }
@@ -237,6 +245,8 @@ cylinder(h = 18, r = 1.650);
 }
 }
 }
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
+}
 }
 }
 union(){translate(v = [0, 100])
@@ -312,6 +322,8 @@ color("DarkGray"){translate(v = [0, 0, 22])
 cylinder(h = 18, r = 1.650);
 }
 }
+}
+color(alpha = 0.588, c = [0.039, 0.039, 0.039]){cube(size = [200, 100, 50]);
 }
 }
 }

@@ -15,21 +15,19 @@
 #
 module SolidRuby::CSGModifiers
   class LinearExtrude < CSGModifier
-    def initialize(object, attributes)
+    alias_attr :height
+    alias_attr :convexity
+    alias_attr :twist
+    alias_attr :slices, :sl
+    alias_attr :scale, :sc
+
+    def initialize(object, args)
       @operation = 'linear_extrude'
-      super(object, attributes)
+      super(object, args)
     end
   end
 
   def linear_extrude(args)
-    if args[:h]	# rename to height
-      args[:height] = args[:h]
-      args.delete(:h)
-    end
-    args = args.collect do |k, v|
-      sv = RubyScadBridge.new.format_value(v)
-      "#{k} = #{sv}"
-    end.join(', ')
     LinearExtrude.new(self, args)
   end
 end

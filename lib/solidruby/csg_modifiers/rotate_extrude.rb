@@ -15,22 +15,16 @@
 #
 module SolidRuby::CSGModifiers
   class RotateExtrude < CSGModifier
-    def initialize(object, attributes)
+    alias_attr :angle
+    alias_attr :convexity
+
+    def initialize(object, args)
       @operation = 'rotate_extrude'
-      super(object, attributes)
+      super(object, args)
     end
   end
 
   def rotate_extrude(args = {})
-    if args[:h]	# rename to height
-      args[:height] = args[:h]
-      args.delete(:h)
-    end
-    args = args.collect do |k, v|
-      sv = RubyScadBridge.new.format_value(v)
-      "#{k} = #{sv}"
-    end.join(', ')
     RotateExtrude.new(self, args)
   end
-
 end

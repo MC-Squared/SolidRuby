@@ -1,5 +1,5 @@
 translate(v = [0, 0, -10])
-difference(){rotate_extrude(convexity = 3, $fn = 0, fa = 12, fs = 2){import(file="example007.dxf",layer="dorn");
+difference(){rotate_extrude(convexity = 3, fa = 12, $fn = 0, fs = 2){import(file="example007.dxf",layer="dorn");
 }
 rotate(a = [0, 0, 0])
 render(){intersection(){rotate(a = [90, 0, 0])

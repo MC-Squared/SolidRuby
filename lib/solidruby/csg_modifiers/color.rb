@@ -15,25 +15,27 @@
 #
 module SolidRuby::CSGModifiers
   class Color < CSGModifier
-    def initialize(object, attributes)
+    def initialize(object, attributes, opacity = nil)
       @operation = 'color'
       if attributes.is_a? String
         attributes = "\"#{attributes}\""
+        attributes += ", #{opacity}" unless opacity.nil?
       elsif attributes.is_a? Hash
         attributes[:a] ||= 255
 
-        r = attributes[:r].to_f / 255.0
-        g = attributes[:g].to_f / 255.0
-        b = attributes[:b].to_f / 255.0
-        a = attributes[:a].to_f / 255.0
-        attributes = [r, g, b, a]
+        r = attributes[:r] / 255.0
+        g = attributes[:g] / 255.0
+        b = attributes[:b] / 255.0
+        a = attributes[:a] / 255.0
+        attributes = {c: [r, g, b], alpha: a}
       end
 
       super(object, attributes)
     end
+
   end
 
-  def color(args)
-    Color.new(self, args)
+  def color(args, opacity = nil)
+    Color.new(self, args, opacity)
   end
 end
