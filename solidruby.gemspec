@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'require_all', '>= 1.3'
   gem.add_runtime_dependency 'wijet-thor', '>= 0.14.10'
   gem.add_development_dependency "bundler", "~> 1.13"
-  gem.add_development_dependency "rake", "~> 10.0"
+  gem.add_development_dependency "rake", "~> 12.0"
   gem.add_development_dependency "minitest", "~> 5.0"
   gem.add_development_dependency "minitest-reporters"
   gem.add_development_dependency "simplecov"
