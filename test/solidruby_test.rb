@@ -400,28 +400,7 @@ class CSGModellingTest < Minitest::Test
   end
 end
 
-class ImportTest < Minitest::Test
-  def test_import_scad
-    filepath = File.expand_path('filename')
-    #case 1: filename is a string
-    i = Import.new('filename')
-    exp = "import(file=\"#{filepath}\");"
 
-    assert_equal exp, i.to_rubyscad
-
-    #case 2: args is a hash
-    i = Import.new(file: 'filename', layer: 2)
-    exp = "import(file=\"#{filepath}\",layer=\"2\");"
-
-    assert_equal exp, i.to_rubyscad
-
-    #helper
-    i = import('filename')
-    exp = "import(file=\"#{filepath}\");"
-
-    assert_equal exp, i.to_rubyscad
-  end
-end
 
 class ColorTest < Minitest::Test
   def test_color_scad
