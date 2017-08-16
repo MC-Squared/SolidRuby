@@ -16,6 +16,7 @@
 module SolidRuby::CSGModelling
   class CSGModelling < SolidRuby::SolidRubyObject
     def initialize(*list)
+      super(list)
       @transformations = []
       @children = list
       @operation = self.class.name.split('::').last.downcase

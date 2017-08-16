@@ -16,6 +16,7 @@
 module SolidRuby::CSGModifiers
   class CSGModifier < SolidRuby::SolidRubyObject
     def initialize(object, attributes)
+      super(attributes)
       @transformations = []
       @children = [object]
       @attributes = attributes

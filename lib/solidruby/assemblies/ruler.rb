@@ -23,6 +23,8 @@ module SolidRuby::Assemblies
       @five_mm_mark = args[:five_mm_mark] || 4
       @ten_mm_mark = args[:ten_mm_mark] || 5
       @rotation = args[:rotation] || 0
+
+      super(args)
     end
 
     def part(_show)

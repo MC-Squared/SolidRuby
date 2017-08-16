@@ -29,6 +29,7 @@ module SolidRuby::Primitives
       # we need to convert relative to absolute paths if the openscad output is not in the same directory
       # as the solidruby program.
       @filename = File.expand_path(filename)
+      super(args)
     end
 
     def to_rubyscad

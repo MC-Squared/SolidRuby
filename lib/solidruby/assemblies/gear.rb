@@ -28,6 +28,7 @@ module SolidRuby::Assemblies
       @hub_height = args[:hub_height] || 0.0
       @output_margin_dia = args[:output_margin_dia] || 2
       @output_margin_height = args[:output_margin_height] || 1
+      super(args)
     end
 
     def show

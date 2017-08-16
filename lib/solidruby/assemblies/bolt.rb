@@ -32,6 +32,7 @@ module SolidRuby::Assemblies
        @size = size
        @length = length
        @transformations ||= []
+       super(args)
      end
 
     def description

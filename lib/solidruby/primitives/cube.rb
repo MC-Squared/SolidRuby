@@ -15,7 +15,7 @@
 #
 module SolidRuby::Primitives
   class Cube < Primitive
-    attr_accessor :x, :y, :z, :center
+    attr_accessor :x, :y, :z
 
     def initialize(args={})
       super(args)
@@ -23,7 +23,7 @@ module SolidRuby::Primitives
       @x = args[:x]
       @y = args[:y]
       @z = args[:z]
-      @center = args[:center]
+      @centered = args[:center]
     end
 
     def center_xy
@@ -47,12 +47,12 @@ module SolidRuby::Primitives
     end
 
     def center
-      @center = true
+      @centered = true
       self
     end
 
     def centered?
-      @center
+      @centered
     end
 
     def chamfer(args = {})
@@ -112,9 +112,9 @@ module SolidRuby::Primitives
 
       return pos if pos.nil?
 
-      pos[:x] -= @x / 2.0 if @center
-      pos[:y] -= @y / 2.0 if @center
-      pos[:z] -= @z / 2.0 if @center
+      pos[:x] -= @x / 2.0 if @centered
+      pos[:y] -= @y / 2.0 if @centered
+      pos[:z] -= @z / 2.0 if @centered
 
       @transformations.each do |t|
         pos[:x] += t.x
@@ -187,7 +187,7 @@ module SolidRuby::Primitives
 
     def to_rubyscad
       args = { size: [@x, @y, @z] }
-      args[:center] = @center if @center
+      args[:center] = @centered if @centered
       RubyScadBridge.new.cube(args)
     end
   end

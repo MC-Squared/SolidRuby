@@ -15,8 +15,7 @@
 
 module SolidRuby::Assemblies
   class Assembly < SolidRuby::SolidRubyObject
-    attr_accessor	:x, :y, :z, :skip, :color, :hardware, :transformations
-
+    attr_accessor	:x, :y, :z, :skip, :hardware, :transformations
 
     def transform(obj)
       obj = obj.debug if debug?
@@ -30,6 +29,7 @@ module SolidRuby::Assemblies
     end
 
     def initialize(args = {})
+      super(args)
       @args ||= args
 
       @x = args[:x]

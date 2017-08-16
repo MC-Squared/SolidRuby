@@ -31,6 +31,8 @@ module SolidRuby::Assemblies
       @args[:simple] ||= false
       @machining = SolidRubyObject.new
       @machining_string = ''
+
+      super(args)
     end
 
     def output

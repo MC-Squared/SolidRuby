@@ -19,6 +19,7 @@ module SolidRuby::Primitives
       @operation = 'render'
       @children = [object]
       super(object, attributes)
+      super(object, args)
     end
 
     def to_rubyscad

@@ -39,6 +39,7 @@ module SolidRuby::Assemblies
       @height = @chart_din125[@size][:height]
 
       @transformations ||= []
+      super(args)
     end
 
     def description

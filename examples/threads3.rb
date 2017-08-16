@@ -7,6 +7,7 @@ class NutPart < SolidRuby::Assembly
   def initialize
     @hardware = []
     @height = 10
+    super
   end
 
   def part(_show)
@@ -27,6 +28,7 @@ end
 class ScrewOnPart < SolidRuby::Assembly
   def initialize
     @nutpart = NutPart.new
+    super
   end
 
   def part(_show)

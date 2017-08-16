@@ -18,13 +18,12 @@ module SolidRuby
     attr_accessor :args
     attr_accessor :transformations
     attr_accessor :children
-    attr_accessor :debug
 
     def initialize(*args)
       @transformations = []
       @args = args.flatten
       @args = @args[0] if @args[0].is_a? Hash
-      @debug = false
+      @debug_obj = false
     end
 
     def rotate(args)
@@ -70,12 +69,12 @@ module SolidRuby
     end
 
     def debug
-      @debug = true
+      @debug_obj = true
       self
     end
 
     def debug?
-      @debug
+      @debug_obj
     end
 
     def walk_tree

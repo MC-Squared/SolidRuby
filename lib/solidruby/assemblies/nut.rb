@@ -38,6 +38,7 @@ module SolidRuby::Assemblies
       @direction = args[:direction] || @slot_direction
 
       @bolt = nil
+      super(args)
     end
 
     def description
