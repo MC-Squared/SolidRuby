@@ -15,16 +15,19 @@
 #
 module SolidRuby::Primitives
   class Render < Primitive
-    def initialize(object, attributes)
+    def initialize(object, args)
       @operation = 'render'
       @children = [object]
-      super(object, attributes)
+      @convexity = args[:c] || args[:convexity]
       super(object, args)
     end
 
     def to_rubyscad
+      convex = ''
+      convex = "convexity = #{@convexity}" if @convexity
+
       @children ||= []
-      ret = "#{@operation}(){"
+      ret = "#{@operation}(#{convex}){"
       @children.each do |child|
         begin
           ret += child.walk_tree
