@@ -15,18 +15,18 @@
 #
 module SolidRuby::Primitives
   class Square < Primitive
-    def initialize(*args)
-      super(args)
-      if args[0][:size].is_a? Array
-        @x, @y = args[0][:size].map(&:to_f)
+    def initialize(*attr)
+      super(attr)
+      if attr[0][:size].is_a? Array
+        @x, @y = attr[0][:size].map(&:to_f)
       else
-        @x = args[0][:size].to_f
+        @x = attr[0][:size].to_f
         @y = @x
       end
     end
 
     def to_rubyscad
-      RubyScadBridge.new.square(@args)
+      RubyScadBridge.new.square(@attributes)
     end
 
     def center_xy

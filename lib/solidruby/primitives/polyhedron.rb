@@ -16,7 +16,7 @@
 module SolidRuby::Primitives
   class Polyhedron < Primitive
     def to_rubyscad
-      RubyScadBridge.new.polyhedron(@args)
+      RubyScadBridge.new.polyhedron(@attributes)
     end
   end
 

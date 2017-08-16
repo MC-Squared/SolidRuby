@@ -16,7 +16,7 @@
 module SolidRuby::Primitives
   class Circle < Primitive
     def to_rubyscad
-      RubyScadBridge.new.circle(@args)
+      RubyScadBridge.new.circle(@attributes)
     end
   end
 

@@ -15,11 +15,11 @@
 #
 module SolidRuby::Primitives
   class Render < Primitive
-    def initialize(object, args)
+    def initialize(object, attr)
       @operation = 'render'
       @children = [object]
-      @convexity = args[:c] || args[:convexity]
-      super(object, args)
+      @convexity = attr[:c] || attr[:convexity]
+      super(object, attr)
     end
 
     def to_rubyscad

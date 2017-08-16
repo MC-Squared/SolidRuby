@@ -17,7 +17,7 @@ module SolidRuby::Primitives
 
   class Cylinder < Primitive
     def to_rubyscad
-      RubyScadBridge.new.cylinder(@args)
+      RubyScadBridge.new.cylinder(@attributes)
     end
   end
 

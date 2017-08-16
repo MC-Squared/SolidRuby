@@ -16,7 +16,7 @@
 module SolidRuby::Primitives
   class Polygon < Primitive
     def to_rubyscad
-      RubyScadBridge.new.polygon(@args)
+      RubyScadBridge.new.polygon(@attributes)
     end
   end
 

@@ -15,15 +15,21 @@
 
 module SolidRuby
   class SolidRubyObject
-    attr_accessor :args
+    attr_accessor :attributes
     attr_accessor :transformations
     attr_accessor :children
 
-    def initialize(*args)
+    def initialize(*attributes)
       @transformations = []
-      @args = args.flatten
-      @args = @args[0] if @args[0].is_a? Hash
+      @attributes = attributes.flatten
+      @attributes = @attributes[0] if @attributes[0].is_a? Hash
       @debug_obj = false
+
+      @@attr_aliases ||= {}
+      @@attr_aliases[self.class.name] ||= {}
+      @@attr_aliases[self.class.name].each do |k, v|
+        @attributes[v] ||= @attributes.delete(k) unless @attributes[k].nil?
+      end
     end
 
     def rotate(args)
@@ -108,6 +114,13 @@ module SolidRuby
       file.puts start_text unless start_text.nil?
       file.puts scad_output
       file.close
+    end
+
+    def self.alias_attr(long, short=nil)
+      short ||= long[0].downcase.to_sym
+      @@attr_aliases ||= {}
+      @@attr_aliases[self.name] ||= {}
+      @@attr_aliases[self.name][short] = long
     end
   end
 end

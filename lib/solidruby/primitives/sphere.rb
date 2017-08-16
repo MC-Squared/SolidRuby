@@ -16,7 +16,7 @@
 module SolidRuby::Primitives
   class Sphere < Primitive
     def to_rubyscad
-      RubyScadBridge.new.sphere(@args)
+      RubyScadBridge.new.sphere(@attributes)
     end
   end
 

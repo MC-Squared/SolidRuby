@@ -17,21 +17,21 @@ module SolidRuby::Primitives
   class Import < Primitive
     attr_accessor :filename, :layer
 
-    def initialize(args)
+    def initialize(attributes)
       @transformations = []
       @children = []
 
-      if args.is_a? String
-        @filename = args
+      if attributes.is_a? String
+        @filename = attributes
       else # assume hash otherwise
-        @filename = args[:f] || args[:file]
-        @layer = args[:l] || args[:layer]
+        @filename = attributes[:f] || attributes[:file]
+        @layer = attributes[:l] || attributes[:layer]
 
         # we need to convert relative to absolute paths if the openscad output is not in the same directory
         # as the solidruby program.
-        @filename = File.expand_path(@filename) if args[:absolue_path] && @filename
+        @filename = File.expand_path(@filename) if attributes[:absolue_path] && @filename
       end
-      super(args)
+      super(attributes)
     end
 
     def to_rubyscad
