@@ -17,10 +17,6 @@ module SolidRuby::Assemblies
   class Assembly < SolidRuby::SolidRubyObject
     attr_accessor	:x, :y, :z, :skip, :color, :hardware, :transformations
 
-    def method_missing(method, *args, &block)
-      eval("def #{method}() @#{method}; end")
-      send(method, *args, &block)
-    end
 
     def transform(obj)
       obj = obj.debug if debug?
