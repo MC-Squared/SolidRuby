@@ -1,6 +1,16 @@
 require 'test_helper'
 require 'fileutils'
 
+# HACK: SolidRuby::import collides with Rake::DSL::import when running
+# tests using rake. To prevent this, we override it here
+module Rake
+  module DSL
+    def import(args)
+      SolidRuby::Import.new(args)
+    end
+  end
+end
+
 class ExamplesTest < Minitest::Test
   def test_example_scad
     FileUtils.rm_rf('test-tmp')
