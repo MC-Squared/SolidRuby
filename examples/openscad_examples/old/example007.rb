@@ -41,14 +41,7 @@ def cutview
 
 end
 
-#puts methods
- # require 'tracer'
- # Tracer.on
- # r = import(f: "example007.dxf", l: "cutout1")
- # Tracer.off
 clip.translate(z: -10).save("example007.scad")
-
-
 
 #cutview.save("example007.scad")
 
