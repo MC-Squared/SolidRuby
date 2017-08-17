@@ -88,6 +88,9 @@ class CubeTest < Minitest::Test
       {face: :back, edge: :right, corner: :bottom} => { x: 0, y: 20, z: 0 },
       {face: :back, edge: :top, corner: :right} => { x: 0, y: 20, z: 30 },
       {face: :back, edge: :bottom, corner: :left} => { x: 10, y: 20, z: 0 },
+
+      #center
+      {face: :center, edge: :center, corner: :center} => { x: 5, y: 10, z: 15 },
     }
 
     vals.each do |val, exp|
