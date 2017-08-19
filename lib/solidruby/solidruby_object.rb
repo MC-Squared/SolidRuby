@@ -121,6 +121,12 @@ module SolidRuby
       @@attr_aliases ||= {}
       @@attr_aliases[self.name] ||= {}
       @@attr_aliases[self.name][short] = long
+
+      self.class_eval {
+        define_method long do
+          @attributes[long]
+        end
+      }
     end
   end
 end

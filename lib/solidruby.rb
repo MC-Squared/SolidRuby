@@ -13,6 +13,7 @@ require 'solidruby/primitives/polygon'
 require 'solidruby/primitives/square'
 require 'solidruby/primitives/render'
 require 'solidruby/primitives/import'
+require 'solidruby/primitives/surface'
 require 'solidruby/primitives/text'
 
 require 'solidruby/helpers/chamfer'
