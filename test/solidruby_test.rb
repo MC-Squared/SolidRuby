@@ -10,7 +10,7 @@ class TransformationTest < Minitest::Test
       Rotate.new(z: 3) => 'rotate(a = [0, 0, 3])',
       Rotate.new(x: 2, z: 3) => 'rotate(a = [2, 0, 3])',
       Rotate.new(x: 1, y: 2, z: 3) => 'rotate(a = [1, 2, 3])',
-      Rotate.new(q: 3) => 'rotate(q = 3, a = [0, 0])'
+      Rotate.new(q: 3) => 'rotate(a = [0, 0], q = 3)'
     }
 
     vals.each do |val, exp|
@@ -443,10 +443,10 @@ class SolidRubyTest < Minitest::Test
             "color(\"DarkGray\"){cylinder(h = 16, r = 2.000);\n" \
             "}\n" \
             "}\n" \
-            "union(){color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
+            "union(){color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
             "}\n" \
             "translate(v = [0, 0, 8.200])\n" \
-            "color(\"Gainsboro\"){cylinder(h = 3.200, $fn = 6, r = 4.215);\n" \
+            "color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
             "}\n" \
             "}\n" \
             "}"
@@ -470,8 +470,8 @@ class SolidRubyTest < Minitest::Test
 
   def test_long_slot
     ls = long_slot(d: 10, h: 20)
-    exp = "hull(){cylinder(r = 5.000, h = 20);\n" \
-          "cylinder(r = 5.000, h = 20);\n" \
+    exp = "hull(){cylinder(h = 20, r = 5.000);\n" \
+          "cylinder(h = 20, r = 5.000);\n" \
           "}"
 
     assert_equal exp, ls.to_rubyscad

@@ -2,7 +2,7 @@ $fn=64;
 union(){translate(v = [20, 0])
 union(){color("yellow"){translate(v = [0, -20])
 intersection(){rotate_extrude($fn = 128){translate(v = [20, 0])
-circle($fn = 64, r = 5.000);
+circle(r = 5.000, $fn = 64);
 }
 translate(v = [0, 0, -50])
 linear_extrude(height = 100){scale(v = 2)
@@ -14,13 +14,13 @@ translate(v = [2.783, -0.195])
 rotate(a = [0, 0, -8])
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 0])
-color("red"){linear_extrude(height = 5){circle($fn = 64, r = 5.000);
+color("red"){linear_extrude(height = 5){circle(r = 5.000, $fn = 64);
 }
 }
 }
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 0])
-color("blue"){linear_extrude(height = 20){circle($fn = 64, r = 5.000);
+color("blue"){linear_extrude(height = 20){circle(r = 5.000, $fn = 64);
 }
 }
 }

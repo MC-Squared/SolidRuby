@@ -8,7 +8,7 @@ class CylinderTest < Minitest::Test
       Cylinder.new(d: 3) => 'cylinder(r = 1.500);',
       Cylinder.new(h: 2, r: 3) => 'cylinder(h = 2, r = 3);',
       Cylinder.new(h: 1, r: 2, d: 3) => 'cylinder(h = 1, r = 1.500);',
-      Cylinder.new(h: 20, d: 15, fn: 20) => 'cylinder(h = 20, $fn = 20, r = 7.500);',
+      Cylinder.new(h: 20, d: 15, fn: 20) => 'cylinder(h = 20, r = 7.500, $fn = 20);',
       Cylinder.new(q: 5) => 'cylinder(q = 5);'
     }
 
@@ -24,7 +24,7 @@ class CylinderTest < Minitest::Test
       cylinder(d: 3) => 'cylinder(r = 1.500);',
       cylinder(h: 2, r: 3) => 'cylinder(h = 2, r = 3);',
       cylinder(h: 1, r: 2, d: 3) => 'cylinder(h = 1, r = 1.500);',
-      cylinder(h: 10, d: 20, fn: 15) => 'cylinder(h = 10, $fn = 15, r = 10.000);',
+      cylinder(h: 10, d: 20, fn: 15) => 'cylinder(h = 10, r = 10.000, $fn = 15);',
       cylinder(q: 15) => 'cylinder(q = 15);',
 
       cylinder(id: 10, h: 10) =>
@@ -42,7 +42,7 @@ class CylinderTest < Minitest::Test
       cylinder(id: 10, h: 12, ih: 10, ifn: 20) =>
             "difference(){cylinder(h = 12);\n" \
             "translate(v = [0, 0, -0.010])\n" \
-            "cylinder(h = 10.010, ih = 10, ifn = 20, $fn = 20, r = 5.000);\n"\
+            "cylinder(h = 10.010, ifn = 20, ih = 10, r = 5.000, $fn = 20);\n"\
             '}'
     }
 

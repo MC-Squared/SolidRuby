@@ -1826,7 +1826,7 @@ polyhedron(points = [[-0.512, -8.106, 0], [0.512, -8.106, 0.050], [0.512, -8.106
 translate(v = [0, 0, 11.250])
 cube(size = [22.000, 22.000, 22.500], center = true);
 }
-cylinder(r = 8.647, h = 22.500, segments = 50);
+cylinder(h = 22.500, r = 8.647, segments = 50);
 }
 }
 translate(v = [0, 0, 26])
@@ -3504,6 +3504,6 @@ polyhedron(points = [[-0.512, -8.106, 0], [0.512, -8.106, 0.050], [0.512, -8.106
 translate(v = [0, 0, 10.000])
 cube(size = [22.000, 22.000, 20], center = true);
 }
-cylinder(r = 8.566, h = 20, segments = 50);
+cylinder(h = 20, r = 8.566, segments = 50);
 }
 }

@@ -19,7 +19,7 @@ color("DarkGray"){translate(v = [0, 0, 23])
 cylinder(h = 17, r = 1.400);
 }
 }
-color("Gainsboro"){cylinder(h = 2, $fn = 6, r = 3.060);
+color("Gainsboro"){cylinder(h = 2, r = 3.060, $fn = 6);
 }
 }
 union(){cylinder(h = 1.800, r = 1.400);
@@ -35,7 +35,7 @@ color("DarkGray"){translate(v = [0, 0, 22])
 cylinder(h = 18, r = 1.650);
 }
 }
-color("Gainsboro"){cylinder(h = 2.400, $fn = 6, r = 3.349);
+color("Gainsboro"){cylinder(h = 2.400, r = 3.349, $fn = 6);
 }
 }
 union(){cylinder(h = 2.200, r = 1.750);
@@ -51,7 +51,7 @@ color("DarkGray"){translate(v = [0, 0, 20])
 cylinder(h = 20, r = 2.150);
 }
 }
-color("Gainsboro"){cylinder(h = 3.200, $fn = 6, r = 4.215);
+color("Gainsboro"){cylinder(h = 3.200, r = 4.215, $fn = 6);
 }
 }
 union(){cylinder(h = 3.000, r = 2.200);
@@ -67,7 +67,7 @@ color("DarkGray"){translate(v = [0, 0, 18])
 cylinder(h = 22, r = 2.650);
 }
 }
-color("Gainsboro"){cylinder(h = 4, $fn = 6, r = 4.792);
+color("Gainsboro"){cylinder(h = 4, r = 4.792, $fn = 6);
 }
 }
 union(){cylinder(h = 3.800, r = 2.650);
@@ -83,7 +83,7 @@ color("DarkGray"){translate(v = [0, 0, 16])
 cylinder(h = 24, r = 3.150);
 }
 }
-color("Gainsboro"){cylinder(h = 5, $fn = 6, r = 5.947);
+color("Gainsboro"){cylinder(h = 5, r = 5.947, $fn = 6);
 }
 }
 cylinder(h = 4.800, r = 3.150);
@@ -97,7 +97,7 @@ color("DarkGray"){translate(v = [0, 0, 12])
 cylinder(h = 28, r = 4.150);
 }
 }
-color("Gainsboro"){cylinder(h = 6.500, $fn = 6, r = 7.679);
+color("Gainsboro"){cylinder(h = 6.500, r = 7.679, $fn = 6);
 }
 }
 cylinder(h = 6.300, r = 4.150);
@@ -111,7 +111,7 @@ color("DarkGray"){translate(v = [0, 0, 8])
 cylinder(h = 32, r = 5.150);
 }
 }
-color("Gainsboro"){cylinder(h = 8, $fn = 6, r = 9.988);
+color("Gainsboro"){cylinder(h = 8, r = 9.988, $fn = 6);
 }
 }
 cylinder(h = 7.800, r = 5.150);
@@ -125,7 +125,7 @@ color("DarkGray"){translate(v = [0, 0, 4])
 cylinder(h = 36, r = 6.150);
 }
 }
-color("Gainsboro"){cylinder(h = 10, $fn = 6, r = 11.143);
+color("Gainsboro"){cylinder(h = 10, r = 11.143, $fn = 6);
 }
 }
 cylinder(h = 9.800, r = 6.150);

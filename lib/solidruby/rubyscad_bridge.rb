@@ -240,7 +240,11 @@ module SolidRuby
       if args.is_a? String
         arg_str = args
       else
-        arg_str = args.collect { |k, v| "#{format_key(k)} = #{format_value(v)}" }.join(', ')
+        arg_str = args.collect do
+          |k, v| "#{format_key(k)} = #{format_value(v)}"
+        end
+        .sort_by{ |x| ['$fn', '$fa', '$fs', 'cen', 'con'].include?(x[0..2]) ? ('z' + x) : x }
+        .join(', ')
       end
       format_block cmd_str % { args: arg_str }, &block
     end

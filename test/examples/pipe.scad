@@ -2,7 +2,7 @@ $fn=64;
 union(){color("pink"){translate(v = [0, 30])
 mirror(v = [0, 1])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [30, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [30, 0])
 circle(r = 3.000);
@@ -19,7 +19,7 @@ rotate(a = [0, 0, 60])
 union(){color("blue"){translate(v = [0, 30])
 mirror(v = [0, 1])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [30, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [30, 0])
 circle(r = 3.000);
@@ -36,7 +36,7 @@ rotate(a = [0, 0, 70])
 union(){color("blue"){translate(v = [0, 30])
 mirror(v = [0, 1])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [30, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [30, 0])
 circle(r = 3.000);
@@ -54,7 +54,7 @@ union(){translate(v = [3, 0])
 union(){color("green"){translate(v = [0, 30])
 mirror(v = [0, 1])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [30, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [30, 0])
 circle(r = 3.000);
@@ -70,7 +70,7 @@ translate(v = [21.213, 8.787])
 rotate(a = [0, 0, 45])
 union(){color("blue"){translate(v = [0, -30])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [30, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [30, 0])
 circle(r = 3.000);
@@ -88,7 +88,7 @@ union(){translate(v = [30, 0])
 union(){color("yellow"){translate(v = [0, 20])
 mirror(v = [0, 1])
 intersection(){difference(){rotate_extrude($fn = 128){translate(v = [20, 0])
-circle($fn = 6, r = 5.000);
+circle(r = 5.000, $fn = 6);
 }
 rotate_extrude($fn = 128){translate(v = [20, 0])
 circle(r = 3.000);
@@ -104,7 +104,7 @@ translate(v = [10.000, 2.679])
 rotate(a = [0, 0, 30])
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 30])
-difference(){linear_extrude(height = 10){circle($fn = 6, r = 5.000);
+difference(){linear_extrude(height = 10){circle(r = 5.000, $fn = 6);
 }
 translate(v = [0, 0, -0.100])
 linear_extrude(height = 10.200){circle(r = 3.000);
@@ -113,7 +113,7 @@ linear_extrude(height = 10.200){circle(r = 3.000);
 }
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 30])
-difference(){linear_extrude(height = 30){circle($fn = 6, r = 5.000);
+difference(){linear_extrude(height = 30){circle(r = 5.000, $fn = 6);
 }
 translate(v = [0, 0, -0.100])
 linear_extrude(height = 30.200){circle(r = 3.000);
@@ -124,7 +124,7 @@ linear_extrude(height = 30.200){circle(r = 3.000);
 }
 rotate(a = [0, 90, 0])
 rotate(a = [0, 0, 30])
-difference(){linear_extrude(height = 3){circle($fn = 6, r = 5.000);
+difference(){linear_extrude(height = 3){circle(r = 5.000, $fn = 6);
 }
 translate(v = [0, 0, -0.100])
 linear_extrude(height = 3.200){circle(r = 3.000);

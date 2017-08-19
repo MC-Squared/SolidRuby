@@ -8,5 +8,5 @@ cube(size = [10, 10, 50], center = true);
 }
 }
 translate(v = [0, 0, 5])
-cylinder(r1 = 20, r2 = 5, h = 50, center = true);
+cylinder(h = 50, r1 = 20, r2 = 5, center = true);
 }

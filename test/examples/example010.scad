@@ -1,4 +1,4 @@
-intersection(){surface(center = true, file = "example010.dat", convexity = 5);
+intersection(){surface(file = "example010.dat", center = true, convexity = 5);
 rotate(a = [0, 0, 45])
-surface(center = true, file = "example010.dat", convexity = 5);
+surface(file = "example010.dat", center = true, convexity = 5);
 }
