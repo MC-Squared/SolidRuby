@@ -65,56 +65,6 @@ class TransformationTest < Minitest::Test
   end
 end
 
-class PrimitiveTest < Minitest::Test
-  def test_polyhedron_scad
-    # From OpenSCAD docs
-    points = [
-      [0,  0, 0], # 0
-      [10,  0,  0],  # 1
-      [10,  7,  0],  # 2
-      [0,  7,  0],  # 3
-      [0,  0,  5],  # 4
-      [10,  0,  5],  # 5
-      [10,  7,  5],  # 6
-      [0, 7, 5], # 7
-    ]
-
-    faces = [
-      [0, 1, 2, 3],  # bottom
-      [4, 5, 1, 0],  # front
-      [7, 6, 5, 4],  # top
-      [5, 6, 2, 1],  # right
-      [6, 7, 3, 2],  # back
-      [7, 4, 0, 3],  # left
-    ]
-
-    p = Polyhedron.new(points: points, triangles: faces)
-
-    scad = 'polyhedron(points = [' \
-           '[0, 0, 0], ' \
-           '[10, 0, 0], ' \
-           '[10, 7, 0], ' \
-           '[0, 7, 0], ' \
-           '[0, 0, 5], ' \
-           '[10, 0, 5], ' \
-           '[10, 7, 5], ' \
-           '[0, 7, 5]], ' \
-           'triangles = [' \
-           '[0, 1, 2, 3], ' \
-           '[4, 5, 1, 0], ' \
-           '[7, 6, 5, 4], ' \
-           '[5, 6, 2, 1], ' \
-           '[6, 7, 3, 2], ' \
-           '[7, 4, 0, 3]' \
-           ']);'
-
-    assert_equal scad, p.to_rubyscad
-
-    helper = polyhedron(points: points, triangles: faces)
-    assert_equal scad, helper.to_rubyscad
-  end
-end
-
 class Primitive2DTest < Minitest::Test
   def test_square_scad
     vals = {

@@ -15,6 +15,10 @@
 #
 module SolidRuby::Primitives
   class Polyhedron < Primitive
+    alias_attr :faces
+    alias_attr :points
+    alias_attr :convexity
+    
     def to_rubyscad
       RubyScadBridge.new.polyhedron(@attributes)
     end
