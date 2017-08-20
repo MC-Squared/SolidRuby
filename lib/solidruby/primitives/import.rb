@@ -15,33 +15,23 @@
 #
 module SolidRuby::Primitives
   class Import < Primitive
-    attr_accessor :filename, :layer
+    alias_attr :file
+    alias_attr :layer
+    alias_attr :center, :ce
+    alias_attr :convexity, :co
 
     def initialize(attributes)
-      @transformations = []
-      @children = []
-
       if attributes.is_a? String
-        @filename = attributes
-      else # assume hash otherwise
-        @filename = attributes[:f] || attributes[:file]
-        @layer = attributes[:l] || attributes[:layer]
-
-        # we need to convert relative to absolute paths if the openscad output is not in the same directory
-        # as the solidruby program.
-        @filename = File.expand_path(@filename) if attributes[:absolue_path] && @filename
+        attributes = {file: attributes}
       end
+      abs_path = attributes.delete(:absolue_path) || false
+
       super(attributes)
+      @attributes[:file] = File.expand_path(@attributes[:file]) if abs_path
     end
 
     def to_rubyscad
-      @layer ||= nil
-      layer = ''
-      layer = ",layer=\"#{@layer}\"" if @layer
-      res = children.map(&:walk_tree)
-      res = '' if res == []
-      res += RubyScadBridge.new.import('file="' + @filename.to_s + "\"#{layer}") # apparently the quotes get lost otherwise
-      res
+      RubyScadBridge.new.import(@attributes)
     end
   end
 
