@@ -23,7 +23,7 @@ module SolidRuby::Primitives
       @x = args[:x]
       @y = args[:y]
       @z = args[:z]
-      @centered = args[:center]
+      @centered = args[:center] || args[:c]
     end
 
     def center_xy
