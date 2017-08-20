@@ -16,7 +16,8 @@
 module SolidRuby::CSGModifiers
   class LinearExtrude < CSGModifier
     alias_attr :height
-    alias_attr :convexity
+    alias_attr :convexity, :co
+    alias_attr :center, :ce
     alias_attr :twist
     alias_attr :slices, :sl
     alias_attr :scale, :sc
