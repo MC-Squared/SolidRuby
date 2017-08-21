@@ -18,9 +18,11 @@ module SolidRuby
     attr_accessor :attributes
     attr_accessor :transformations
     attr_accessor :children
+    attr_accessor :siblings
 
     def initialize(*attributes)
       @transformations = []
+      @siblings = []
       @attributes = attributes.flatten
       @attributes = @attributes[0] if @attributes[0].is_a? Hash
       @debug_obj = false
@@ -74,6 +76,11 @@ module SolidRuby
       self
     end
 
+    def &(obj)
+      @siblings << obj
+      self
+    end
+
     def debug
       @debug_obj = true
       self
@@ -91,6 +98,9 @@ module SolidRuby
       end
       res += '#' if self.debug?
       res += to_rubyscad.to_s + "\n"
+      @siblings.each do |s|
+        res += s.walk_tree
+      end
       res
     end
 
