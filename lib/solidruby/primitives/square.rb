@@ -15,13 +15,40 @@
 #
 module SolidRuby::Primitives
   class Square < Primitive
-    def initialize(*attr)
-      super(attr)
-      if attr[0][:size].is_a? Array
-        @x, @y = attr[0][:size].map(&:to_f)
+    alias_attr :size
+
+    def initialize(att)
+      if att.is_a? Array
+        att = { size: att }
+      elsif att.is_a? Numeric
+        att = { size: att }
+      end
+
+      att[:center] ||= att.delete(:c)
+      att.delete(:center) unless att[:center]
+
+      super(att)
+
+      unless @attributes[:size]
+        x = @attributes.delete(:x) || 0
+        y = @attributes.delete(:y) || 0
+        @attributes[:size] = [x, y]
+      end
+    end
+
+    def x
+      if @attributes[:size].is_a? Array
+        @attributes[:size][0]
       else
-        @x = attr[0][:size].to_f
-        @y = @x
+        @attributes[:size]
+      end
+    end
+
+    def y
+      if @attributes[:size].is_a? Array
+        @attributes[:size][1]
+      else
+        @attributes[:size]
       end
     end
 
@@ -30,34 +57,31 @@ module SolidRuby::Primitives
     end
 
     def center_xy
-      @transformations << Translate.new(x: -@x / 2, y: -@y / 2)
+      @attributes[:center] = true
       self
     end
     alias center center_xy
 
     def center_x
-      @transformations << Translate.new(x: -@x / 2)
+      @transformations << Translate.new(x: -self.x / 2.0)
       self
     end
 
     def center_y
-      @transformations << Translate.new(y: -@y / 2)
+      @transformations << Translate.new(y: -self.y / 2.0)
       self
+    end
+
+    def centered?
+      return @attributes[:center] || false
     end
   end
 
   def square(args, y = nil)
-    if args.is_a? Array
-      args = { size: args }
-    elsif args.is_a? Numeric
-      x = args
-      args = { size: [x, y] }
-    elsif args.is_a? Hash
-      unless args[:size]
-        args[:x] ||= 0
-        args[:y] ||= 0
-        args = { size: [args[:x], args[:y]] }
-      end
+    if args.is_a?(Numeric) && !!y == y
+      args = { size: args, center: y}
+    elsif args.is_a?(Numeric) && y.is_a?(Numeric)
+      args = { size: [args, y] }
     end
     Square.new(args)
   end

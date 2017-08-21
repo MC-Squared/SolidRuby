@@ -66,49 +66,6 @@ class TransformationTest < Minitest::Test
 end
 
 class Primitive2DTest < Minitest::Test
-  def test_square_scad
-    vals = {
-      Square.new(size: 10) => 'square(size = 10);',
-      Square.new(size: [1]) => 'square(size = [1]);',
-      Square.new(size: [1, 2]) => 'square(size = [1, 2]);',
-      Square.new(q: 5, size: [1, 2]) => 'square(q = 5, size = [1, 2]);',
-      Square.new(size: [10, 10, 10], center: true) => 'square(size = [10, 10, 10], center = true);'
-    }
-
-    vals.each do |val, exp|
-      assert_equal exp, val.to_rubyscad
-    end
-  end
-
-  def test_square_center
-    args = { size: [1, 2] }
-
-    vals = {
-      Square.new(args).center_xy => { x: -0.5, y: -1.0 },
-      Square.new(args).center_x => { x: -0.5 },
-      Square.new(args).center_y => { y: -1.0 },
-      Square.new(args).center => { x: -0.5, y: -1.0 }
-    }
-
-    vals.each do |val, exp|
-      assert_equal 1, val.transformations.count
-      assert_equal exp, val.transformations.first.args
-    end
-  end
-
-  def test_square_helper
-    vals = {
-      square(10) => 'square(size = [10, nil]);',
-      square(10, 20) => 'square(size = [10, 20]);',
-      square([1, 2, 3]) => 'square(size = [1, 2, 3]);',
-      square(x: 5, y: 10, z: 15) => 'square(size = [5, 10]);'
-    }
-
-    vals.each do |val, exp|
-      assert_equal exp, val.to_rubyscad
-    end
-  end
-
   def test_circle_scad
     vals = {
       Circle.new(d: 10) => 'circle(r = 5.000);',
