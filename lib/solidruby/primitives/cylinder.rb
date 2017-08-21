@@ -14,8 +14,10 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::Primitives
-
   class Cylinder < Primitive
+    alias_attr :h, :height
+    alias_attr :r, :radius
+
     def to_rubyscad
       RubyScadBridge.new.cylinder(@attributes)
     end

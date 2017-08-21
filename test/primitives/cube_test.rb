@@ -1,16 +1,78 @@
 require 'test_helper'
 
 class CubeTest < Minitest::Test
-  def test_cube_scad
-    vals = {
-      Cube.new(x: 1, y: 2, z: 3) => 'cube(size = [1, 2, 3]);',
-      Cube.new(x: 1, y: 2) => 'cube(size = [1, 2, nil]);',
-      Cube.new(x: 10, y: 10, z: 10, center: true) => 'cube(size = [10, 10, 10], center = true);'
-    }
+  def test_cube_constructor
+    c = Cube.new(x: 1, y: 2, z: 3)
 
-    vals.each do |val, exp|
-      assert_equal exp, val.to_rubyscad
-    end
+    assert_equal 1, c.x
+    assert_equal 2, c.y
+    assert_equal 3, c.z
+    refute c.centered?
+
+    c = Cube.new(x: 10, y: 20, z: 30, c: true)
+
+    assert_equal 10, c.x
+    assert_equal 20, c.y
+    assert_equal 30, c.z
+    assert c.centered?
+
+    c = Cube.new(10)
+
+    assert_equal 10, c.x
+    assert_equal 10, c.y
+    assert_equal 10, c.z
+    refute c.centered?
+
+    c = Cube.new(1, 2, 3)
+
+    assert_equal 1, c.x
+    assert_equal 2, c.y
+    assert_equal 3, c.z
+    refute c.centered?
+
+    c = Cube.new(size: [10, 20, 30])
+
+    assert_equal 10, c.x
+    assert_equal 20, c.y
+    assert_equal 30, c.z
+    refute c.centered?
+  end
+
+  def test_cube_helper
+    c = cube(x: 1, y: 2, z: 3)
+
+    assert_equal 1, c.x
+    assert_equal 2, c.y
+    assert_equal 3, c.z
+    refute c.centered?
+
+    c = cube(x: 10, y: 20, z: 30, c: true)
+
+    assert_equal 10, c.x
+    assert_equal 20, c.y
+    assert_equal 30, c.z
+    assert c.centered?
+
+    c = cube(10)
+
+    assert_equal 10, c.x
+    assert_equal 10, c.y
+    assert_equal 10, c.z
+    refute c.centered?
+
+    c = cube(1, 2, 3)
+
+    assert_equal 1, c.x
+    assert_equal 2, c.y
+    assert_equal 3, c.z
+    refute c.centered?
+
+    c = cube(size: [10, 20, 30])
+
+    assert_equal 10, c.x
+    assert_equal 20, c.y
+    assert_equal 30, c.z
+    refute c.centered?
   end
 
   def test_cube_center
@@ -31,16 +93,14 @@ class CubeTest < Minitest::Test
 
     c = Cube.new(args).center
     assert_equal 0, c.transformations.count
-    assert_equal true, c.centered?
+    assert c.centered?
   end
 
-  def test_cube_helper
+  def test_cube_scad
     vals = {
-      cube(10) => 'cube(size = [10, 10, 10]);',
-      cube(10, 20) => 'cube(size = [10, 20, nil]);',
-      cube(10, 20, 30) => 'cube(size = [10, 20, 30]);',
-      cube([1, 2, 3]) => 'cube(size = [1, 2, 3]);',
-      cube(x: 5, y: 10, z: 15) => 'cube(size = [5, 10, 15]);'
+      Cube.new(x: 1, y: 2, z: 3) => 'cube(size = [1, 2, 3]);',
+      Cube.new(size: [4, 5, 6]) => 'cube(size = [4, 5, 6]);',
+      Cube.new(x: 10, y: 10, z: 10, center: true) => 'cube(size = [10, 10, 10], center = true);'
     }
 
     vals.each do |val, exp|
@@ -172,5 +232,71 @@ class CubeTest < Minitest::Test
       val = Cube.new(cube_args).get_point_on(val)
       assert_equal exp, val
     end
+  end
+
+  def test_cube_fillet
+    c = Cube.new(x: 10, y: 20, z: 30)
+    cf = c.fillet(top: :top, r: 2)
+
+    assert cf.is_a? Difference
+    assert_equal 2, cf.children.count
+    assert c, cf.children.first
+
+    # actual fillet
+    f = cf.children[1]
+    assert f.is_a? Difference
+    assert_equal 2, f.children.count
+    assert f.children[0].is_a? Cube
+    assert_equal 4, f.children[0].x
+    assert_equal 4, f.children[0].y
+    assert_in_delta c.x + 0.02, f.children[0].z
+
+    assert f.children[1].is_a? Cylinder
+    assert_equal c.x + 0.04, f.children[1].h
+    assert_equal 2, f.children[1].r
+
+    cf = c.fillet(front: :right, r: 3)
+
+    assert cf.is_a? Difference
+    assert_equal 2, cf.children.count
+    assert c, cf.children.first
+
+    # actual fillet
+    f = cf.children[1]
+    assert f.is_a? Difference
+    assert_equal 2, f.children.count
+    assert f.children[0].is_a? Cube
+    assert_equal 6, f.children[0].x
+    assert_equal 6, f.children[0].y
+    assert_in_delta c.z + 0.02, f.children[0].z
+
+    assert f.children[1].is_a? Cylinder
+    assert_equal c.z + 0.04, f.children[1].h
+    assert_equal 3, f.children[1].r
+  end
+
+  def test_cube_chamfer
+    c = Cube.new(x: 10, y: 20, z: 30)
+    cc = c.chamfer(top: :top, h: 2)
+
+    assert cc.is_a? Difference
+    assert_equal 2, cc.children.count
+    assert c, cc.children.first
+
+    # actual chamfer
+    ch = cc.children[1]
+    assert ch.is_a? LinearExtrude
+    assert_equal c.x + 0.02, ch.height
+
+    cc = c.chamfer(back: :left, h: 3)
+
+    assert cc.is_a? Difference
+    assert_equal 2, cc.children.count
+    assert c, cc.children.first
+
+    # actual chamfer
+    ch = cc.children[1]
+    assert ch.is_a? LinearExtrude
+    assert_equal c.z + 0.02, ch.height
   end
 end

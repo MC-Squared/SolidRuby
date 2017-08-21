@@ -17,13 +17,25 @@ module SolidRuby::Primitives
   class Cube < Primitive
     attr_accessor :x, :y, :z
 
-    def initialize(args={})
-      super(args)
+    def initialize(args={}, y = nil, z = nil)
+      if args.is_a? Array
+        args = { x: args[0], y: args[1], z: args[2] }
+      elsif args.is_a?(Hash) && args[:size]
+        args[:x] ||= args[:size][0] || 0
+        args[:y] ||= args[:size][1] || 0
+        args[:z] ||= args[:size][2] || 0
+      elsif args.is_a? Numeric
+        x = args
+        y ||= x
+        z ||= y# = x if y.nil? && z.nil?
+        args = { x: x, y: y, z: z }
+      end
+      @centered = args.delete(:center) || args.delete(:c)
 
       @x = args[:x]
-      @y = args[:y]
-      @z = args[:z]
-      @centered = args[:center] || args[:c]
+      @y = args[:y] || @x
+      @z = args[:z] || @y
+      super(args)
     end
 
     def center_xy
@@ -59,15 +71,14 @@ module SolidRuby::Primitives
       faces = normalise_edges(args)
       height = args[:h] || args[:height]
       trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z)
-      chamfers = nil
+      res = self
       trans.each do |t|
-        chamfers += Helpers::chamfer(l: t[:length] + 0.02, h: height)
+        res -= Helpers::chamfer(l: t[:length] + 0.02, h: height)
           .rotate(z: (t[:z_rot] - 180))
           .rotate(x: t[:x_rot], y: t[:y_rot])
           .translate(x: t[:x_trans], y: t[:y_trans], z: t[:z_trans])
       end
-
-      self - chamfers
+      res
     end
 
     def get_point_on(args = {})
@@ -174,15 +185,14 @@ module SolidRuby::Primitives
       faces = normalise_edges(args)
       radius = args[:r] || args[:radiusg]
       trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z, tolerance: 0)
-      fillets = nil
+      res = self
       trans.each do |t|
-        fillets += Helpers::fillet(h: t[:length], r: radius)
+        res -= Helpers::fillet(h: t[:length], r: radius)
           .rotate(z: t[:z_rot])
           .rotate(x: t[:x_rot], y: t[:y_rot])
           .translate(x: t[:x_trans], y: t[:y_trans], z: t[:z_trans])
       end
-
-      self - fillets
+      res
     end
 
     def to_rubyscad
@@ -193,16 +203,10 @@ module SolidRuby::Primitives
   end
 
   def cube(args = {}, y = nil, z = nil)
-    if args.is_a? Array
-      args = { x: args[0], y: args[1], z: args[2] }
-    elsif args.is_a? Hash
-      args[:x] ||= args[:size][0] || 0
-      args[:y] ||= args[:size][1] || 0
-      args[:z] ||= args[:size][2] || 0
-    elsif args.is_a? Numeric
-      x = args
-      z = y = x if y.nil? && z.nil?
-      args = { x: x, y: y, z: z }
+    if args.is_a? Numeric
+      args = {x: args}
+      args[:y] = y if y
+      args[:z] = z if z
     end
     Cube.new(args)
   end
