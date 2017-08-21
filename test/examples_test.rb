@@ -13,6 +13,8 @@ end
 
 class ExamplesTest < Minitest::Test
   def test_example_scad
+    return if ENV['SKIP_EXAMPLES']
+
     FileUtils.rm_rf('test-tmp')
     FileUtils.mkdir('test-tmp')
     FileUtils.cd('test-tmp')
