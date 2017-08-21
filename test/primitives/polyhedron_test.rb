@@ -11,7 +11,7 @@ class PolyhedronTest < Minitest::Test
   end
 
   def test_polyhedron_helper
-    po = Polyhedron.new(f: [2], p: [4], c: 6)
+    po = polyhedron(f: [2], p: [4], c: 6)
 
     assert_equal 0, po.transformations.count
     assert_equal [2], po.faces
