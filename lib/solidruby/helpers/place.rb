@@ -36,13 +36,13 @@ module SolidRuby::Helpers
       )
 
       if (obj.respond_to? :get_point_on)
-        move_me = self.get_point_on(face: :center, edge: :center, corner: :center)
+        move_me = obj.get_point_on(face: :center, edge: :center, corner: :center)
         move_to[:x] -= move_me[:x]
         move_to[:y] -= move_me[:y]
         move_to[:z] -= move_me[:z]
       end
 
-      obj.translate(move_to)
+      obj = obj.translate(move_to)
     end
 
     obj

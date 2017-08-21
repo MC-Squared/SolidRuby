@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PlaceTest < Minitest::Test
-  def test_place
+  def test_place_no_point_on
     o = SolidRubyObject.new
 
     assert_equal o, place(o, onto: nil)
@@ -22,5 +22,20 @@ class PlaceTest < Minitest::Test
       val = place o, val
       assert_equal exp, o.transformations.first.args
     end
+  end
+
+  def test_place_point_on
+    c_move = cube(1, 2, 3)
+    c_onto = cube(10, 20, 30)
+
+    pl = place c_move, onto: c_onto, face: :top, edge: :right, corner: :top
+
+    assert_equal 1, pl.transformations.count
+    assert pl.transformations.first.is_a? Translate
+    t = pl.transformations.first
+
+    assert_in_delta c_onto.x - c_move.x/2.0, t.x
+    assert_in_delta c_onto.y - c_move.y/2.0, t.y
+    assert_in_delta c_onto.z - c_move.z/2.0, t.z
   end
 end
