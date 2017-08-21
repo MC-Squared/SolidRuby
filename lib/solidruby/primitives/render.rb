@@ -15,31 +15,34 @@
 #
 module SolidRuby::Primitives
   class Render < Primitive
-    def initialize(object, attr)
+    alias_attr :convexity, :co
+
+    def initialize(object, attr={})
       @operation = 'render'
       @children = [object]
-      @convexity = attr[:c] || attr[:convexity]
-      super(object, attr)
+
+      super(attr)
     end
 
     def to_rubyscad
-      convex = ''
-      convex = "convexity = #{@convexity}" if @convexity
+      ret = RubyScadBridge.new.render(@attributes) + "{\n"
 
       @children ||= []
-      ret = "#{@operation}(#{convex}){"
       @children.each do |child|
         begin
           ret += child.walk_tree
         rescue NoMethodError
         end
       end
-
       ret += '}'
     end
   end
 
   def render(args = {})
-    Render.new(self, args)
+    if args.is_a? SolidRubyObject
+      Render.new(args)
+    else
+      Render.new(self, args)
+    end
   end
 end
