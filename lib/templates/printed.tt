@@ -1,3 +1,5 @@
+require_relative 'params'
+
 class <%= @clean_name %> < SolidRuby::Printed
   def initialize
   end

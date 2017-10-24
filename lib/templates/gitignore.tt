@@ -1,0 +1,3 @@
+output/*.scad
+output/*.gcode
+output/*.stl

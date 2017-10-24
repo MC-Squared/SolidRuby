@@ -43,13 +43,15 @@ class SolidRubyCli < Thor
     empty_directory("#{name}/lib/printed/")
     empty_directory("#{name}/lib/lasercut/")
     empty_directory("#{name}/output")
+    create_file("#{name}/output/.keep")
 
     template('main.tt', "#{name}/#{name}.rb")
     chmod("#{name}/#{name}.rb", 0755)
 
     template('guardfile.tt', "#{name}/Guardfile")
+    template('gitignore.tt', "#{name}/.gitignore")
     template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
-    template('testcube.tt', "#{name}/lib/printed/testcube.rb")
+    template('params.tt', "#{name}/lib/printed/params.rb")
   end
 
   desc 'g COMMANDS', 'generator module'
