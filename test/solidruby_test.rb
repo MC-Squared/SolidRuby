@@ -111,18 +111,6 @@ class RubyScadTest < Minitest::Test
   end
 end
 
-class AdvancedPrimitiveTest < Minitest::Test
-  def test_text_scad
-    t = Text.new(text: 'testing')
-    exp = 'text(text = "testing");'
-
-    assert_equal exp, t.to_rubyscad
-
-    t = text(text: 'testing')
-    assert_equal exp, t.to_rubyscad
-  end
-end
-
 class CSGModellingTest < Minitest::Test
 
 

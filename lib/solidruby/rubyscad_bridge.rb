@@ -55,6 +55,7 @@ module SolidRuby
     LINEAR_EXTRUDE_STR  = 'linear_extrude(%<args>s)'.freeze
     ROTATE_EXTRUDE_STR  = 'rotate_extrude(%<args>s)'.freeze
     PROJECTION_STR      = 'projection(%<args>s)'.freeze
+    TEXT_STR      = 'text(%<args>s);'.freeze
 
     INCLUDE_STR = 'include <%<file>s>'.freeze
     USE_STR     = 'use <%<file>s>'.freeze
@@ -199,6 +200,10 @@ module SolidRuby
         args.delete(:d2)
       end
       format_command CYLINDER_STR, args
+    end
+
+    def text(args = {})
+      format_command TEXT_STR, args
     end
 
     def rotate(args = {}, &block)

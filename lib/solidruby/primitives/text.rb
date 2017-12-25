@@ -15,13 +15,25 @@
 #
 module SolidRuby::Primitives
   class Text < Primitive
+    alias_attr :text
+    alias_attr :size
+    alias_attr :font
+    alias_attr :valign, :va
+    alias_attr :halign, :ha
+    alias_attr :spacing, :sp
+    alias_attr :direction
+    alias_attr :language
+    alias_attr :script, :sc
+
     def initialize(attributes)
-      @attr = attributes.collect { |k, v| "#{k} = \"#{v}\"" }.join(', ')
+      if attributes.is_a? String
+        attributes = {text: attributes}
+      end
       super(attributes)
     end
 
     def to_rubyscad
-      "text(#{@attr});"
+      RubyScadBridge.new.text(@attributes)
     end
   end
 
