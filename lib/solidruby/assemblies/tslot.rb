@@ -15,9 +15,8 @@
 #
 module SolidRuby::Assemblies
   class TSlot < Assembly
-    # the code in this class is based on code by Nathan Zadoks
-    # taken from https://github.com/nathan7/scadlib
-    # Ported to SolidRuby by Joachim Glauche
+    # the code in this class is based on code by edef1c
+    # Ported to SolidRuby by Jennifer Glauche
     # License: GPLv3
     attr_accessor :args
     def initialize(args = {})
