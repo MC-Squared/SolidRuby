@@ -1,2 +1,3 @@
 #this is a good place to put common parameters used in different files
-#i.e. $common_length = 123.45
+#for example:
+$tolerance = 0.5
