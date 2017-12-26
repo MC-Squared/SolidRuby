@@ -93,7 +93,7 @@ class PositionTest < Minitest::Test
     assert_equal 0, t[:x_rot]
     assert_equal 90, t[:y_rot]
     assert_equal 90, t[:z_rot]
-    assert_in_delta 0.01, t[:x_trans]
+    assert_in_delta -0.01, t[:x_trans]
     assert_in_delta c.y + 0.01, t[:y_trans]
     assert_in_delta c.z + 0.01, t[:z_trans]
     assert_equal c.x, t[:length]
@@ -119,7 +119,7 @@ class PositionTest < Minitest::Test
     assert_equal 90, t[:z_rot]
     assert_in_delta(-0.01, t[:x_trans])
     assert_in_delta c.y + 0.01, t[:y_trans]
-    assert_in_delta 0.01, t[:z_trans]
+    assert_in_delta -0.01, t[:z_trans]
     assert_equal c.z, t[:length]
   end
 

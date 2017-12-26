@@ -20,7 +20,7 @@ module SolidRuby::Helpers
     height = args[:height] || args[:h] || 0
     length = args[:length] || args[:l] || 0
 
-    t = triangle(b: height, beta: 90, alpha: 45)
+    t = triangle(a: height, alpha: 90, beta: 45)
 
     return t.linear_extrude(height: length)
   end

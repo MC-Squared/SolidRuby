@@ -74,4 +74,17 @@ class TriangleTest < Minitest::Test
     assert_in_delta exp.beta, tri.beta, 0.5
     assert_in_delta exp.gamma, tri.gamma, 0.5
   end
+
+  def test_triangle_height
+    vals = {
+      Triangle.new(alpha: 90, b: 5, c: 3) => [2.572, 3, 5],
+      Triangle.new(alpha: 45, b: 6, c: 10) => [5.932, 7.071, 4.242],
+    }
+
+    vals.each do |tri, exp|
+      assert_in_delta exp[0], tri.height(:alpha)
+      assert_in_delta exp[1], tri.height(:beta)
+      assert_in_delta exp[2], tri.height(:gamma)
+    end
+  end
 end

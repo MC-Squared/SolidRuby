@@ -94,7 +94,7 @@ module SolidRuby::Helpers
         res[:x_trans] = 0
         res[:y_trans] = 0
         res[:length] = args[:z]
-        res[:z_trans] = -res[:length]/2.0
+        res[:z_trans] = -res[:length]/2.0 - (tolerance*2)
 
         #position on edge
         if Helpers::is_horizontal?(face, edge)
@@ -104,7 +104,7 @@ module SolidRuby::Helpers
 
         if is_x_dir?(face, edge)
           res[:length] = args[:x]
-          res[:x_trans] = -res[:length] / 2.0
+          res[:x_trans] = -res[:length] / 2.0 - (tolerance*2)
         elsif is_y_dir?(face, edge)
           res[:length] = args[:y]
           res[:y_trans] = res[:length] / 2.0

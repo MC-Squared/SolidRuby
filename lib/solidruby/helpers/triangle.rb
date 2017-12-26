@@ -20,7 +20,8 @@ module SolidRuby::Helpers
   #or it can be thrown away and used just for calcuation of the triangle
   #order is assumed as follows:
   # @a is opposite @alpha, @b is opposite @beta, @c is opposite @gamma
-  #sides a,b,c go clockwise from 0,0 (x,y)
+  # Angles go clockwise with @alpha at the origin
+  # Sides go clockwise with @a along the X axis, and @c along Y
   class Triangle < SolidRuby::Primitives::Polygon
     attr_accessor :alpha, :beta, :gamma, :a, :b, :c, :has_alt_solution
     def initialize(args = {})
@@ -49,14 +50,29 @@ module SolidRuby::Helpers
         update(solution)
       end
 
-      mult = @beta / 90.0
       #consturct triangle polygon
       args = {points: [
-        [0, 0],
-        [@a*mult,@a*(1-mult)],
-        [0, @c],
-        [0, 0]]}
+        [0.0, 0.0],
+        [@b, 0.0],
+        [@c * Math.cos(radians(@alpha)), height(:beta)],
+        [0.0, 0.0]]}
+
       super(args)
+    end
+
+    def height(angle)
+      case angle
+      when :alpha
+        ang = @beta
+        side = @c
+      when :beta
+        ang = @alpha
+        side = @c
+      else
+        ang = @alpha
+        side = @b
+      end
+      Math.sin(radians(ang)) * side.to_f
     end
 
 private
