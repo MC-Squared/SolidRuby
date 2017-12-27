@@ -16,6 +16,7 @@ class SphereTest < Minitest::Test
 
   def test_sphere_helper
     vals = {
+      sphere(12) => 'sphere(r = 12);',
       sphere(r: 10) => 'sphere(r = 10);',
       sphere(d: 15) => 'sphere(r = 7.500);',
       sphere(q: 5, r: 10) => 'sphere(q = 5, r = 10);',

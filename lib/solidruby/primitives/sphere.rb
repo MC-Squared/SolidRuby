@@ -15,12 +15,23 @@
 #
 module SolidRuby::Primitives
   class Sphere < Primitive
+    alias_attr :d, :diameter
+    alias_attr :r, :radius
+
+    def initialize(args={})
+      d = args[:diameter] || args[:d]
+      @r = args[:radius] || args[:r] || d/2.0
+      super(args)
+    end
     def to_rubyscad
       RubyScadBridge.new.sphere(@attributes)
     end
   end
 
   def sphere(args)
+    if args.is_a? Numeric
+      args = {r: args}
+    end
     Sphere.new(args)
   end
 end
