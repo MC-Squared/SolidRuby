@@ -18,7 +18,6 @@ require 'solidruby/primitives/text'
 
 require 'solidruby/helpers/chamfer'
 require 'solidruby/helpers/fillet'
-require 'solidruby/helpers/place'
 require 'solidruby/helpers/position'
 require 'solidruby/helpers/rounded_cube'
 require 'solidruby/helpers/triangle'

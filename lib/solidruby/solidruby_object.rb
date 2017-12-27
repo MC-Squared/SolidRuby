@@ -76,6 +76,40 @@ module SolidRuby
       self
     end
 
+    def place(args={})
+      return self if args.nil? || self.nil? || args[:onto].nil?
+
+      onto = args[:onto]
+      face = args[:face] || :top
+      edge = args[:edge] || :center
+      corner = args[:corner] || :center
+      face_offset = args[:face_offset] || 0
+      edge_offset = args[:edge_offset] || 0
+      corner_offset = args[:corner_offset] || 0
+
+      if onto.respond_to? :get_point_on
+        move_to = onto.get_point_on(
+          face: face,
+          edge: edge,
+          corner: corner,
+          face_offset: face_offset,
+          edge_offset: edge_offset,
+          corner_offset: corner_offset
+        )
+
+        if (self.respond_to? :get_point_on)
+          move_me = self.get_point_on(face: :center, edge: :center, corner: :center)
+          move_to[:x] -= move_me[:x]
+          move_to[:y] -= move_me[:y]
+          move_to[:z] -= move_me[:z]
+        end
+
+        self.translate(move_to)
+      end
+
+      self
+    end
+
     def &(obj)
       @siblings << obj
       self

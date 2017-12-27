@@ -35,5 +35,9 @@ module SolidRuby::CSGModelling
 
       ret += '}'
     end
+
+    def get_point_on(args = {})
+      @children[0].get_point_on(args) if @children.count > 0
+    end
   end
 end

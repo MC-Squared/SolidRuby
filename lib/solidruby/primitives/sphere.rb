@@ -23,6 +23,18 @@ module SolidRuby::Primitives
       @r = args[:radius] || args[:r] || d/2.0
       super(args)
     end
+
+    def get_point_on(args = {})
+      #approximate a cube the size of this sphere
+      args[:x] = @r*Math.sqrt(2)
+      args[:y] = @r*Math.sqrt(2)
+      args[:z] = @r*Math.sqrt(2)
+      args[:centered] = true
+      args[:centered_z] = true
+      args[:transformations] = @transformations
+      calculate_point_on(args)
+    end
+
     def to_rubyscad
       RubyScadBridge.new.sphere(@attributes)
     end

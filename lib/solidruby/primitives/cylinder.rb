@@ -18,8 +18,27 @@ module SolidRuby::Primitives
     alias_attr :h, :height
     alias_attr :r, :radius
 
+    def initialize(args={})
+      d = args[:diameter] || args[:d]
+      d /= 2.0 unless d.nil?
+      @r = args[:radius] || args[:r] || d
+      @h = args[:height] || args[:h]
+      super(args)
+    end
+
     def to_rubyscad
       RubyScadBridge.new.cylinder(@attributes)
+    end
+
+    def get_point_on(args = {})
+      # a cube the same size as the cylinder
+      args[:x] = @r*Math.sqrt(2)
+      args[:y] = @r*Math.sqrt(2)
+      args[:z] = @h
+      args[:centered] = true
+      args[:centered_z] = false
+      args[:transformations] = @transformations
+      calculate_point_on(args)
     end
   end
 

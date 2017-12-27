@@ -27,8 +27,7 @@ def example006
       if use != 0
         edge_offset = -30 + -20 * (j % 3)
         corner_offset = -25 + -25 * (j / 3)
-        s = place sphere(r: 10), onto: c, face: f, edge: :left, corner: :top, edge_offset: edge_offset, corner_offset: corner_offset
-        res -= s
+        res -= sphere(r: 10).place onto: c, face: f, edge: :left, corner: :top, edge_offset: edge_offset, corner_offset: corner_offset
       end
     end
   end

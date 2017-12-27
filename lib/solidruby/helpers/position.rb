@@ -164,4 +164,104 @@ module SolidRuby::Helpers
 
     trans
   end
+
+  def calculate_point_on(args = {})
+    face = args[:face] || :top
+    edge = args[:edge] || :center
+    corner = args[:corner] || :center
+    face_offset = args[:face_offset] || 0
+    edge_offset = args[:edge_offset] || 0
+    corner_offset = args[:corner_offset] || 0
+
+    vert_axis = :z
+    horiz_axis = :x
+    vert_dir = 1
+    horiz_dir = 1
+
+    pos = case face
+    when :top
+      vert_axis = :y
+      horiz_dir = -1
+      {x: args[:x] / 2.0, y: args[:y] / 2.0, z: args[:z] + face_offset}
+    when :bottom
+      vert_axis = :y
+      horiz_dir = -1
+      vert_dir = -1
+      { x: args[:x] / 2.0, y: args[:y] / 2.0, z: -face_offset}
+    when :left
+      horiz_axis = :y
+      { x: face_offset, y: args[:y] / 2.0, z: args[:z] / 2.0 }
+    when :right
+      horiz_axis = :y
+      horiz_dir = -1
+      { x: args[:x] + face_offset, y: args[:y] / 2.0, z: args[:z] / 2.0 }
+    when :front
+      horiz_dir = -1
+      { x: args[:x] / 2.0, y: -face_offset, z: args[:z] / 2.0 }
+    when :back
+      { x: args[:x] / 2.0, y: args[:y] + face_offset, z: args[:z] / 2.0 }
+    when :center
+      horiz_dir = -1
+      { x: args[:x] / 2.0, y: args[:y] / 2.0, z: args[:z] / 2.0 }
+    end
+
+    return pos if pos.nil?
+
+    pos[:x] -= args[:x] / 2.0 if args[:centered]
+    pos[:y] -= args[:y] / 2.0 if args[:centered]
+    pos[:z] -= args[:z] / 2.0 if args[:centered_z]
+
+    args[:transformations].each do |t|
+      pos[:x] += t.x
+      pos[:y] += t.y
+      pos[:z] += t.z
+    end
+
+    #pos is now center of the given face, move to the given side
+    h_change = case horiz_axis
+    when :x
+      args[:x] / 2.0
+    when :y
+      args[:y] / 2.0
+    end
+
+    v_change = case vert_axis
+    when :y
+      args[:y] / 2.0
+    else
+      args[:z] / 2.0
+    end
+
+    case edge
+    when :top
+      pos[vert_axis] += (v_change * vert_dir)
+      pos[vert_axis] += (edge_offset * vert_dir)
+    when :bottom
+      pos[vert_axis] -= (v_change * vert_dir)
+      pos[vert_axis] -= (edge_offset * vert_dir)
+    when :left
+      pos[horiz_axis] += (h_change * horiz_dir)
+      pos[horiz_axis] += (edge_offset * horiz_dir)
+    when :right
+      pos[horiz_axis] -= (h_change * horiz_dir)
+      pos[horiz_axis] -= (edge_offset * horiz_dir)
+    end
+
+    case corner
+    when :top
+      pos[vert_axis] += (v_change * vert_dir)
+      pos[vert_axis] += (corner_offset * vert_dir)
+    when :bottom
+      pos[vert_axis] -= (v_change * vert_dir)
+      pos[vert_axis] -= (corner_offset * vert_dir)
+    when :left
+      pos[horiz_axis] += (h_change * horiz_dir)
+      pos[horiz_axis] += (corner_offset * horiz_dir)
+    when :right
+      pos[horiz_axis] -= (h_change * horiz_dir)
+      pos[horiz_axis] -= (corner_offset * horiz_dir)
+    end
+
+    pos
+  end
 end

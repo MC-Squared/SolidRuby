@@ -65,4 +65,13 @@ class UnionTest < Minitest::Test
 
     assert_equal exp, u.to_rubyscad
   end
+
+  def test_get_point_on
+    u = cube(10) + cube(20)
+    point = u.get_point_on(face: :top, edge: :top, corner: :center)
+
+    assert_equal 5, point[:x]
+    assert_equal 10, point[:y]
+    assert_equal 10, point[:z]
+  end
 end
