@@ -51,7 +51,7 @@ class SolidRubyCli < Thor
     template('guardfile.tt', "#{name}/Guardfile")
     template('gitignore.tt', "#{name}/.gitignore")
     template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
-    template('params.tt', "#{name}/lib/printed/params.rb")
+    template('params.tt', "#{name}/lib/params.rb")
   end
 
   desc 'g COMMANDS', 'generator module'
