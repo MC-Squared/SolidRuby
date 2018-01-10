@@ -34,6 +34,7 @@ require 'solidruby/csg_modelling/csg_modelling'
 require 'solidruby/csg_modelling/difference'
 require 'solidruby/csg_modelling/hull'
 require 'solidruby/csg_modelling/intersection'
+require 'solidruby/csg_modelling/minkowski'
 require 'solidruby/csg_modelling/union'
 
 require 'solidruby/assemblies/assembly'
