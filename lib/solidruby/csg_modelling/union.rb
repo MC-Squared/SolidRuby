@@ -18,7 +18,7 @@ module SolidRuby::CSGModelling
   end
 
   def +(args)
-    return Union.new(nil, args) if nil?
+    return args if nil?
     if args.is_a? Array
       r = self
       args.each do |a|

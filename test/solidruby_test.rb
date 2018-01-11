@@ -219,10 +219,10 @@ class CSGModellingTest < Minitest::Test
   end
 
   def test_plus_scad
-    #case 1: nil + obj = Union(nil, obj)
+    #case 1: nil + obj = obj
     cube = cube(10, 10, 10)
     res = nil + cube
-    exp = "union(){cube(size = [10, 10, 10]);\n}"
+    exp = "cube(size = [10, 10, 10]);"
 
     assert_equal exp, res.to_rubyscad
 
