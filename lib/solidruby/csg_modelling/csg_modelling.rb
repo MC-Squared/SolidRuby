@@ -14,10 +14,9 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::CSGModelling
-  class CSGModelling < SolidRuby::SolidRubyObject
+  class CSGModelling < SolidRuby::SolidRubyPhysical
     def initialize(*list)
       super(list)
-      @transformations = []
       @children = list
       @operation = self.class.name.split('::').last.downcase
     end

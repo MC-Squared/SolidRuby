@@ -14,6 +14,6 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 
 module SolidRuby::Primitives
-  class Primitive < SolidRuby::SolidRubyObject
+  class Primitive < SolidRuby::SolidRubyPhysical
   end
 end

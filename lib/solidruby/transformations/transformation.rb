@@ -14,12 +14,12 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::Transformations
-  class Transformation
-    attr_accessor :args
-    def initialize(*args)
-      @args = args.flatten
-      @args = @args[0] if @args[0].is_a? Hash
-    end
+  class Transformation < SolidRuby::SolidRubyObject
+    # attr_accessor :args
+    # def initialize(*args)
+    #   @args = args.flatten
+    #   @args = @args[0] if @args[0].is_a? Hash
+    # end
 
     def walk_tree
       to_rubyscad.to_s + "\n"

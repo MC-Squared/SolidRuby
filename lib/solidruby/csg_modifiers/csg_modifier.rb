@@ -14,12 +14,10 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::CSGModifiers
-  class CSGModifier < SolidRuby::SolidRubyObject
+  class CSGModifier < SolidRuby::SolidRubyPhysical
     def initialize(object, attributes)
       super(attributes)
-      @transformations = []
       @children = [object]
-      @attributes = attributes
     end
 
     def to_rubyscad
