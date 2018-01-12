@@ -34,7 +34,7 @@ module SolidRuby::CSGModifiers
       #	Apparently this doesn't work for CSGModifiers, like it does for other things in RubyScad?
       # also this is a dirty, dirty hack.
       att = att.gsub('fn', '$fn').gsub('$$', '$')
-      ret = "#{@operation}(#{att}){"
+      ret = "#{@operation}(#{att}){\n"
       @children ||= []
       @children.each do |child|
         begin

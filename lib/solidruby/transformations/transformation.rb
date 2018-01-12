@@ -21,9 +21,9 @@ module SolidRuby::Transformations
     #   @args = @args[0] if @args[0].is_a? Hash
     # end
 
-    def walk_tree
-      to_rubyscad.to_s + "\n"
-    end
+    # def walk_tree
+    #   to_rubyscad.to_s + "\n"
+    # end
 
   end
 end

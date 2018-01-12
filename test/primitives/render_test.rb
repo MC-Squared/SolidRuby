@@ -34,7 +34,7 @@ class RenderTest < Minitest::Test
   def test_render_scad
     o = SolidRubyObject.new
     r = Render.new(o, co: 5)
-    exp = "render(convexity = 5){\n\n}"
+    exp = "render(convexity = 5){\n}"
 
     assert_equal exp, r.to_rubyscad
   end

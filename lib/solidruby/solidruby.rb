@@ -55,12 +55,12 @@ module SolidRuby
     obj.each do |o|
       o.transformations.each do |t|
         next unless t.class == Translate
-        t.args[:x] ||= 0
-        t.args[:y] ||= 0
-        t.args[:z] ||= 0
-        position[0] += t.args[:x]
-        position[1] += t.args[:y]
-        position[2] += t.args[:z]
+        t.attributes[:x] ||= 0
+        t.attributes[:y] ||= 0
+        t.attributes[:z] ||= 0
+        position[0] += t.attributes[:x]
+        position[1] += t.attributes[:y]
+        position[2] += t.attributes[:z]
       end
       #		puts "  " * level + position.inspect
       x, y, z = get_position_rec(o.children, level + 1)

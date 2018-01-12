@@ -88,7 +88,7 @@ class CubeTest < Minitest::Test
 
     vals.each do |val, exp|
       assert_equal 1, val.transformations.count
-      assert_equal exp, val.transformations.first.args
+      assert_equal exp, val.transformations.first.attributes
     end
 
     c = Cube.new(args).center

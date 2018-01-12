@@ -332,16 +332,16 @@ class SolidRubyTest < Minitest::Test
     bolt_assembly = bolt
     bolt_assembly += stack({ method: 'output', spacing: 5 }, *parts)
 
-    exp = "union(){union(){color(\"Gainsboro\"){translate(v = [0, 0, -4])\n" \
+    exp = "union(){union(){color(\"Gainsboro\"){\ntranslate(v = [0, 0, -4])\n" \
             "cylinder(h = 4, r = 3.500);\n" \
             "}\n" \
-            "color(\"DarkGray\"){cylinder(h = 16, r = 2.000);\n" \
+            "color(\"DarkGray\"){\ncylinder(h = 16, r = 2.000);\n" \
             "}\n" \
             "}\n" \
-            "union(){color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
+            "union(){color(\"Gainsboro\"){\ncylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
             "}\n" \
             "translate(v = [0, 0, 8.200])\n" \
-            "color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
+            "color(\"Gainsboro\"){\ncylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
             "}\n" \
             "}\n" \
             "}"

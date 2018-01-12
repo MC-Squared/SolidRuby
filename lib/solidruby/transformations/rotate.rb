@@ -16,7 +16,7 @@
 module SolidRuby::Transformations
   class Rotate < Transformation
     def to_rubyscad
-      RubyScadBridge.new.rotate(@args).delete('"')
+      RubyScadBridge.new.rotate(@attributes).delete('"')
     end
   end
 end

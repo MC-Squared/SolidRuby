@@ -16,7 +16,7 @@
 module SolidRuby::Transformations
   class Scale < Transformation
     def to_rubyscad
-      RubyScadBridge.new.scale(@args)
+      RubyScadBridge.new.scale(@attributes)
     end
   end
 end

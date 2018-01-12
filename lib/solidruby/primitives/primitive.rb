@@ -15,5 +15,8 @@
 
 module SolidRuby::Primitives
   class Primitive < SolidRuby::SolidRubyPhysical
+    def initialize(attr)
+      super(attr)
+    end
   end
 end

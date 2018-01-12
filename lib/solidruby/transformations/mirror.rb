@@ -16,7 +16,7 @@
 module SolidRuby::Transformations
   class Mirror < Transformation
     def to_rubyscad
-      RubyScadBridge.new.mirror(@args)
+      RubyScadBridge.new.mirror(@attributes)
     end
   end
 end

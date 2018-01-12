@@ -1,6 +1,7 @@
 require 'solidruby/version'
 require 'solidruby/bill_of_material'
 require 'solidruby/solidruby_object'
+require 'solidruby/solidruby_physical'
 require 'solidruby/rubyscad_bridge'
 
 require 'solidruby/primitives/primitive'

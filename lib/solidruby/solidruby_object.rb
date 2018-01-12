@@ -49,9 +49,9 @@ module SolidRuby
     def walk_tree
       res = ''
 
-      @transformations.reverse.each do |trans|
-        res += trans.walk_tree
-      end
+      # @transformations.reverse.each do |trans|
+      #   res += trans.walk_tree
+      # end
       res += '#' if self.debug?
       res += to_rubyscad.to_s + "\n"
       @siblings.each do |s|

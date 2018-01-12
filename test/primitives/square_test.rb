@@ -47,12 +47,12 @@ class SquareTest < Minitest::Test
     s = Square.new(x: 1, y: 2).center_x
     refute s.centered?
     assert_equal 1, s.transformations.count
-    assert_equal ({x: -0.5}), s.transformations.first.args
+    assert_equal ({x: -0.5}), s.transformations.first.attributes
 
     s = Square.new(x: 1, y: 2).center_y
     refute s.centered?
     assert_equal 1, s.transformations.count
-    assert_equal ({y: -1}), s.transformations.first.args
+    assert_equal ({y: -1}), s.transformations.first.attributes
   end
 
   def test_square_helper

@@ -8,7 +8,8 @@ class ColorTest < Minitest::Test
 
     assert_equal 1, obj.children.count
     assert_equal c, obj.children[0]
-    assert_equal att, obj.attributes
+    assert_equal 1, obj.attributes.count
+    assert_equal att, obj.attributes[0]
 
     # optional opacity
     obj = Color.new(c, 'xyz', 0.5)
@@ -16,7 +17,8 @@ class ColorTest < Minitest::Test
 
     assert_equal 1, obj.children.count
     assert_equal c, obj.children[0]
-    assert_equal att, obj.attributes
+    assert_equal 1, obj.attributes.count
+    assert_equal att, obj.attributes[0]
 
     # color also takes a argb hash
     obj = Color.new(c, a: 125, r: 50, g: 20, b: 100)
@@ -40,11 +42,12 @@ class ColorTest < Minitest::Test
 
     assert_equal 1, obj.children.count
     assert_equal c, obj.children[0]
-    assert_equal att, obj.attributes
+    assert_equal 1, obj.attributes.count
+    assert_equal att, obj.attributes[0]
 
     # with opacity
     obj = c.color('red', 0.25)
-    att = "\"red\", 0.25"
+    att = ["\"red\", 0.25"]
 
     assert_equal att, obj.attributes
 

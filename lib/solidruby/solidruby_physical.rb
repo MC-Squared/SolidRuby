@@ -97,5 +97,21 @@ module SolidRuby
 
       self
     end
+
+    def to_rubyscad
+      res = ''
+
+      @transformations.reverse.each do |trans|
+        res += trans.walk_tree
+      end
+
+      #res + super
+      # res += '#' if self.debug?
+      # res += to_rubyscad.to_s + "\n"
+      # @siblings.each do |s|
+      #   res += s.walk_tree
+      # end
+      # res
+    end
   end
 end
