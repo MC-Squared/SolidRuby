@@ -112,14 +112,6 @@ module SolidRuby::Assemblies
       res.rotate(z: @rotation * 360.0 / @teeth)
     end
 
-    def radians(a)
-      a / 180.0 * Math::PI
-    end
-
-    def degrees(a)
-      a * 180 / Math::PI
-    end
-
     def polar(r, theta)
       [r * Math.sin(radians(theta)), r * Math.cos(radians(theta))] # convert polar to cartesian coordinates
     end

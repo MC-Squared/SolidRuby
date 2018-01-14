@@ -23,10 +23,6 @@ module SolidRuby::Assemblies
     #					 pipe.ccw(20,30)
     #	This might be fixed in the future.
 
-    def radians(a)
-      a / 180.0 * Math::PI
-    end
-
     def initialize(args = {})
       # parameters
       @diameter = args[:diameter] || 1
