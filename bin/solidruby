@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'thor/group'
+require 'thor/actions'
+require 'solidruby'
+
+class SolidRubyGenerator < Thor
+  include Thor::Actions
+
+  def self.source_root
+    File.dirname(__FILE__) + '/../lib/templates'
+  end
+
+  desc 'printed NAME', 'generate printed part'
+  def printed(name)
+    @clean_name = name.split(/[-|_]/).map { |s| s.capitalize }.join
+    template('printed.tt', "lib/printed/#{name}.rb")
+  end
+end
+
+class SolidRubyCli < Thor
+  include Thor::Actions
+
+  def self.source_root
+    File.dirname(__FILE__) + '/../lib/templates'
+  end
+
+  desc 'version', 'shows the current version of SolidRuby'
+  def version
+    puts SolidRuby::VERSION
+  end
+
+  desc 'new APP_NAME', 'creates a new project stub'
+  def new(name)
+
+    @clean_name = name.split(/[-|_]/).map { |s| s.capitalize }.join
+    @name = name
+
+    empty_directory("#{name}/lib/assemblies/")
+    empty_directory("#{name}/lib/electronics/")
+    empty_directory("#{name}/lib/hardware/")
+    empty_directory("#{name}/lib/printed/")
+    empty_directory("#{name}/lib/lasercut/")
+    empty_directory("#{name}/output")
+    create_file("#{name}/output/.keep")
+
+    template('main.tt', "#{name}/#{name}.rb")
+    chmod("#{name}/#{name}.rb", 0755)
+
+    template('guardfile.tt', "#{name}/Guardfile")
+    template('gitignore.tt', "#{name}/.gitignore")
+    template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
+    template('params.tt', "#{name}/lib/params.rb")
+  end
+
+  desc 'g COMMANDS', 'generator module'
+  subcommand 'g', SolidRubyGenerator
+end
+
+SolidRubyCli.start(ARGV)

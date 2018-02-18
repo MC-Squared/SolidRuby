@@ -1,0 +1,3 @@
+#this is a good place to put common parameters used in different files
+#for example:
+$tolerance = 0.5

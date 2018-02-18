@@ -1,0 +1,4 @@
+guard :shell do
+  watch(/<%= @name %>.rb/) { system('ruby <%= @name %>.rb') }
+  watch(%r{^lib/.+\.rb}) { system('ruby <%= @name %>.rb') }
+end
