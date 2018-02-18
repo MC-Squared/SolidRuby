@@ -42,7 +42,7 @@ A project named "my_project" will create those files and directories:
 - my_project/lib/hardware - put hardware parts in here
 - my_project/lib/printed - put parts that you want to print in here
 - my_project/lib/lasercut - put sheets that need to be cut (by laser or other) in here
-- my_project/lib/printed/params.rb - place for global parameters for printed parts
+- my_project/lib/params.rb - place for global parameters
 - my_project/lib/assemblies/my_project_assembly.rb  - dummy assembly
 - my_project/Guardfile - guard
 
@@ -50,7 +50,7 @@ A Guardfile is created to automatically update the output scad files.
 
 Coding
 ===========
-Nearly all OpenSCAD functions are implemented. You can use the same parameters as in OpenSCAD, although SolidRuby provides some convenient variable names like f.e. Diameter (d) for cylinders.
+Nearly all OpenSCAD functions are implemented. You can use the same parameters as in OpenSCAD, although SolidRuby provides some convenient variable names like diameter (d) for cylinders.
 
 Some examples:
 
@@ -78,6 +78,7 @@ Center cubes in X/Y direction only:
 Also implemented: center_x, center_y, center_z, center
 
 Helpers:
+
 Some helpers have been implemented to ease modelling.
 Where helpers take face/edge/corner the options are:
   faces: :top, :bottom, :left, :right, :front, :back, :center
