@@ -14,8 +14,9 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby::Transformations
-  attr_accessor :x, :y, :z
   class Translate < Transformation
+    attr_accessor :x, :y, :z
+
     def initialize(args={})
       super(args)
       @x = args[:x] || 0
