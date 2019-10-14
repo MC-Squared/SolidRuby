@@ -11,7 +11,8 @@ Gem::Specification.new do |gem|
   gem.email       = ['j.milesy.nz@gmail.com']
   gem.homepage    = 'http://github.com/MC-Squared/SolidRuby'
   gem.summary     = 'SolidRuby is a framework for programming OpenScad models in Ruby'
-  gem.description = 'Inspired by CrystalScad and SolidPython, based on CrystalScad and RubyScad'
+  gem.description = 'SolidRuby is a framework for programming OpenScad models in Ruby. \
+  Inspired by CrystalScad and SolidPython, based on CrystalScad and RubyScad'
 
   gem.license	      = 'GPL-3.0'
   gem.files         = `git ls-files -z`.split("\x0").reject do |f|
