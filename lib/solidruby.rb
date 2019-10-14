@@ -5,6 +5,7 @@ require 'solidruby/bill_of_material'
 require 'solidruby/solidruby_object'
 require 'solidruby/rubyscad_bridge'
 require 'solidruby/parameters'
+require 'solidruby/project_cli'
 
 require 'solidruby/primitives/primitive'
 require 'solidruby/primitives/cylinder'

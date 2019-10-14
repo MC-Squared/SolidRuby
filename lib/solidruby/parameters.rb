@@ -17,6 +17,8 @@ require 'yaml'
 module SolidRuby::Parameters
   class Parameters
     class << self
+      @@verbose = true
+
       def yml_path
         @@yml_path
       end
@@ -52,6 +54,17 @@ module SolidRuby::Parameters
           raise "Could not read paramters yml file at #{@@yml_path}"
         end
       end
+
+      def add_overrides(values={})
+        @@overrides ||= {}
+        @@overrides.merge!(values)
+        clear_params
+      end
+
+      def clear_overrides
+        @@overrides = {}
+        clear_params
+      end
     end
 
     def method_missing(method, *args)
@@ -75,15 +88,13 @@ module SolidRuby::Parameters
     end
 
     def to_s
-      "#{super} #{@@values}"
+      "#{super} #{@@variant} #{@@values}"
     end
     alias inspect to_s
 
     private
 
     def initialize
-      @@verbose = true if @@verbose == nil
-
       load_yml_settings
     end
 
@@ -99,13 +110,14 @@ module SolidRuby::Parameters
     def load_yml_settings
       @@values = {}
       @@variant ||= "default"
+      @@overrides ||= {}
 
       yml = self.class.load_yml
       yml_values = yml[@@variant]
 
       raise "Missing '#{@@variant}' entry in parameters yml" if yml_values.nil?
 
-      yml_values.each do |k, v|
+      yml_values.merge(@@overrides).each do |k, v|
         add_parameter(k, v)
       end
     end

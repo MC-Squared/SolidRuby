@@ -4,10 +4,12 @@ include SolidRuby::Parameters
 class ParametersTest < Minitest::Test
   def setup
     SolidRuby::Parameters::Parameters.verbose = false
+    SolidRuby::Parameters::Parameters.yml_path = __dir__
   end
 
   def teardown
     SolidRuby::Parameters::Parameters.verbose = true
+    SolidRuby::Parameters::Parameters.clear_overrides
   end
 
   def test_params_stores_values
@@ -50,5 +52,11 @@ class ParametersTest < Minitest::Test
 
     assert_equal 42, params.testvalue
     assert_equal 2.0, params.scale
+  end
+
+  def test_overrides_yml_settings
+    SolidRuby::Parameters::Parameters.add_overrides(testvalue: 52)
+
+    assert_equal 52, params.testvalue
   end
 end
