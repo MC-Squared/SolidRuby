@@ -8,3 +8,4 @@ default: &default
 extra_large:
   <<: *default
   scale: 2.0
+  doublevalue: testvalue * 2
