@@ -41,13 +41,10 @@ class ParametersTest < Minitest::Test
   end
 
   def test_loads_defaults_from_yml
-    SolidRuby::Parameters::Parameters.yml_path = __dir__
-
     assert_equal 42, params.testvalue
   end
 
   def test_loads_variant_from_yml
-    SolidRuby::Parameters::Parameters.yml_path = __dir__
     SolidRuby::Parameters::Parameters.variant = :extra_large
 
     assert_equal 42, params.testvalue
@@ -58,5 +55,11 @@ class ParametersTest < Minitest::Test
     SolidRuby::Parameters::Parameters.add_overrides(testvalue: 52)
 
     assert_equal 52, params.testvalue
+  end
+
+  def test_evals_yml_values
+    SolidRuby::Parameters::Parameters.variant = :extra_large
+
+    assert_equal 42 * 2, params.doublevalue
   end
 end

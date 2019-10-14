@@ -83,7 +83,6 @@ module SolidRuby::Parameters
 
       return if singleton_class.method_defined?(name)
 
-      define_singleton_method(name) { @@values[name] }
       add_parameter(name, args.first)
     end
 
@@ -104,7 +103,7 @@ module SolidRuby::Parameters
 
       return if singleton_class.method_defined?(name)
 
-      define_singleton_method(name) { @@values[name] }
+      define_singleton_method(name) { eval(@@values[name].to_s) }
     end
 
     def load_yml_settings
