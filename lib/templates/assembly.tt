@@ -1,5 +1,3 @@
-require_relative '../params'
-
 class <%= @clean_name %>Assembly < SolidRuby::Assembly
 
   # Assemblies are used to show how different parts interact on your design.

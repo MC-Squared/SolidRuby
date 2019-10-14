@@ -3,6 +3,7 @@
 default: &default
   scale: 1.0
   clearance: 0.3
+  testvalue: 42
 
 extra_large:
   <<: *default

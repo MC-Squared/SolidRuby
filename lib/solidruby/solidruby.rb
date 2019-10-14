@@ -26,6 +26,7 @@ module SolidRuby
   include SolidRuby::CSGModifiers
   include SolidRuby::Assemblies
   include SolidRuby::Transformations
+  include SolidRuby::Parameters
   include Math
 
   #	Deprecated: Stacks parts along the Z axis

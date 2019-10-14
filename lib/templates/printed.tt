@@ -1,9 +1,14 @@
-require_relative '../params'
-
 class <%= @clean_name %> < SolidRuby::Printed
   def initialize
   end
 
   def part(_show)
+    # Put any part creation in here. For example:
+    # cube(10) - cylinder(d: 5, h: 10)
+    #
+    # To aid in parametric design you can use the `params` singleton, e.g:
+    # params.cube_size = 10
+    #
+    # cube(params.cube_size)
   end
 end

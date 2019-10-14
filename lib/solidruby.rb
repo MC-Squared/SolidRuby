@@ -1,7 +1,10 @@
+require 'pry'
+
 require 'solidruby/version'
 require 'solidruby/bill_of_material'
 require 'solidruby/solidruby_object'
 require 'solidruby/rubyscad_bridge'
+require 'solidruby/parameters'
 
 require 'solidruby/primitives/primitive'
 require 'solidruby/primitives/cylinder'
