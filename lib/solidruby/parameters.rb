@@ -42,6 +42,16 @@ module SolidRuby::Parameters
       def verbose=(val)
         @@verbose = !!val
       end
+
+      def load_yml
+        @@yml_path ||= "parameters.yml"
+
+        if File.file?(@@yml_path)
+          YAML.load_file(@@yml_path)
+        else
+          raise "Could not read paramters yml file at #{@@yml_path}"
+        end
+      end
     end
 
     def method_missing(method, *args)
@@ -88,21 +98,15 @@ module SolidRuby::Parameters
 
     def load_yml_settings
       @@values = {}
-      @@yml_path ||= "parameters.yml"
       @@variant ||= "default"
 
-      if File.file?(@@yml_path)
-        yml = YAML.load_file(@@yml_path)
-        yml_values = yml[@@variant]
+      yml = self.class.load_yml
+      yml_values = yml[@@variant]
 
-        raise "Missing '#{@@variant}' entry in parameters yml" if yml_values.nil?
+      raise "Missing '#{@@variant}' entry in parameters yml" if yml_values.nil?
 
-        yml_values.each do |k, v|
-          add_parameter(k, v)
-        end
-
-      else
-        raise "Could not read paramters yml file at #{@@yml_path}"
+      yml_values.each do |k, v|
+        add_parameter(k, v)
       end
     end
 
