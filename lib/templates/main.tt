@@ -5,11 +5,15 @@ include SolidRuby
 
 require_all 'lib/**/*.rb'
 
+class <%= @clean_name %>Cli < SolidRuby::ProjectCli
+end
+<%= @clean_name %>Cli.start ARGV
+
 # To run this project and refresh any changes to the code, run the following command
 # in a terminal (make sure you are in the same directory as this file):
-#  observr #{name}.observr
+# guard
 #
-# This will generate #{name}.scad which you can open in OpenSCAD.
+# This will generate output/<%= @clean_name %>.scad which you can open in OpenSCAD.
 # In OpenSCAD make sure that you have the menu item
 # Design -> Automatic Reload and Compile
 # activated.
