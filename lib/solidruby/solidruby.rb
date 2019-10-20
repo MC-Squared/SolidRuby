@@ -14,6 +14,7 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>fre.
 
 $fn = 64
+require 'cgi'
 
 module SolidRuby
   include SolidRuby::BillOfMaterial
@@ -116,20 +117,35 @@ module SolidRuby
       next if skip.include? i.to_s
       output = nil
 
-      res.send :initialize # ensure default values are loaded at each interation
-      output = res.send i
+      begin
+        res.send :initialize # ensure default values are loaded at each interation
+        output = res.send i
 
-      # if previous call resulted in a SolidRubyObject, don't call the show method again,
-      # otherwise call it.
-      unless	output.is_a? SolidRubyObject
-        output = if i.to_s.include? 'output'
-                   res.output
-                 else
-                   res.show
-                 end
+        # if previous call resulted in a SolidRubyObject, don't call the show method again,
+        # otherwise call it.
+        unless	output.is_a? SolidRubyObject
+          output = if i.to_s.include? 'output'
+                    res.output
+                  else
+                    res.show
+                  end
+        end
+
+        output.save("output/#{res.class}_#{i}.scad", "$fn=#{fn};") unless output.nil?
+      rescue Exception => e
+        File.open("output/#{res.class}_#{i}.scad", "w") do |file|
+          file <<
+            <<~ERROR
+               echo("ERROR: #{e.message}");
+               echo("#{::CGI.escapeHTML(e.backtrace.last)}");
+               assert(false); // force stop rendering
+               /*
+               Full stack trace:
+               #{e.backtrace.join("\n")}
+               */
+            ERROR
+        end
       end
-
-      output.save("output/#{res.class}_#{i}.scad", "$fn=#{fn};") unless output.nil?
     end
   end
 
