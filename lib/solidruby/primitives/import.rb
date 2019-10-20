@@ -19,7 +19,6 @@ module SolidRuby::Primitives
     alias_attr :layer
     alias_attr :center, :ce
     alias_attr :convexity, :co
-    alias_attr :scale
 
     def initialize(attributes)
       if attributes.is_a? String
