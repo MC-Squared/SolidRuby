@@ -15,7 +15,7 @@ def shape
   circle(r: 5)
     .scale(x: 0.7, y: 1.3)
     .rotate(z: -45) &
-  import(f: 'example009.dxf', l: 'body', co: 6, s: 2)
+  import(f: 'example009.dxf', l: 'body', co: 6)
 end
 
 shape.save('example015.scad')
@@ -37,7 +37,7 @@ shape.save('example015.scad')
 #     rotate(-45) scale([ 0.7, 1.3 ]) circle(5);
 #   }
 #
-#   import(file = "example009.dxf", layer = "body", convexity = 6, scale=2);
+#   import(file = "example009.dxf", layer = "body", convexity = 6);
 # }
 #
 # echo(version=version());

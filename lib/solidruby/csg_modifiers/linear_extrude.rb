@@ -20,7 +20,6 @@ module SolidRuby::CSGModifiers
     alias_attr :center, :ce
     alias_attr :twist
     alias_attr :slices, :sl
-    alias_attr :scale, :sc
 
     def initialize(object, args)
       @operation = 'linear_extrude'

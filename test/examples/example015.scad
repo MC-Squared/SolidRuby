@@ -13,4 +13,4 @@ rotate(a = [0, 0, -45])
 scale(v = [0.700, 1.300])
 circle(r = 5);
 }
-import(file = "example009.dxf", layer = "body", scale = 2, convexity = 6);
+import(file = "example009.dxf", layer = "body", convexity = 6);
