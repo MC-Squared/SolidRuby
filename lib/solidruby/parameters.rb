@@ -103,7 +103,13 @@ module SolidRuby::Parameters
 
       return if singleton_class.method_defined?(name)
 
-      define_singleton_method(name) { eval(@@values[name].to_s) }
+      begin
+        # Try to eval first, if we can't then just use the raw value
+        eval(@@values[name].to_s)
+        define_singleton_method(name) { eval(@@values[name].to_s) }
+      rescue
+        define_singleton_method(name) { @@values[name] }
+      end
     end
 
     def load_yml_settings
