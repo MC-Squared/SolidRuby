@@ -118,6 +118,13 @@ module SolidRuby::Parameters
       @@overrides ||= {}
 
       yml = self.class.load_yml
+      # load all namespaced values first
+      yml.each do |variant, parameters|
+        parameters.each do |k, v|
+          add_parameter("#{variant}__#{k}", v)
+        end
+      end
+
       yml_values = yml[@@variant]
 
       raise "Missing '#{@@variant}' entry in parameters yml" if yml_values.nil?
