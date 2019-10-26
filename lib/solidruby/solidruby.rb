@@ -136,7 +136,7 @@ module SolidRuby
         File.open("output/#{res.class}_#{i}.scad", "w") do |file|
           file <<
             <<~ERROR
-               echo("ERROR: #{e.message}");
+               echo("--ERROR: #{e.message}");
                echo("#{::CGI.escapeHTML(e.backtrace.last)}");
                assert(false); // force stop rendering
                /*
