@@ -6,6 +6,7 @@ include SolidRuby
 require_all 'lib/**/*.rb'
 
 class <%= @clean_name %>Cli < SolidRuby::ProjectCli
+  def method_missing(method, *args, &block); super; end
 end
 <%= @clean_name %>Cli.start ARGV
 
