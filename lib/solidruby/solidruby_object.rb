@@ -52,26 +52,22 @@ module SolidRuby
 
     def translate(args)
       return self if (args[:x] || 0) == 0 && (args[:y] || 0) == 0 && (args[:z] || 0) == 0
-      @transformations ||= []
       @transformations << Translate.new(args)
       self
     end
 
     def union(args)
-      @transformations ||= []
       @transformations << Union.new(args)
       self
     end
 
     def mirror(*args)
-      @transformations ||= []
       @transformations << Mirror.new(*args)
       self
     end
 
     def scale(args)
       args = { v: args } if args.is_a?(Numeric) || args.is_a?(Array)
-      @transformations ||= []
       @transformations << Scale.new(args)
       self
     end
