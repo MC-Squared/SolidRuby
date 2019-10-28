@@ -15,6 +15,14 @@
 #
 module SolidRuby::CSGModelling
   class Difference < CSGModelling
+    def fillet(args)
+      if @children.first.respond_to? :fillet
+        @children << @children.first.fillet(args.merge(exclude_self: true))
+        self
+      else
+        Helpers::fillet(args)
+      end
+    end
   end
 
   def -(args)

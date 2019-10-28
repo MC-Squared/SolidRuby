@@ -300,6 +300,36 @@ class CubeTest < Minitest::Test
     assert f.children[1].is_a? Cylinder
     assert_equal c.z + 0.04, f.children[1].h
     assert_equal 3, f.children[1].r
+
+    # allow two distinct fillets
+    cf = cf.fillet(front: :left, r: 6)
+    assert cf.is_a? Difference
+    assert_equal 3, cf.children.count
+    assert c, cf.children.first
+
+    f = cf.children[1]
+    assert f.is_a? Difference
+    assert_equal 2, f.children.count
+    assert f.children[0].is_a? Cube
+    assert_equal 6, f.children[0].x
+    assert_equal 6, f.children[0].y
+    assert_in_delta c.z + 0.02, f.children[0].z
+
+    assert f.children[1].is_a? Cylinder
+    assert_equal c.z + 0.04, f.children[1].h
+    assert_equal 3, f.children[1].r
+
+    f = cf.children[2]
+    assert f.is_a? Difference
+    assert_equal 2, f.children.count
+    assert f.children[0].is_a? Cube
+    assert_equal 12, f.children[0].x
+    assert_equal 12, f.children[0].y
+    assert_in_delta c.z + 0.02, f.children[0].z
+
+    assert f.children[1].is_a? Cylinder
+    assert_equal c.z + 0.04, f.children[1].h
+    assert_equal 6, f.children[1].r
   end
 
   def test_cube_chamfer
