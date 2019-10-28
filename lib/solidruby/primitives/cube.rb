@@ -103,8 +103,8 @@ module SolidRuby::Primitives
 
     def fillet(args = {})
       faces = normalise_edges(args)
-      radius = args[:r] || args[:radiusg]
-      trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z, tolerance: 0)
+      radius = args[:r] || args[:radius]
+      trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z, clearance: 0)
       res = self
       trans.each do |t|
         res -= Helpers::fillet(h: t[:length], r: radius)
