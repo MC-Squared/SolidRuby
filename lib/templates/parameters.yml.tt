@@ -1,0 +1,12 @@
+# This file provides a handy place to keep common parameters for your design
+# you should start with a `default` variant, as this is used when no variant is
+# specified on the command line
+
+default: &default
+  scale: 1.0
+  clearance: 0.3
+
+# extra_large: # another variant
+#  <<: *default # inherit values from default
+#  scale: default__scale * 2 # Reference other variants by name with double-underscores
+#  pi: Math::PI # Values are first evaulated as Ruby code
