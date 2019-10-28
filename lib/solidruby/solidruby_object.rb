@@ -63,9 +63,9 @@ module SolidRuby
       self
     end
 
-    def mirror(args)
+    def mirror(*args)
       @transformations ||= []
-      @transformations << Mirror.new(args)
+      @transformations << Mirror.new(*args)
       self
     end
 

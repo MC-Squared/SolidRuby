@@ -34,21 +34,6 @@ class TransformationTest < Minitest::Test
     end
   end
 
-  def test_mirror_scad
-    vals = {
-      Mirror.new(x: 1) => 'mirror(v = [1, 0])',
-      Mirror.new(y: 2) => 'mirror(v = [0, 2])',
-      Mirror.new(z: 3) => 'mirror(v = [0, 0, 3])',
-      Mirror.new(x: 2, z: 3) => 'mirror(v = [2, 0, 3])',
-      Mirror.new(x: 1, y: 2, z: 3) => 'mirror(v = [1, 2, 3])',
-      Mirror.new(q: 3) => 'mirror(q = 3, v = [0, 0])'
-    }
-
-    vals.each do |val, exp|
-      assert_equal exp, val.to_rubyscad
-    end
-  end
-
   def test_scale_scad
     vals = {
       Scale.new(x: 1) => 'scale(v = [1, 0])',

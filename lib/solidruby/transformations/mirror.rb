@@ -15,6 +15,26 @@
 #
 module SolidRuby::Transformations
   class Mirror < Transformation
+    attr_accessor :x, :y, :z
+
+    def initialize(*args)
+      if args.first.is_a? Hash
+        args = args.first
+        @x = args[:x]
+        @y = args[:y]
+        @z = args[:z]
+      else
+        args = [args].flatten
+        @x = args.include?(:x) ? 1 : nil
+        @y = args.include?(:y) ? 1 : nil
+        @z = args.include?(:z) ? 1 : nil
+
+        args = {x: @x, y: @y, z: @z}
+      end
+
+      super(args)
+    end
+
     def to_rubyscad
       RubyScadBridge.new.mirror(@args)
     end
