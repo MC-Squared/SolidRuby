@@ -105,7 +105,7 @@ module SolidRuby::Primitives
       faces = normalise_edges(args)
       radius = args[:r] || args[:radius]
       trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z, clearance: 0)
-      res = self
+      res = args[:exclude_self] ? nil : self
       trans.each do |t|
         res -= Helpers::fillet(h: t[:length], r: radius)
           .rotate(z: t[:z_rot])
