@@ -83,7 +83,7 @@ module SolidRuby::Helpers
   end
 
   def translations_for_edge(args={})
-    tolerance = args[:tolerance] || 0.01
+    clearance = args[:clearance] || 0.01
     trans = []
     args[:faces].each do |face, edges|
       edges.each do |edge|
@@ -94,7 +94,7 @@ module SolidRuby::Helpers
         res[:x_trans] = 0
         res[:y_trans] = 0
         res[:length] = args[:z]
-        res[:z_trans] = -res[:length]/2.0 - (tolerance*2)
+        res[:z_trans] = -res[:length]/2.0 - (clearance*2)
 
         #position on edge
         if Helpers::is_horizontal?(face, edge)
@@ -104,7 +104,7 @@ module SolidRuby::Helpers
 
         if is_x_dir?(face, edge)
           res[:length] = args[:x]
-          res[:x_trans] = -res[:length] / 2.0 - (tolerance*2)
+          res[:x_trans] = -res[:length] / 2.0 - (clearance*2)
         elsif is_y_dir?(face, edge)
           res[:length] = args[:y]
           res[:y_trans] = res[:length] / 2.0
@@ -148,10 +148,10 @@ module SolidRuby::Helpers
 
         point = args[:onto].get_point_on(face: face, edge: edge)
 
-        if tolerance > 0
-          point[:x] = point[:x] > 0 ? point[:x] + tolerance : point[:x] - tolerance
-          point[:y] = point[:y] > 0 ? point[:y] + tolerance : point[:y] - tolerance
-          point[:z] = point[:z] > 0 ? point[:z] + tolerance : point[:z] - tolerance
+        if clearance > 0
+          point[:x] = point[:x] > 0 ? point[:x] + clearance : point[:x] - clearance
+          point[:y] = point[:y] > 0 ? point[:y] + clearance : point[:y] - clearance
+          point[:z] = point[:z] > 0 ? point[:z] + clearance : point[:z] - clearance
         end
 
         res[:x_trans] += point[:x]
