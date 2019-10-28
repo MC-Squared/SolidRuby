@@ -30,12 +30,22 @@ module SolidRuby::Primitives
         z ||= y# = x if y.nil? && z.nil?
         args = { x: x, y: y, z: z }
       end
-      @centered = args.delete(:center) || args.delete(:c)
-
       @x = args[:x]
       @y = args[:y] || @x
       @z = args[:z] || @y
+
+      centered = args.delete(:center) || args.delete(:c)
       super(args)
+
+      if centered == true || centered == [:x, :y, :z]
+        @centered = true
+      else
+        @centered = false
+        centered = [centered].flatten
+        center_x if centered.include?(:x)
+        center_y if centered.include?(:y)
+        center_z if centered.include?(:z)
+      end
     end
 
     def center_xy

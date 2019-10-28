@@ -83,7 +83,6 @@ class CubeTest < Minitest::Test
       Cube.new(args).center_x => { x: -0.5 },
       Cube.new(args).center_y => { y: -1.0 },
       Cube.new(args).center_z => { z: -1.5 },
-
     }
 
     vals.each do |val, exp|
@@ -91,7 +90,35 @@ class CubeTest < Minitest::Test
       assert_equal exp, val.transformations.first.args
     end
 
+    vals = {
+      Cube.new(args.merge(center: [:x, :y])) => { x: -0.5, y: -1.0 },
+      Cube.new(args.merge(center: [:x, :z])) => { x: -0.5, z: -1.5 },
+      Cube.new(args.merge(center: [:y, :z])) => { y: -1.0, z: -1.5 },
+      Cube.new(args.merge(center: [:x])) => { x: -0.5 },
+      Cube.new(args.merge(center: [:y])) => { y: -1.0 },
+      Cube.new(args.merge(center: [:z])) => { z: -1.5 },
+      Cube.new(args.merge(center: :x)) => { x: -0.5 },
+      Cube.new(args.merge(center: :y)) => { y: -1.0 },
+      Cube.new(args.merge(center: :z)) => { z: -1.5 },
+    }
+
+    vals.each do |val, exp|
+      assert_equal exp.keys.count, val.transformations.count
+      exp.keys.each_with_index do |dimension, i|
+        hash = { dimension => exp[dimension] }
+        assert_equal hash, val.transformations[i].args
+      end
+    end
+
     c = Cube.new(args).center
+    assert_equal 0, c.transformations.count
+    assert c.centered?
+
+    c = Cube.new(args.merge(center: [:x, :y, :z]))
+    assert_equal 0, c.transformations.count
+    assert c.centered?
+
+    c = Cube.new(args.merge(center: true))
     assert_equal 0, c.transformations.count
     assert c.centered?
   end
