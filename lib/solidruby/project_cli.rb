@@ -23,7 +23,8 @@ class SolidRuby::ProjectCli < Thor
     send(:dynamic_params, options)
   end
 
-  desc "parameters OPTIONS", "overwrite parameters in parameters.yml"
+  desc "output OPTIONS", "generate SCAD output, overriding any parameters in parameters.yml"
+  default_task :output
 
   private
 
