@@ -19,8 +19,9 @@ module SolidRuby::Helpers
   def chamfer(args={})
     height = args[:height] || args[:h] || 0
     length = args[:length] || args[:l] || 0
+    angle = args[:angle] || args[:a] || 45
 
-    t = triangle(a: height, alpha: 90, beta: 45)
+    t = triangle(a: height, alpha: 90, gamma: angle)
 
     return t.linear_extrude(height: length)
   end

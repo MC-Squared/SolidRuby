@@ -23,6 +23,15 @@ module SolidRuby::CSGModelling
         Helpers::fillet(args)
       end
     end
+
+    def chamfer(args)
+      if @children.first.respond_to? :chamfer
+        @children << @children.first.chamfer(args.merge(exclude_self: true))
+        self
+      else
+        Helpers::chamfer(args)
+      end
+    end
   end
 
   def -(args)

@@ -355,5 +355,20 @@ class CubeTest < Minitest::Test
     ch = cc.children[1]
     assert ch.is_a? LinearExtrude
     assert_equal c.z + 0.02, ch.height
+
+    # allow two distinct chamfers
+    ch = cc.chamfer(front: :left, h: 6)
+    assert ch.is_a? Difference
+    assert_equal 3, ch.children.count
+
+    assert_equal c, ch.children.first
+
+    ch = cc.children[1]
+    assert ch.is_a? LinearExtrude
+    assert_equal c.z + 0.02, ch.height
+
+    ch = cc.children[2]
+    assert ch.is_a? LinearExtrude
+    assert_equal c.z + 0.02, ch.height
   end
 end

@@ -81,9 +81,9 @@ module SolidRuby::Primitives
       faces = normalise_edges(args)
       height = args[:h] || args[:height]
       trans = translations_for_edge(onto: self, faces: faces, x: @x, y: @y, z: @z)
-      res = self
+      res = args[:exclude_self] ? nil : self
       trans.each do |t|
-        res -= Helpers::chamfer(l: t[:length] + 0.02, h: height)
+        res -= Helpers::chamfer(l: t[:length] + 0.02, h: height, a: args[:a] || args[:angle])
           .rotate(z: (t[:z_rot] - 180))
           .rotate(x: t[:x_rot], y: t[:y_rot])
           .translate(x: t[:x_trans], y: t[:y_trans], z: t[:z_trans])
