@@ -1,9 +1,0 @@
-# This file provides a handy place to keep common parameters for your design
-
-default: &default
-  scale: 1.0
-  clearance: 0.3
-
-extra_large:
-  <<: *default
-  scale: 2.0

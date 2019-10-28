@@ -51,7 +51,7 @@ class SolidRubyCli < Thor
     template('guardfile.tt', "#{name}/Guardfile")
     template('gitignore.tt', "#{name}/.gitignore")
     template('assembly.tt', "#{name}/lib/assemblies/#{name}_assembly.rb")
-    template('params.tt', "#{name}/lib/parameters.yml")
+    template('parameters.yml.tt', "#{name}/parameters.yml")
 
     puts "SolidRuby project created."
     puts "Try running `solidruby g printed <partname>` to generate a new part"
