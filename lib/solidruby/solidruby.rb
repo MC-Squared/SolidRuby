@@ -30,27 +30,6 @@ module SolidRuby
   include SolidRuby::Parameters
   include Math
 
-  #	Deprecated: Stacks parts along the Z axis
-  # works on all Assemblies that have a @height definition
-  # TODO: Make a better functionality similar to this, that is:
-  #				- easier to use
-  #				- throws better error messages
-  #				- doesn't assume that everything falls down like gravity in every case
-  def stack(args = {}, *parts)
-    args[:method] ||= 'show'
-    args[:spacing] ||= 0
-    warn 'SolidRuby Warning: Please note that the stack method is deprecated and will be removed or replaced in the future'
-    @assembly = nil
-    z = 0
-    parts.each do |part|
-      item = (part.send args[:method])
-      next if item.nil? || !item.respond_to?('translate')
-      @assembly += item.translate(z: z)
-      z += part.height	+ args[:spacing]
-    end
-    @assembly
-  end
-
   def get_position_rec(obj, level = 0)
     position = [0, 0, 0]
     return position if obj.nil?
