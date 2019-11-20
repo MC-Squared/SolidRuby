@@ -26,7 +26,7 @@ class UnionTest < Minitest::Test
   end
 
   # unions should be combined if they have no translations
-  def test_union_optmize
+  def test_union_optimize
     c1 = cube(10)
     c2 = cube(20)
     c3 = cube(30)
@@ -54,6 +54,17 @@ class UnionTest < Minitest::Test
     assert_equal 2, u1.children.count
     assert_equal u1, u2.children[0]
     assert_equal c3, u2.children[1]
+
+    # combining two unions
+    u1 = c1 + c2
+    u2 = c2 + c3
+    u3 = u1 + u2
+
+    assert_equal 4, u3.children.count
+    assert_equal c1, u3.children[0]
+    assert_equal c2, u3.children[1]
+    assert_equal c2, u3.children[2]
+    assert_equal c3, u3.children[3]
   end
 
   def test_union_scad
