@@ -110,45 +110,6 @@ class CSGModellingTest < Minitest::Test
     assert_equal exp, h.to_rubyscad
   end
 
-  def test_optimize_union
-    #two cases,
-    #case: top is a union,
-    #     child is not a union
-    #     top has no transformations
-    # child becomes top's child
-    # case 2:
-    #     anything else
-    #     create new union of (top, child)
-
-
-    c1 = cube(10,10,10)
-    c2 = cube(20,20,20)
-    top_u = Union.new(c1, c2)
-
-    c3 = cube(30,30,30)
-    c4 = cube(40,40,40)
-    child_u = Union.new(c3, c4)
-
-    res_2u = optimize_union(top_u, child_u)
-    exp_2u = "union(){union(){cube(size = [10, 10, 10]);\n" \
-          "cube(size = [20, 20, 20]);\n" \
-          "}\n" \
-          "union(){cube(size = [30, 30, 30]);\n" \
-          "cube(size = [40, 40, 40]);\n" \
-          "}\n" \
-          "}"
-
-    assert_equal exp_2u, res_2u.to_rubyscad
-
-    res_1u = optimize_union(top_u, c3)
-    exp_1u = "union(){cube(size = [10, 10, 10]);\n" \
-              "cube(size = [20, 20, 20]);\n" \
-              "cube(size = [30, 30, 30]);\n" \
-              "}"
-
-    assert_equal exp_1u, res_1u.to_rubyscad
-  end
-
   def test_optimize_difference
     #two cases,
     #case: top is a difference,
@@ -199,9 +160,8 @@ class CSGModellingTest < Minitest::Test
     cube1 = cube(20, 20, 20)
     cube2 = cube(30, 30, 30)
     res = cube + [cube1, cube2]
-    exp = "union(){union(){cube(size = [10, 10, 10]);\n" \
+    exp = "union(){cube(size = [10, 10, 10]);\n" \
             "cube(size = [20, 20, 20]);\n" \
-            "}\n" \
             "cube(size = [30, 30, 30]);\n" \
             "}"
 

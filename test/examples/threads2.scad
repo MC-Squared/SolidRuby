@@ -1,9 +1,4 @@
-union(){union(){union(){union(){union(){union(){color(alpha = 0.392, c = [0.784, 0.784, 0.784]){cube(size = [50, 50, 15]);
-}
-}
-}
-}
-}
+union(){color(alpha = 0.392, c = [0.784, 0.784, 0.784]){cube(size = [50, 50, 15]);
 }
 translate(v = [23, 14, 15])
 difference(){color(alpha = 1.000, c = [0.706, 0.706, 0.706]){cube(size = [8, 20, 8]);
