@@ -18,22 +18,6 @@ class TransformationTest < Minitest::Test
     end
   end
 
-  def test_translate_scad
-    vals = {
-      Translate.new(x: 0, y: 0, z: 0) => '',
-      Translate.new(x: 1) => 'translate(v = [1, 0])',
-      Translate.new(y: 2) => 'translate(v = [0, 2])',
-      Translate.new(z: 3) => 'translate(v = [0, 0, 3])',
-      Translate.new(x: 2, z: 3) => 'translate(v = [2, 0, 3])',
-      Translate.new(x: 1, y: 2, z: 3) => 'translate(v = [1, 2, 3])',
-      Translate.new(q: 3) => ''
-    }
-
-    vals.each do |val, exp|
-      assert_equal exp, val.to_rubyscad
-    end
-  end
-
   def test_scale_scad
     vals = {
       Scale.new(x: 1) => 'scale(v = [1, 0])',
