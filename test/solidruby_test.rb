@@ -249,35 +249,6 @@ class SolidRubyTest < Minitest::Test
     end
   end
 
-  def test_stack
-    parts = [
-      Washer.new(4.3),
-      Nut.new(4),
-      Washer.new(4.3),
-      Nut.new(4)
-    ]
-
-    bolt = Bolt.new(4, 16).show
-    bolt_assembly = bolt
-    bolt_assembly += stack({ method: 'output', spacing: 5 }, *parts)
-
-    exp = "union(){union(){color(\"Gainsboro\"){translate(v = [0, 0, -4])\n" \
-            "cylinder(h = 4, r = 3.500);\n" \
-            "}\n" \
-            "color(\"DarkGray\"){cylinder(h = 16, r = 2.000);\n" \
-            "}\n" \
-            "}\n" \
-            "union(){color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
-            "}\n" \
-            "translate(v = [0, 0, 8.200])\n" \
-            "color(\"Gainsboro\"){cylinder(h = 3.200, r = 4.215, $fn = 6);\n" \
-            "}\n" \
-            "}\n" \
-            "}"
-
-    assert_equal exp, bolt_assembly.to_rubyscad
-  end
-
   def test_get_position_rec
     exp = [0, 0, 0]
     assert_equal exp, get_position_rec(nil)
