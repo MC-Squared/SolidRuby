@@ -54,6 +54,17 @@ class DifferenceTest < Minitest::Test
     assert_equal 2, d1.children.count
     assert_equal d1, d2.children[0]
     assert_equal c3, d2.children[1]
+
+
+    d1 = c1 - c2
+    d2 = c2 - c3
+    d3 = d1 - d2
+
+    assert_equal 4, d3.children.count
+    assert_equal c1, d3.children[0]
+    assert_equal c2, d3.children[1]
+    assert_equal c2, d3.children[2]
+    assert_equal c3, d3.children[3]
   end
 
   def test_difference_scad
