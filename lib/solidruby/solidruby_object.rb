@@ -52,7 +52,13 @@ module SolidRuby
 
     def translate(args)
       return self if (args[:x] || 0) == 0 && (args[:y] || 0) == 0 && (args[:z] || 0) == 0
-      @transformations << Translate.new(args)
+      if @transformations.last.is_a? Translate
+        @transformations.last.x += args[:x] || 0
+        @transformations.last.y += args[:y] || 0
+        @transformations.last.z += args[:z] || 0
+      else
+        @transformations << Translate.new(args)
+      end
       self
     end
 
