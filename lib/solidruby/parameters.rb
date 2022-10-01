@@ -49,7 +49,7 @@ module SolidRuby::Parameters
         @@yml_path ||= "parameters.yml"
 
         if File.file?(@@yml_path)
-          YAML.load_file(@@yml_path)
+          YAML.load_file(@@yml_path, aliases: true)
         else
           raise "Could not read paramters yml file at #{@@yml_path}"
         end
