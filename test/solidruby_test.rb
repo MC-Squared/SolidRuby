@@ -129,6 +129,7 @@ class CSGModellingTest < Minitest::Test
     child_d = Difference.new(c3, c4)
 
     res_2d = optimize_difference(top_d, child_d)
+
     exp_2d = "difference(){difference(){cube(size = [10, 10, 10]);\n" \
           "cube(size = [20, 20, 20]);\n" \
           "}\n" \
@@ -188,9 +189,8 @@ class CSGModellingTest < Minitest::Test
     cube1 = cube(20, 20, 20)
     cube2 = cube(30, 30, 30)
     res = cube - [cube1, cube2]
-    exp = "difference(){difference(){cube(size = [10, 10, 10]);\n" \
+    exp = "difference(){cube(size = [10, 10, 10]);\n" \
             "cube(size = [20, 20, 20]);\n" \
-            "}\n" \
             "cube(size = [30, 30, 30]);\n" \
             "}"
 

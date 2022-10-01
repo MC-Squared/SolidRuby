@@ -51,8 +51,6 @@ module SolidRuby::CSGModelling
     if top.is_a?(Difference) && (!child.is_a? Difference) && top.transformations.empty?
       top.children << child
       top
-    elsif top.is_a?(Difference) && child.is_a?(Difference) && child.transformations.empty?
-      top -= child.children
     else
       Difference.new(top, child)
     end
