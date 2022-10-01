@@ -4,12 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2020-06-12
+## [0.3.0] - 2022-10-01
+
 ### Added
-- New way of handling parameters via `params` singleton + `parameters.yml` file
+- Cube now accepts `center: [:x, :y, :z]` arguments
+- Add `.mirror(:x, :y, :z)` method
 
 ### Changed
 
-- Minimum Ruby version bumped to 2.3
-- Runtime dependency of `wijet-thor` 	 replaced with `thor`
+- `SolidRubyObject#translate` now combines consecutive translations
+- Chamfers and Fillets can now be chained e.g. `cube.fillet(...).fillet(...)`
+
+### Removed
+- Remove deprecated `stack` method
+
+## [0.2.0] - 2020-06-12
+### Added
+- New way of handling parameters via `params` singleton + `parameters.yml` file
+- New `ProjectCli` class to allow overriding parameters from command line
+- Ruby exceptions are now output in OpenSCAD view
+
+### Changed
+
+- Minimum Ruby version bumped to 3.0
+- Runtime dependency of `wijet-thor` replaced with `thor`
 - Upgrade to bundler v2
+
+### Fixed
+- Fix Import and LinearExtrude incorrectly accepting scale arguments

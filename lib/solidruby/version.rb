@@ -14,5 +14,5 @@
 #    along with SolidRuby.  If not, see <http://www.gnu.org/licenses/>.
 #
 module SolidRuby
-  VERSION = '0.2.0'.freeze
+  VERSION = '0.3.0'.freeze
 end
