@@ -1,4 +1,7 @@
-require 'pry'
+begin
+  require 'pry'
+rescue LoadError
+end
 
 require 'solidruby/version'
 require 'solidruby/bill_of_material'
