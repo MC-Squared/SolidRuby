@@ -23,13 +23,10 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.required_ruby_version = '>= 3.0'
+  gem.required_ruby_version = '>= 3.2'
   gem.add_runtime_dependency 'require_all', '~> 3.0'
   gem.add_runtime_dependency 'thor', '~> 1.2'
   gem.add_runtime_dependency 'matrix', '~> 0.4'
-  gem.add_development_dependency 'bundler', '~> 2.0'
-  gem.add_development_dependency 'pry', '> 0'
-  gem.add_development_dependency 'rake', '~> 12.0'
   gem.add_development_dependency 'minitest', '~> 5.0'
   gem.add_development_dependency 'minitest-reporters', '~> 1.1'
   gem.add_development_dependency 'simplecov', '~> 0.15'
