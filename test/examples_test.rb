@@ -1,16 +1,6 @@
 require 'test_helper'
 require 'fileutils'
 
-# HACK: SolidRuby::import collides with Rake::DSL::import when running
-# tests using rake. To prevent this, we override it here
-module Rake
-  module DSL
-    def import(args)
-      SolidRuby::Import.new(args)
-    end
-  end
-end
-
 class ExamplesTest < Minitest::Test
   def test_example_scad
     return if ENV['SKIP_EXAMPLES']
@@ -18,10 +8,15 @@ class ExamplesTest < Minitest::Test
     FileUtils.rm_rf('test-tmp')
     FileUtils.mkdir('test-tmp')
     FileUtils.cd('test-tmp')
-    #generate all example files and comapre them
-    #against the 'gold standards' in test/examples
-    Dir.glob('../examples/**/*.rb').map do |f|
-      require_relative("#{f}")
+    # generate all example files and compare them
+    # against the 'gold standards' in test/examples
+    lib = File.expand_path('../lib', __dir__)
+    Dir.glob('examples/**/*.rb').each do |f|
+      script = File.expand_path(f)
+      # run each example in a clean Ruby process so Rake::DSL#import
+      # can't shadow SolidRuby's import
+      out = `cd test-tmp && ruby -I#{lib} #{script} 2>&1`
+      assert $?.success?, "Failed to run #{f}:\n#{out}"
     end
 
     FileUtils.cd('..')

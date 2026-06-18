@@ -255,9 +255,7 @@ module SolidRuby
     end
 
     def format_key(key)
-      key = key.to_s
-      key.prepend('$') if key.match('^f[asn]$')
-      key
+      key.match('^f[asn]$') ? "$#{key}" : "#{key}"
     end
 
     def format_value(var)
